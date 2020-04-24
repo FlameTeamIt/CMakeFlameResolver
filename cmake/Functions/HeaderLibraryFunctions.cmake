@@ -30,7 +30,7 @@ endmacro(internal_header_library_parse_arguments)
 #
 #
 #
-macro(ineternal_header_library_print_parse_result)
+macro(internal_header_library_print_parse_result)
 	check_internal_use()
 
 	if(HEADER_DEBUG)
@@ -62,7 +62,7 @@ macro(ineternal_header_library_print_parse_result)
 
 		print_debug_function_newline("-------- PARSE RESULT --------")
 	endif()
-endmacro(ineternal_header_library_print_parse_result)
+endmacro(internal_header_library_print_parse_result)
 
 #
 #
@@ -135,7 +135,7 @@ function(header_library)
 	internal_header_library_start_function()
 
 	# Print results
-	ineternal_header_library_print_parse_result()
+	internal_header_library_print_parse_result()
 
 	# Process parameters
 	internal_header_library_process_paramters()

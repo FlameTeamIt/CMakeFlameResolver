@@ -17,7 +17,7 @@ endmacro(internal_compile_binary_end_function)
 #
 #
 #
-macro(ineternal_compile_binary_parse_paramters)
+macro(internal_compile_binary_parse_paramters)
 	check_internal_use()
 
 	set(OPTIONS
@@ -44,12 +44,12 @@ macro(ineternal_compile_binary_parse_paramters)
 		"DEPENDENCY_TARGET_LIST"
 	)
 	cmake_parse_arguments("BINARY" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
-endmacro(ineternal_compile_binary_parse_paramters)
+endmacro(internal_compile_binary_parse_paramters)
 
 #
 #
 #
-macro(ineternal_compile_binary_print_parse_result)
+macro(internal_compile_binary_print_parse_result)
 	check_internal_use()
 
 	if(BINARY_DEBUG)
@@ -96,7 +96,7 @@ macro(ineternal_compile_binary_print_parse_result)
 
 		print_debug_function_newline("-------- PARSE RESULT -------")
 	endif()
-endmacro(ineternal_compile_binary_print_parse_result)
+endmacro(internal_compile_binary_print_parse_result)
 
 #
 #
@@ -133,7 +133,7 @@ endmacro(internal_compile_binary_process_paramters)
 #
 #
 #
-macro(ineternal_compile_binary)
+macro(internal_compile_binary)
 	check_internal_use()
 
 	print_newline(
@@ -172,7 +172,7 @@ macro(ineternal_compile_binary)
 	print_newline(
 		"-- Adding binary for ${BINARY_NAME} - done")
 
-endmacro(ineternal_compile_binary)
+endmacro(internal_compile_binary)
 
 #
 #
@@ -181,19 +181,19 @@ function(compile_binary)
 	enable_internal_use()
 
 	# Parse paramters
-	ineternal_compile_binary_parse_paramters(${ARGV})
+	internal_compile_binary_parse_paramters(${ARGV})
 
 	# Start function log
 	internal_compile_binary_start_function()
 
 	# Print parse result
-	ineternal_compile_binary_print_parse_result()
+	internal_compile_binary_print_parse_result()
 
 	# Check parameters
 	internal_compile_binary_process_paramters()
 
 	# Add binary to resolve list
-	ineternal_compile_binary()
+	internal_compile_binary()
 
 	# End function log
 	internal_compile_binary_end_function()

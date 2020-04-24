@@ -17,7 +17,7 @@ endmacro(internal_compile_library_end_function)
 #
 #
 #
-macro(ineternal_compile_library_parse_paramters)
+macro(internal_compile_library_parse_paramters)
 	check_internal_use()
 
 	set(OPTIONS
@@ -56,12 +56,12 @@ macro(ineternal_compile_library_parse_paramters)
 		"DEPENDENCY_TARGETS_FOR_SHARED"
 	)
 	cmake_parse_arguments("COMPILE" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
-endmacro(ineternal_compile_library_parse_paramters)
+endmacro(internal_compile_library_parse_paramters)
 
 #
 #
 #
-macro(ineternal_compile_library_print_parse_result)
+macro(internal_compile_library_print_parse_result)
 	check_internal_use()
 
 	if(COMPILE_DEBUG)
@@ -150,7 +150,7 @@ macro(ineternal_compile_library_print_parse_result)
 
 		print_debug_function_newline("-------------- PARSE RESULT --------------")
 	endif()
-endmacro(ineternal_compile_library_print_parse_result)
+endmacro(internal_compile_library_print_parse_result)
 
 #
 #
@@ -211,7 +211,7 @@ endmacro(internal_compile_library_print_help)
 #
 #
 #
-macro(ineternal_compile_independ_object_library)
+macro(internal_compile_independ_object_library)
 	check_internal_use()
 
 	print_newline(
@@ -271,12 +271,12 @@ macro(ineternal_compile_independ_object_library)
 
 	print_newline(
 		"-- Adding position independ object library for ${COMPILE_LIBRARY_NAME} - done")
-endmacro(ineternal_compile_independ_object_library)
+endmacro(internal_compile_independ_object_library)
 
 #
 #
 #
-macro(ineternal_compile_depend_object_library)
+macro(internal_compile_depend_object_library)
 	check_internal_use()
 
 	print_newline("-- Adding position depend object library for ${COMPILE_LIBRARY_NAME}")
@@ -306,25 +306,25 @@ macro(ineternal_compile_depend_object_library)
 	unset(TARGET_NAME)
 
 	print_newline("-- Adding object library for ${COMPILE_LIBRARY_NAME} - done")
-endmacro(ineternal_compile_depend_object_library)
+endmacro(internal_compile_depend_object_library)
 
 #
 #
 #
-macro(ineternal_compile_object_library)
+macro(internal_compile_object_library)
 	check_internal_use()
 
-	ineternal_compile_independ_object_library()
+	internal_compile_independ_object_library()
 	if(NOT FLAME_ONLY_POSITION_INDEPEND_OBJECTS)
-		ineternal_compile_depend_object_library()
+		internal_compile_depend_object_library()
 	endif()
-endmacro(ineternal_compile_object_library)
+endmacro(internal_compile_object_library)
 
 
 #
 #
 #
-macro(ineternal_compile_static_library)
+macro(internal_compile_static_library)
 	check_internal_use()
 
 	print_newline("-- Adding static library for ${COMPILE_LIBRARY_NAME}")
@@ -363,12 +363,12 @@ macro(ineternal_compile_static_library)
 	unset(TARGET_NAME)
 
 	print_newline("-- Adding static library for ${COMPILE_LIBRARY_NAME} - done")
-endmacro(ineternal_compile_static_library)
+endmacro(internal_compile_static_library)
 
 #
 #
 #
-macro(ineternal_compile_shared_library)
+macro(internal_compile_shared_library)
 	check_internal_use()
 
 	print_newline("-- Adding shared library for ${COMPILE_LIBRARY_NAME}")
@@ -410,7 +410,7 @@ macro(ineternal_compile_shared_library)
 	unset(TARGET_NAME)
 
 	print_newline("-- Adding shared library for ${COMPILE_LIBRARY_NAME} - done")
-endmacro(ineternal_compile_shared_library)
+endmacro(internal_compile_shared_library)
 
 #
 #
@@ -419,28 +419,28 @@ function(compile_library)
 	enable_internal_use()
 
 	# Parse paramters
-	ineternal_compile_library_parse_paramters(${ARGV})
+	internal_compile_library_parse_paramters(${ARGV})
 
 	# Start function log
 	internal_compile_library_start_function()
 
 	# Print parse result
-	ineternal_compile_library_print_parse_result()
+	internal_compile_library_print_parse_result()
 
 	# Check parameters
 	internal_compile_library_process_paramters()
 
 	# Add object library/libraries to resolve list
-	ineternal_compile_object_library()
+	internal_compile_object_library()
 
 	# Add static library to resolve list
 	if(MAKE_STATIC AND FLAME_MAKE_STATIC)
-		ineternal_compile_static_library()
+		internal_compile_static_library()
 	endif()
 
 	# Add shared library to resolve list
 	if(MAKE_SHARED AND FLAME_MAKE_SHARED)
-		ineternal_compile_shared_library()
+		internal_compile_shared_library()
 	endif()
 
 	# End function log
