@@ -181,7 +181,8 @@ macro(internal_compile_library_process_parameters)
 			include(${COMPILE_HEADER_LIST_FILE})
 			list(APPEND SOURCE_LIST "${HEADER_LIST}")
 		endif()
-	elseif(COMPILE_HEADER_LIST)
+	endif()
+	if(COMPILE_HEADER_LIST)
 		list(APPEND SOURCE_LIST ${COMPILE_SOURCE_LIST})
 	endif()
 
@@ -339,8 +340,7 @@ macro(internal_compile_static_library)
 	string(CONCAT TARGET_DEPENDENT_OBJECT_LIBRARY
 		"${COMPILE_LIBRARY_NAME}"
 		"${FLAME_NAME_SEPARATOR}"
-		"${FLAME_OBJECT_MODULE_SUFFIX}"
-	)
+		"${FLAME_OBJECT_MODULE_SUFFIX}")
 
 	#set(DEBUG DEBUG)
 	internal_add_static_target_properties(
@@ -385,8 +385,7 @@ macro(internal_compile_shared_library)
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_OBJECT_MODULE_SUFFIX}"
 		"${FLAME_NAME_SEPARATOR}"
-		"${FLAME_OBJECT_INDEPENDENT_MODULE_SUFFIX}"
-	)
+		"${FLAME_OBJECT_INDEPENDENT_MODULE_SUFFIX}")
 
 	#set(DEBUG DEBUG)
 	internal_add_shared_target_properties(
