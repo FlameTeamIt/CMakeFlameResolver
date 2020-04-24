@@ -62,28 +62,28 @@ macro(internal_header_library_print_parse_result)
 		print_debug_function_newline("-------- PARSE RESULT --------")
 
 		print_debug_function_oneline("HEADER_HELP                   = ")
-		print_debug_list_newline(${HEADER_HELP})
+		print_debug_value_newline(${HEADER_HELP})
 
 		print_debug_function_oneline("HEADER_LIBRARY_NAME           = ")
-		print_debug_list_newline(${HEADER_LIBRARY_NAME})
+		print_debug_value_newline(${HEADER_LIBRARY_NAME})
 
 		print_debug_function_oneline("HEADER_HEADER_LIST_FILE       = ")
-		print_debug_list_newline("${HEADER_HEADER_LIST_FILE}")
+		print_debug_value_newline("${HEADER_HEADER_LIST_FILE}")
 
 		print_debug_function_oneline("HEADER_HEADER_LIST            = ")
-		print_debug_list_newline(${HEADER_HEADER_LIST})
+		print_debug_value_newline(${HEADER_HEADER_LIST})
 
 		print_debug_function_oneline("HEADER_LIBRARY_ALIAS_NAME     = ")
-		print_debug_list_newline(${HEADER_LIBRARY_ALIAS_NAME})
+		print_debug_value_newline(${HEADER_LIBRARY_ALIAS_NAME})
 
 		print_debug_function_oneline("HEADER_DEPENDENCY_TARGET_LIST = ")
-		print_debug_list_newline(${HEADER_DEPENDENCY_TARGET_LIST})
+		print_debug_value_newline(${HEADER_DEPENDENCY_TARGET_LIST})
 
 		print_debug_function_oneline("HEADER_INCLUDE_PATHS          = ")
-		print_debug_list_newline(${HEADER_INCLUDE_PATHS})
+		print_debug_value_newline(${HEADER_INCLUDE_PATHS})
 
 		print_debug_function_oneline("HEADER_INSTALL_PATH           = ")
-		print_debug_list_newline(${HEADER_INSTALL_PATH})
+		print_debug_value_newline(${HEADER_INSTALL_PATH})
 
 		print_debug_function_newline("-------- PARSE RESULT --------")
 	endif()

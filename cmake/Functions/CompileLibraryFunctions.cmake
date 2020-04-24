@@ -72,81 +72,81 @@ macro(internal_compile_library_print_parse_result)
 		print_debug_function_newline("-- OPTIONS --")
 
 		#print_debug_function_oneline("COMPILE_DEBUG                              = ")
-		#print_debug_list_newline("${COMPILE_DEBUG}")
+		#print_debug_value_newline("${COMPILE_DEBUG}")
 
 		print_debug_function_oneline("COMPILE_MAKE_STATIC                        = ")
-		print_debug_list_newline("${COMPILE_MAKE_STATIC}")
+		print_debug_value_newline("${COMPILE_MAKE_STATIC}")
 
 		print_debug_function_oneline("COMPILE_MAKE_SHARED                        = ")
-		print_debug_list_newline("${COMPILE_MAKE_SHARED}")
+		print_debug_value_newline("${COMPILE_MAKE_SHARED}")
 
 		print_debug_function_oneline("COMPILE_NOT_MAKE_POSITION_DEPENDENT_OBJECTS   = ")
-		print_debug_list_newline("${COMPILE_NOT_MAKE_POSITION_DEPENDENT_OBJECTS}")
+		print_debug_value_newline("${COMPILE_NOT_MAKE_POSITION_DEPENDENT_OBJECTS}")
 
 		print_debug_function_oneline("COMPILE_NOT_MAKE_POSITION_INDEPENDENT_OBJECTS = ")
-		print_debug_list_newline("${COMPILE_NOT_MAKE_POSITION_DEPENDENT_OBJECTS}")
+		print_debug_value_newline("${COMPILE_NOT_MAKE_POSITION_DEPENDENT_OBJECTS}")
 
 		print_debug_function_oneline("COMPILE_HELP                               = ")
-		print_debug_list_newline("${COMPILE_HELP}")
+		print_debug_value_newline("${COMPILE_HELP}")
 
 		# values
 
 		print_debug_function_newline("--  VALUES --")
 
 		print_debug_function_oneline("COMPILE_LIBRARY_NAME                       = ")
-		print_debug_list_newline(${COMPILE_LIBRARY_NAME})
+		print_debug_value_newline(${COMPILE_LIBRARY_NAME})
 
 		print_debug_function_oneline("COMPILE_OBJECT_ALIAS_NAME                  = ")
-		print_debug_list_newline(${COMPILE_OBJECT_ALIAS_NAME})
+		print_debug_value_newline(${COMPILE_OBJECT_ALIAS_NAME})
 
 		print_debug_function_oneline("COMPILE_INDEPENDENT_OBJECT_ALIAS_NAME         = ")
-		print_debug_list_newline(${COMPILE_INDEPENDENT_OBJECT_ALIAS_NAME})
+		print_debug_value_newline(${COMPILE_INDEPENDENT_OBJECT_ALIAS_NAME})
 
 		print_debug_function_oneline("COMPILE_STATIC_ALIAS_NAME                  = ")
-		print_debug_list_newline(${COMPILE_STATIC_ALIAS_NAME})
+		print_debug_value_newline(${COMPILE_STATIC_ALIAS_NAME})
 
 		print_debug_function_oneline("COMPILE_SHARED_ALIAS_NAME                  = ")
-		print_debug_list_newline(${COMPILE_SHARED_ALIAS_NAME})
+		print_debug_value_newline(${COMPILE_SHARED_ALIAS_NAME})
 
 		print_debug_function_oneline("COMPILE_SOURCE_LIST_FILE                   = ")
-		print_debug_list_newline(${COMPILE_SOURCE_LIST_FILE})
+		print_debug_value_newline(${COMPILE_SOURCE_LIST_FILE})
 
 		print_debug_function_oneline("COMPILE_HEADER_LIST_FILE                   = ")
-		print_debug_list_newline(${COMPILE_HEADER_LIST_FILE})
+		print_debug_value_newline(${COMPILE_HEADER_LIST_FILE})
 
 		print_debug_function_oneline("COMPILE_STATIC_INSTALL_PATH                = ")
-		print_debug_list_newline(${COMPILE_STATIC_INSTALL_PATH})
+		print_debug_value_newline(${COMPILE_STATIC_INSTALL_PATH})
 
 		print_debug_function_oneline("COMPILE_SHARED_INSTALL_PATH                = ")
-		print_debug_list_newline(${COMPILE_SHARED_INSTALL_PATH})
+		print_debug_value_newline(${COMPILE_SHARED_INSTALL_PATH})
 
 		# lists
 
 		print_debug_function_newline("--  LISTS  --")
 
 		print_debug_function_oneline("COMPILE_INCLUDE_PATHS                      = ")
-		print_debug_list_newline("${COMPILE_INCLUDE_PATHS}")
+		print_debug_value_newline("${COMPILE_INCLUDE_PATHS}")
 
 		print_debug_function_oneline("COMPILE_SOURCE_LIST                        = ")
-		print_debug_list_newline(${COMPILE_SOURCE_LIST})
+		print_debug_value_newline(${COMPILE_SOURCE_LIST})
 
 		print_debug_function_oneline("COMPILE_HEADER_LIST                        = ")
-		print_debug_list_newline(${COMPILE_HEADER_LIST})
+		print_debug_value_newline(${COMPILE_HEADER_LIST})
 
 		print_debug_function_oneline("COMPILE_COMPILE_FLAGS                      = ")
-		print_debug_list_newline("${COMPILE_COMPILE_FLAGS}")
+		print_debug_value_newline("${COMPILE_COMPILE_FLAGS}")
 
 		print_debug_function_oneline("COMPILE_LINK_FLAGS                         = ")
-		print_debug_list_newline("${COMPILE_LINK_FLAGS}")
+		print_debug_value_newline("${COMPILE_LINK_FLAGS}")
 
 		print_debug_function_oneline("COMPILE_DEPENDENCY_HEADER_TARGETS          = ")
-		print_debug_list_newline("${COMPILE_DEPENDENCY_HEADER_TARGETS}")
+		print_debug_value_newline("${COMPILE_DEPENDENCY_HEADER_TARGETS}")
 
 		print_debug_function_oneline("COMPILE_DEPENDENCY_TARGETS_FOR_STATIC      = ")
-		print_debug_list_newline("${COMPILE_DEPENDENCY_TARGETS_FOR_STATIC}")
+		print_debug_value_newline("${COMPILE_DEPENDENCY_TARGETS_FOR_STATIC}")
 
 		print_debug_function_oneline("COMPILE_DEPENDENCY_TARGETS_FOR_SHARED      = ")
-		print_debug_list_newline("${COMPILE_DEPENDENCY_TARGETS_FOR_SHARED}")
+		print_debug_value_newline("${COMPILE_DEPENDENCY_TARGETS_FOR_SHARED}")
 
 		print_debug_function_newline("-------------- PARSE RESULT --------------")
 	endif()

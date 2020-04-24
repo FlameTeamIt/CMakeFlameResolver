@@ -74,7 +74,7 @@ endfunction(print_debug_newline)
 #
 #
 #
-function(print_debug_list_newline)
+function(print_debug_value_newline)
 	set(ARG_LIST ${ARGV})
 	if(ARG_LIST)
 		list(GET ARG_LIST 0 RESULT)
@@ -85,7 +85,7 @@ function(print_debug_list_newline)
 	endif()
 
 	print_debug_newline("${RESULT}")
-endfunction(print_debug_list_newline)
+endfunction(print_debug_value_newline)
 
 #
 #

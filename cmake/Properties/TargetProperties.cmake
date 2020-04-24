@@ -25,25 +25,25 @@ function(internal_add_header_target_properties)
 		print_debug_function_newline("-------- PARSE RESULT --------")
 
 		print_debug_function_oneline("FLAME_PROPERTY_CONTAINER_NAME = ")
-		print_debug_list_newline(${FLAME_PROPERTY_CONTAINER_NAME})
+		print_debug_value_newline(${FLAME_PROPERTY_CONTAINER_NAME})
 
 		print_debug_function_oneline("FLAME_REAL_TARGET             = ")
-		print_debug_list_newline(${FLAME_REAL_TARGET})
+		print_debug_value_newline(${FLAME_REAL_TARGET})
 
 		print_debug_function_oneline("FLAME_ADDING_HEADERS          = ")
-		print_debug_list_newline(${FLAME_ADDING_HEADERS})
+		print_debug_value_newline(${FLAME_ADDING_HEADERS})
 
 		print_debug_function_oneline("FLAME_INCLUDE_PATHS           = ")
-		print_debug_list_newline(${FLAME_INCLUDE_PATHS})
+		print_debug_value_newline(${FLAME_INCLUDE_PATHS})
 
 		print_debug_function_oneline("FLAME_DEPENDENCY_HEADERS      = ")
-		print_debug_list_newline(${FLAME_DEPENDENCY_HEADERS})
+		print_debug_value_newline(${FLAME_DEPENDENCY_HEADERS})
 
 		print_debug_function_oneline("FLAME_LIBRARY_ALIASES         = ")
-		print_debug_list_newline(${FLAME_LIBRARY_ALIASES})
+		print_debug_value_newline(${FLAME_LIBRARY_ALIASES})
 
 		print_debug_function_oneline("FLAME_INSTALL_PATH            = ")
-		print_debug_list_newline(${FLAME_INSTALL_PATH})
+		print_debug_value_newline(${FLAME_INSTALL_PATH})
 
 		print_debug_function_newline("-------- PARSE RESULT --------")
 	endif()
@@ -94,28 +94,28 @@ function(internal_add_object_target_properties)
 		print_debug_function_newline("-------- PARSE RESULT --------")
 
 		print_debug_function_oneline("FLAME_PROPERTY_CONTAINER_NAME = ")
-		print_debug_list_newline(${FLAME_PROPERTY_CONTAINER_NAME})
+		print_debug_value_newline(${FLAME_PROPERTY_CONTAINER_NAME})
 
 		print_debug_function_oneline("FLAME_REAL_TARGET             = ")
-		print_debug_list_newline(${FLAME_REAL_TARGET})
+		print_debug_value_newline(${FLAME_REAL_TARGET})
 
 		print_debug_function_oneline("FLAME_ADDING_SOURCES          = ")
-		print_debug_list_newline(${FLAME_ADDING_SOURCES})
+		print_debug_value_newline(${FLAME_ADDING_SOURCES})
 
 		print_debug_function_oneline("FLAME_INCLUDE_PATHS           = ")
-		print_debug_list_newline(${FLAME_INCLUDE_PATHS})
+		print_debug_value_newline(${FLAME_INCLUDE_PATHS})
 
 		print_debug_function_oneline("FLAME_DEPENDENCY_HEADERS      = ")
-		print_debug_list_newline(${FLAME_DEPENDENCY_HEADERS})
+		print_debug_value_newline(${FLAME_DEPENDENCY_HEADERS})
 
 		print_debug_function_oneline("FLAME_COMPILE_FLAGS           = ")
-		print_debug_list_newline(${FLAME_COMPILE_FLAGS})
+		print_debug_value_newline(${FLAME_COMPILE_FLAGS})
 
 		print_debug_function_oneline("FLAME_POSITION_INDEPEND       = ")
-		print_debug_list_newline(${FLAME_POSITION_INDEPEND})
+		print_debug_value_newline(${FLAME_POSITION_INDEPEND})
 
 		print_debug_function_oneline("FLAME_OBJECT_ALIASES          = ")
-		print_debug_list_newline(${FLAME_OBJECT_ALIASES})
+		print_debug_value_newline(${FLAME_OBJECT_ALIASES})
 
 		print_debug_function_newline("-------- PARSE RESULT --------")
 	endif()
@@ -172,34 +172,34 @@ function(internal_add_static_target_properties)
 		print_debug_function_newline("-------- PARSE RESULT --------")
 
 		print_debug_function_oneline("FLAME_PROPERTY_CONTAINER_NAME = ")
-		print_debug_list_newline(${FLAME_PROPERTY_CONTAINER_NAME})
+		print_debug_value_newline(${FLAME_PROPERTY_CONTAINER_NAME})
 
 		print_debug_function_oneline("FLAME_REAL_TARGET             = ")
-		print_debug_list_newline(${FLAME_REAL_TARGET})
+		print_debug_value_newline(${FLAME_REAL_TARGET})
 
 		print_debug_function_oneline("FLAME_ADDING_SOURCES          = ")
-		print_debug_list_newline(${FLAME_ADDING_SOURCES})
+		print_debug_value_newline(${FLAME_ADDING_SOURCES})
 
 		print_debug_function_oneline("FLAME_ADDING_OBJECTS          = ")
-		print_debug_list_newline(${FLAME_ADDING_OBJECTS})
+		print_debug_value_newline(${FLAME_ADDING_OBJECTS})
 
 		print_debug_function_oneline("FLAME_DEPENDENCY_HEADERS      = ")
-		print_debug_list_newline(${FLAME_DEPENDENCY_HEADERS})
+		print_debug_value_newline(${FLAME_DEPENDENCY_HEADERS})
 
 		print_debug_function_oneline("FLAME_DEPENDENCY_LIBRARIES    = ")
-		print_debug_list_newline(${FLAME_DEPENDENCY_LIBRARIES})
+		print_debug_value_newline(${FLAME_DEPENDENCY_LIBRARIES})
 
 		print_debug_function_oneline("FLAME_COMPILE_FLAGS           = ")
-		print_debug_list_newline(${FLAME_COMPILE_FLAGS})
+		print_debug_value_newline(${FLAME_COMPILE_FLAGS})
 
 		print_debug_function_oneline("FLAME_OUTPUT_NAME             = ")
-		print_debug_list_newline(${FLAME_OUTPUT_NAME})
+		print_debug_value_newline(${FLAME_OUTPUT_NAME})
 
 		print_debug_function_oneline("FLAME_LIBRARY_ALIASES         = ")
-		print_debug_list_newline(${FLAME_LIBRARY_ALIASES})
+		print_debug_value_newline(${FLAME_LIBRARY_ALIASES})
 
 		print_debug_function_oneline("FLAME_INSTALL_PATH            = ")
-		print_debug_list_newline(${FLAME_INSTALL_PATH})
+		print_debug_value_newline(${FLAME_INSTALL_PATH})
 
 		print_debug_function_newline("-------- PARSE RESULT --------")
 	endif()
@@ -261,37 +261,37 @@ function(internal_add_shared_target_properties)
 		print_debug_function_newline("-------- PARSE RESULT --------")
 
 		print_debug_function_oneline("FLAME_PROPERTY_CONTAINER_NAME = ")
-		print_debug_list_newline(${FLAME_PROPERTY_CONTAINER_NAME})
+		print_debug_value_newline(${FLAME_PROPERTY_CONTAINER_NAME})
 
 		print_debug_function_oneline("FLAME_REAL_TARGET             = ")
-		print_debug_list_newline(${FLAME_REAL_TARGET})
+		print_debug_value_newline(${FLAME_REAL_TARGET})
 
 		print_debug_function_oneline("FLAME_ADDING_SOURCES          = ")
-		print_debug_list_newline(${FLAME_ADDING_SOURCES})
+		print_debug_value_newline(${FLAME_ADDING_SOURCES})
 
 		print_debug_function_oneline("FLAME_ADDING_OBJECTS          = ")
-		print_debug_list_newline(${FLAME_ADDING_OBJECTS})
+		print_debug_value_newline(${FLAME_ADDING_OBJECTS})
 
 		print_debug_function_oneline("FLAME_DEPENDENCY_HEADERS      = ")
-		print_debug_list_newline(${FLAME_DEPENDENCY_HEADERS})
+		print_debug_value_newline(${FLAME_DEPENDENCY_HEADERS})
 
 		print_debug_function_oneline("FLAME_DEPENDENCY_LIBRARIES    = ")
-		print_debug_list_newline(${FLAME_DEPENDENCY_LIBRARIES})
+		print_debug_value_newline(${FLAME_DEPENDENCY_LIBRARIES})
 
 		print_debug_function_oneline("FLAME_COMPILE_FLAGS           = ")
-		print_debug_list_newline(${FLAME_COMPILE_FLAGS})
+		print_debug_value_newline(${FLAME_COMPILE_FLAGS})
 
 		print_debug_function_oneline("FLAME_LINK_FLAGS              = ")
-		print_debug_list_newline(${FLAME_LINK_FLAGS})
+		print_debug_value_newline(${FLAME_LINK_FLAGS})
 
 		print_debug_function_oneline("FLAME_OUTPUT_NAME             = ")
-		print_debug_list_newline(${FLAME_OUTPUT_NAME})
+		print_debug_value_newline(${FLAME_OUTPUT_NAME})
 
 		print_debug_function_oneline("FLAME_LIBRARY_ALIASES         = ")
-		print_debug_list_newline(${FLAME_LIBRARY_ALIASES})
+		print_debug_value_newline(${FLAME_LIBRARY_ALIASES})
 
 		print_debug_function_oneline("FLAME_INSTALL_PATH            = ")
-		print_debug_list_newline(${FLAME_INSTALL_PATH})
+		print_debug_value_newline(${FLAME_INSTALL_PATH})
 
 		print_debug_function_newline("-------- PARSE RESULT --------")
 	endif()
@@ -353,31 +353,31 @@ function(internal_add_binary_target_properties)
 		print_debug_function_newline("-------- PARSE RESULT --------")
 
 		print_debug_function_oneline("FLAME_PROPERTY_CONTAINER_NAME = ")
-		print_debug_list_newline(${FLAME_PROPERTY_CONTAINER_NAME})
+		print_debug_value_newline(${FLAME_PROPERTY_CONTAINER_NAME})
 
 		print_debug_function_oneline("FLAME_REAL_TARGET             = ")
-		print_debug_list_newline(${FLAME_REAL_TARGET})
+		print_debug_value_newline(${FLAME_REAL_TARGET})
 
 		print_debug_function_oneline("FLAME_ADDING_SOURCES          = ")
-		print_debug_list_newline(${FLAME_ADDING_SOURCES})
+		print_debug_value_newline(${FLAME_ADDING_SOURCES})
 
 		print_debug_function_oneline("FLAME_DEPENDENCY_HEADERS      = ")
-		print_debug_list_newline(${FLAME_DEPENDENCY_HEADERS})
+		print_debug_value_newline(${FLAME_DEPENDENCY_HEADERS})
 
 		print_debug_function_oneline("FLAME_DEPENDENCY_LIBRARIES    = ")
-		print_debug_list_newline(${FLAME_DEPENDENCY_LIBRARIES})
+		print_debug_value_newline(${FLAME_DEPENDENCY_LIBRARIES})
 
 		print_debug_function_oneline("FLAME_COMPILE_FLAGS           = ")
-		print_debug_list_newline(${FLAME_COMPILE_FLAGS})
+		print_debug_value_newline(${FLAME_COMPILE_FLAGS})
 
 		print_debug_function_oneline("FLAME_LINK_FLAGS              = ")
-		print_debug_list_newline(${FLAME_LINK_FLAGS})
+		print_debug_value_newline(${FLAME_LINK_FLAGS})
 
 		print_debug_function_oneline("FLAME_OUTPUT_NAME             = ")
-		print_debug_list_newline(${FLAME_OUTPUT_NAME})
+		print_debug_value_newline(${FLAME_OUTPUT_NAME})
 
 		print_debug_function_oneline("FLAME_INSTALL_PATH            = ")
-		print_debug_list_newline(${FLAME_INSTALL_PATH})
+		print_debug_value_newline(${FLAME_INSTALL_PATH})
 
 		print_debug_function_newline("-------- PARSE RESULT --------")
 	endif()

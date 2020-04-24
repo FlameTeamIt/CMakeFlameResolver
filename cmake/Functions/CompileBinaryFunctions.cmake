@@ -60,39 +60,39 @@ macro(internal_compile_binary_print_parse_result)
 		print_debug_function_newline("--  VALUES --")
 
 		print_debug_function_oneline("BINARY_NAME                   = ")
-		print_debug_list_newline(${BINARY_NAME})
+		print_debug_value_newline(${BINARY_NAME})
 
 		print_debug_function_oneline("BINARY_ALIAS_NAME             = ")
-		print_debug_list_newline(${BINARY_ALIAS_NAME})
+		print_debug_value_newline(${BINARY_ALIAS_NAME})
 
 		print_debug_function_oneline("BINARY_SOURCE_LIST_FILE       = ")
-		print_debug_list_newline(${BINARY_SOURCE_LIST_FILE})
+		print_debug_value_newline(${BINARY_SOURCE_LIST_FILE})
 
 		print_debug_function_oneline("BINARY_HEADER_LIST_FILE       = ")
-		print_debug_list_newline(${BINARY_HEADER_LIST_FILE})
+		print_debug_value_newline(${BINARY_HEADER_LIST_FILE})
 
 		print_debug_function_oneline("BINARY_INSTALL_PATH           = ")
-		print_debug_list_newline(${BINARY_INSTALL_PATH})
+		print_debug_value_newline(${BINARY_INSTALL_PATH})
 
 		print_debug_function_newline("--  LISTS  --")
 
 		print_debug_function_oneline("BINARY_INCLUDE_PATHS          = ")
-		print_debug_list_newline(${BINARY_INCLUDE_PATHS})
+		print_debug_value_newline(${BINARY_INCLUDE_PATHS})
 
 		print_debug_function_oneline("BINARY_SOURCE_LIST            = ")
-		print_debug_list_newline(${BINARY_SOURCE_LIST})
+		print_debug_value_newline(${BINARY_SOURCE_LIST})
 
 		print_debug_function_oneline("BINARY_HEADER_LIST            = ")
-		print_debug_list_newline(${BINARY_HEADER_LIST})
+		print_debug_value_newline(${BINARY_HEADER_LIST})
 
 		print_debug_function_oneline("BINARY_COMPILE_FLAGS          = ")
-		print_debug_list_newline(${BINARY_COMPILE_FLAGS})
+		print_debug_value_newline(${BINARY_COMPILE_FLAGS})
 
 		print_debug_function_oneline("BINARY_LINK_FLAGS             = ")
-		print_debug_list_newline(${BINARY_LINK_FLAGS})
+		print_debug_value_newline(${BINARY_LINK_FLAGS})
 
 		print_debug_function_oneline("BINARY_DEPENDENCY_TARGET_LIST = ")
-		print_debug_list_newline(${BINARY_DEPENDENCY_TARGET_LIST})
+		print_debug_value_newline(${BINARY_DEPENDENCY_TARGET_LIST})
 
 		print_debug_function_newline("-------- PARSE RESULT -------")
 	endif()
