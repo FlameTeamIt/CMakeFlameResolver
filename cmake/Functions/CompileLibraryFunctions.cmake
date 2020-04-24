@@ -238,7 +238,6 @@ macro(internal_compile_independ_object_library)
 		"${TARGET_NAME}"
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_CUSTOM_TARGET_SUFFIX}")
-	set(POSITION_INDEPEND TRUE)
 
 	if(FLAME_ONLY_POSITION_INDEPENDENT_OBJECTS)
 		set(OBJECT_ALIASES
@@ -263,7 +262,6 @@ macro(internal_compile_independ_object_library)
 		#DEBUG
 	)
 
-	unset(POSITION_INDEPEND)
 	unset(TARGET_CUSTOM_PROPERTIES)
 	unset(TARGET_NAME)
 	unset(TARGET_NAME_INDEPEND)
