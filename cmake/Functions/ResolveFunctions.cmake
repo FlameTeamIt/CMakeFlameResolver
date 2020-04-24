@@ -108,7 +108,7 @@ function(internal_resolve_object_libraries)
 		endif()
 	endforeach()
 
-	# Not support now
+	# Not supported now
 	#foreach(target.property ${OBJECT_TARGETS})
 	#	target_property_get(${target.property} FLAME_REAL_TARGET
 	#		REAL_TARGET)
@@ -225,7 +225,7 @@ function(internal_resolve_static_libraries)
 		endif()
 	endforeach()
 
-	# Not support now
+	# Not supported now
 	#foreach(target.property ${STATIC_TARGETS})
 	#	target_property_get(${target.property} FLAME_REAL_TARGET
 	#		REAL_TARGET)
@@ -250,7 +250,7 @@ function(internal_resolve_static_libraries)
 		endif()
 	endforeach()
 
-	# Not support now
+	# Not supported now
 	#foreach(target.property ${STATIC_TARGETS})
 	#	target_property_get(${target.property} FLAME_REAL_TARGET
 	#		REAL_TARGET)
@@ -352,7 +352,7 @@ function(internal_resolve_shared_libraries)
 		endif()
 	endforeach()
 
-	# Not support now
+	# Not supported now
 	#foreach(target.property ${SHARED_TARGETS})
 	#	target_property_get(${target.property} FLAME_REAL_TARGET
 	#		REAL_TARGET)
@@ -360,7 +360,7 @@ function(internal_resolve_shared_libraries)
 	#		COMPILE_FLAGS)
 	#endforeach()
 
-	# Not support now
+	# Not supported now
 	#foreach(target.property ${SHARED_TARGETS})
 	#	target_property_get(${target.property} FLAME_REAL_TARGET
 	#		REAL_TARGET)
@@ -385,7 +385,7 @@ function(internal_resolve_shared_libraries)
 		endif()
 	endforeach()
 
-	# Not support now
+	# Not supported now
 	#foreach(target.property ${SHARED_TARGETS})
 	#	target_property_get(${target.property} FLAME_REAL_TARGET
 	#		REAL_TARGET)
@@ -502,7 +502,7 @@ function(internal_resolve_binaries)
 		endif()
 	endforeach()
 
-	# Not support now
+	# Not supported now
 	#foreach(target.property ${BINARY_TARGETS})
 	#	target_property_get(${target.property} FLAME_REAL_TARGET
 	#		REAL_TARGET)
@@ -510,7 +510,7 @@ function(internal_resolve_binaries)
 	#		COMPILE_FLAGS)
 	#endforeach()
 
-	# Not support now
+	# Not supported now
 	#foreach(target.property ${BINARY_TARGETS})
 	#	target_property_get(${target.property} FLAME_REAL_TARGET
 	#		REAL_TARGET)
@@ -535,7 +535,7 @@ function(internal_resolve_binaries)
 		endif()
 	endforeach()
 
-	# Not support now
+	# Not supported now
 	#foreach(target.property ${BINARY_TARGETS})
 	#	target_property_get(${target.property} FLAME_REAL_TARGET
 	#		REAL_TARGET)
