@@ -14,7 +14,7 @@ function(header_library)
 	internal_header_library_print_parse_result()
 
 	# Process parameters
-	internal_header_library_process_paramters()
+	internal_header_library_process_parameters()
 
 	# Add header library to resolve list
 	internal_header_library()
@@ -92,7 +92,7 @@ endmacro(internal_header_library_print_parse_result)
 #
 #
 #
-macro(internal_header_library_process_paramters)
+macro(internal_header_library_process_parameters)
 	check_internal_use()
 
 	if(NOT HEADER_LIBRARY_NAME)
@@ -115,7 +115,7 @@ macro(internal_header_library_process_paramters)
 
 	internal_print_warning_not_support("${HEADER_HELP}" HELP)
 	internal_print_warning_not_support("${HEADER_INSTALL_PATH}" INSTALL_PATH)
-endmacro(internal_header_library_process_paramters)
+endmacro(internal_header_library_process_parameters)
 
 macro(internal_header_library)
 	check_internal_use()

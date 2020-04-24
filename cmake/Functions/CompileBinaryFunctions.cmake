@@ -17,7 +17,7 @@ endmacro(internal_compile_binary_end_function)
 #
 #
 #
-macro(internal_compile_binary_parse_paramters)
+macro(internal_compile_binary_parse_parameters)
 	check_internal_use()
 
 	set(OPTIONS
@@ -44,7 +44,7 @@ macro(internal_compile_binary_parse_paramters)
 		"DEPENDENCY_TARGET_LIST"
 	)
 	cmake_parse_arguments("BINARY" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
-endmacro(internal_compile_binary_parse_paramters)
+endmacro(internal_compile_binary_parse_parameters)
 
 #
 #
@@ -101,7 +101,7 @@ endmacro(internal_compile_binary_print_parse_result)
 #
 #
 #
-macro(internal_compile_binary_process_paramters)
+macro(internal_compile_binary_process_parameters)
 	check_internal_use()
 
 	if(BINARY_SOURCE_LIST_FILE)
@@ -128,7 +128,7 @@ macro(internal_compile_binary_process_paramters)
 	internal_print_warning_not_support("${BINARY_COMPILE_FLAGS}" COMPILE_FLAGS)
 	internal_print_warning_not_support("${BINARY_LINK_FLAGS}"    LINK_FLAGS)
 	internal_print_warning_not_support("${BINARY_INSTALL_PATH}"  INSTALL_PATH)
-endmacro(internal_compile_binary_process_paramters)
+endmacro(internal_compile_binary_process_parameters)
 
 #
 #
@@ -180,8 +180,8 @@ endmacro(internal_compile_binary)
 function(compile_binary)
 	enable_internal_use()
 
-	# Parse paramters
-	internal_compile_binary_parse_paramters(${ARGV})
+	# Parse parameters
+	internal_compile_binary_parse_parameters(${ARGV})
 
 	# Start function log
 	internal_compile_binary_start_function()
@@ -190,7 +190,7 @@ function(compile_binary)
 	internal_compile_binary_print_parse_result()
 
 	# Check parameters
-	internal_compile_binary_process_paramters()
+	internal_compile_binary_process_parameters()
 
 	# Add binary to resolve list
 	internal_compile_binary()

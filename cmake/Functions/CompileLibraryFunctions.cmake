@@ -17,7 +17,7 @@ endmacro(internal_compile_library_end_function)
 #
 #
 #
-macro(internal_compile_library_parse_paramters)
+macro(internal_compile_library_parse_parameters)
 	check_internal_use()
 
 	set(OPTIONS
@@ -56,7 +56,7 @@ macro(internal_compile_library_parse_paramters)
 		"DEPENDENCY_TARGETS_FOR_SHARED"
 	)
 	cmake_parse_arguments("COMPILE" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
-endmacro(internal_compile_library_parse_paramters)
+endmacro(internal_compile_library_parse_parameters)
 
 #
 #
@@ -155,7 +155,7 @@ endmacro(internal_compile_library_print_parse_result)
 #
 #
 #
-macro(internal_compile_library_process_paramters)
+macro(internal_compile_library_process_parameters)
 	check_internal_use()
 
 	if(COMPILE_SOURCE_LIST_FILE)
@@ -199,7 +199,7 @@ macro(internal_compile_library_process_paramters)
 		STATIC_INSTALL_PATH)
 	internal_print_warning_not_support("${COMPILE_SHARED_INSTALL_PATH}"
 		SHARED_INSTALL_PATH)
-endmacro(internal_compile_library_process_paramters)
+endmacro(internal_compile_library_process_parameters)
 
 #
 #
@@ -418,8 +418,8 @@ endmacro(internal_compile_shared_library)
 function(compile_library)
 	enable_internal_use()
 
-	# Parse paramters
-	internal_compile_library_parse_paramters(${ARGV})
+	# Parse parameters
+	internal_compile_library_parse_parameters(${ARGV})
 
 	# Start function log
 	internal_compile_library_start_function()
@@ -428,7 +428,7 @@ function(compile_library)
 	internal_compile_library_print_parse_result()
 
 	# Check parameters
-	internal_compile_library_process_paramters()
+	internal_compile_library_process_parameters()
 
 	# Add object library/libraries to resolve list
 	internal_compile_object_library()
