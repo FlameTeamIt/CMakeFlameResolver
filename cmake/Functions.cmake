@@ -1,0 +1,7 @@
+include(Functions/CommonFunctions)
+include(Functions/CompileBinaryFunctions)
+include(Functions/CompileLibraryFunctions)
+include(Functions/HeaderLibraryFunctions)
+include(Functions/PrintFunctions)
+include(Functions/PropertyFunctions)
+include(Functions/ResolveFunctions)
