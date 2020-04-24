@@ -150,21 +150,6 @@ macro(ineternal_compile_library_print_parse_result)
 
 		print_debug_function_newline("-------------- PARSE RESULT --------------")
 	endif()
-
-	internal_print_warning_not_support("${COMPILE_HELP}"
-		HELP)
-	internal_print_warning_not_support("${COMPILE_NOT_MAKE_POSITION_DEPEND_OBJECTS}"
-		NOT_MAKE_POSITION_DEPEND_OBJECTS)
-	internal_print_warning_not_support("${COMPILE_NOT_MAKE_POSITION_INDEPEND_OBJECTS}"
-		NOT_MAKE_INPOSITION_DEPEND_OBJECTS)
-	internal_print_warning_not_support("${COMPILE_COMPILE_FLAGS}"
-		COMPILE_FLAGS)
-	internal_print_warning_not_support("${COMPILE_LINK_FLAGS}"
-		LINK_FLAGS)
-	internal_print_warning_not_support("${COMPILE_STATIC_INSTALL_PATH}"
-		STATIC_INSTALL_PATH)
-	internal_print_warning_not_support("${COMPILE_SHARED_INSTALL_PATH}"
-		SHARED_INSTALL_PATH)
 endmacro(ineternal_compile_library_print_parse_result)
 
 #
@@ -199,6 +184,21 @@ macro(internal_compile_library_process_paramters)
 	elseif(COMPILE_HEADER_LIST)
 		list(APPEND SOURCE_LIST ${COMPILE_SOURCE_LIST})
 	endif()
+
+	internal_print_warning_not_support("${COMPILE_HELP}"
+		HELP)
+	internal_print_warning_not_support("${COMPILE_NOT_MAKE_POSITION_DEPEND_OBJECTS}"
+		NOT_MAKE_POSITION_DEPEND_OBJECTS)
+	internal_print_warning_not_support("${COMPILE_NOT_MAKE_POSITION_INDEPEND_OBJECTS}"
+		NOT_MAKE_INPOSITION_DEPEND_OBJECTS)
+	internal_print_warning_not_support("${COMPILE_COMPILE_FLAGS}"
+		COMPILE_FLAGS)
+	internal_print_warning_not_support("${COMPILE_LINK_FLAGS}"
+		LINK_FLAGS)
+	internal_print_warning_not_support("${COMPILE_STATIC_INSTALL_PATH}"
+		STATIC_INSTALL_PATH)
+	internal_print_warning_not_support("${COMPILE_SHARED_INSTALL_PATH}"
+		SHARED_INSTALL_PATH)
 endmacro(internal_compile_library_process_paramters)
 
 #

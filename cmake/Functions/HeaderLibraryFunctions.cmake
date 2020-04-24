@@ -62,9 +62,6 @@ macro(ineternal_header_library_print_parse_result)
 
 		print_debug_function_newline("-------- PARSE RESULT --------")
 	endif()
-
-	internal_print_warning_not_support("${HEADER_HELP}" HELP)
-	internal_print_warning_not_support("${HEADER_INSTALL_PATH}" INSTALL_PATH)
 endmacro(ineternal_header_library_print_parse_result)
 
 #
@@ -90,6 +87,9 @@ macro(internal_header_library_process_paramters)
 		message_fatal("-- "
 			"Need 'HEADER_LIST_FILE' or 'HEADER_LIST'.")
 	endif()
+
+	internal_print_warning_not_support("${HEADER_HELP}" HELP)
+	internal_print_warning_not_support("${HEADER_INSTALL_PATH}" INSTALL_PATH)
 endmacro(internal_header_library_process_paramters)
 
 macro(internal_header_library)
