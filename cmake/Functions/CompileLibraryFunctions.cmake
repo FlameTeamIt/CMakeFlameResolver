@@ -431,13 +431,21 @@ function(compile_library)
 	internal_compile_object_library()
 
 	# Add static library to resolve list
-	if(MAKE_STATIC AND FLAME_MAKE_STATIC)
-		internal_compile_static_library()
+	if(MAKE_STATIC)
+		if(FLAME_MAKE_STATIC)
+			internal_compile_static_library()
+		else()
+			print_newline(
+				"-- Need 'MAKE_STATIC', but making static libraries are disabled")
 	endif()
 
 	# Add shared library to resolve list
-	if(MAKE_SHARED AND FLAME_MAKE_SHARED)
-		internal_compile_shared_library()
+	if(MAKE_SHARED)
+		if(FLAME_MAKE_SHARED)
+			internal_compile_shared_library()
+		else()
+			print_newline(
+				"-- Need 'MAKE_SHARED', but making shared libraries are disabled")
 	endif()
 
 	# End function log
