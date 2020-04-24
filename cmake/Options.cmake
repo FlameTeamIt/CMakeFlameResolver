@@ -19,6 +19,11 @@ option(FLAME_LOGGING
 	ON
 )
 
+option(FLAME_THREADING
+	"Use native threads"
+	ON
+)
+
 # code generation options
 
 option(FLAME_ONLY_POSITION_INDEPENDENT_OBJECTS
