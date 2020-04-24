@@ -24,15 +24,15 @@ macro(internal_compile_library_parse_paramters)
 		"DEBUG"
 		"MAKE_STATIC"
 		"MAKE_SHARED"
-		"NOT_MAKE_POSITION_DEPEND_OBJECTS"
-		"NOT_MAKE_POSITION_INDEPEND_OBJECTS"
+		"NOT_MAKE_POSITION_DEPENDENT_OBJECTS"
+		"NOT_MAKE_POSITION_INDEPENDENT_OBJECTS"
 		"HELP"
 	)
 	set(VALUES
 		"LIBRARY_NAME"
 
 		"OBJECT_ALIAS_NAME"
-		"INDEPEND_OBJECT_ALIAS_NAME"
+		"INDEPENDENT_OBJECT_ALIAS_NAME"
 		"STATIC_ALIAS_NAME"
 		"SHARED_ALIAS_NAME"
 
@@ -80,11 +80,11 @@ macro(internal_compile_library_print_parse_result)
 		print_debug_function_oneline("COMPILE_MAKE_SHARED                        = ")
 		print_debug_list_newline("${COMPILE_MAKE_SHARED}")
 
-		print_debug_function_oneline("COMPILE_NOT_MAKE_POSITION_DEPEND_OBJECTS   = ")
-		print_debug_list_newline("${COMPILE_NOT_MAKE_POSITION_DEPEND_OBJECTS}")
+		print_debug_function_oneline("COMPILE_NOT_MAKE_POSITION_DEPENDENT_OBJECTS   = ")
+		print_debug_list_newline("${COMPILE_NOT_MAKE_POSITION_DEPENDENT_OBJECTS}")
 
-		print_debug_function_oneline("COMPILE_NOT_MAKE_POSITION_INDEPEND_OBJECTS = ")
-		print_debug_list_newline("${COMPILE_NOT_MAKE_POSITION_DEPEND_OBJECTS}")
+		print_debug_function_oneline("COMPILE_NOT_MAKE_POSITION_INDEPENDENT_OBJECTS = ")
+		print_debug_list_newline("${COMPILE_NOT_MAKE_POSITION_DEPENDENT_OBJECTS}")
 
 		print_debug_function_oneline("COMPILE_HELP                               = ")
 		print_debug_list_newline("${COMPILE_HELP}")
@@ -99,8 +99,8 @@ macro(internal_compile_library_print_parse_result)
 		print_debug_function_oneline("COMPILE_OBJECT_ALIAS_NAME                  = ")
 		print_debug_list_newline(${COMPILE_OBJECT_ALIAS_NAME})
 
-		print_debug_function_oneline("COMPILE_INDEPEND_OBJECT_ALIAS_NAME         = ")
-		print_debug_list_newline(${COMPILE_INDEPEND_OBJECT_ALIAS_NAME})
+		print_debug_function_oneline("COMPILE_INDEPENDENT_OBJECT_ALIAS_NAME         = ")
+		print_debug_list_newline(${COMPILE_INDEPENDENT_OBJECT_ALIAS_NAME})
 
 		print_debug_function_oneline("COMPILE_STATIC_ALIAS_NAME                  = ")
 		print_debug_list_newline(${COMPILE_STATIC_ALIAS_NAME})
@@ -187,10 +187,10 @@ macro(internal_compile_library_process_paramters)
 
 	internal_print_warning_not_support("${COMPILE_HELP}"
 		HELP)
-	internal_print_warning_not_support("${COMPILE_NOT_MAKE_POSITION_DEPEND_OBJECTS}"
-		NOT_MAKE_POSITION_DEPEND_OBJECTS)
-	internal_print_warning_not_support("${COMPILE_NOT_MAKE_POSITION_INDEPEND_OBJECTS}"
-		NOT_MAKE_INPOSITION_DEPEND_OBJECTS)
+	internal_print_warning_not_support("${COMPILE_NOT_MAKE_POSITION_DEPENDENT_OBJECTS}"
+		NOT_MAKE_POSITION_DEPENDENT_OBJECTS)
+	internal_print_warning_not_support("${COMPILE_NOT_MAKE_POSITION_INDEPENDENT_OBJECTS}"
+		NOT_MAKE_INPOSITION_DEPENDENT_OBJECTS)
 	internal_print_warning_not_support("${COMPILE_COMPILE_FLAGS}"
 		COMPILE_FLAGS)
 	internal_print_warning_not_support("${COMPILE_LINK_FLAGS}"
@@ -226,9 +226,9 @@ macro(internal_compile_independ_object_library)
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_OBJECT_MODULE_SUFFIX}"
 		"${FLAME_NAME_SEPARATOR}"
-		"${FLAME_OBJECT_INDEPEND_MODULE_SUFFIX}")
+		"${FLAME_OBJECT_INDEPENDENT_MODULE_SUFFIX}")
 
-	if(FLAME_ONLY_POSITION_INDEPEND_OBJECTS)
+	if(FLAME_ONLY_POSITION_INDEPENDENT_OBJECTS)
 		set(TARGET_NAME ${TARGET_NAME_DEPEND})
 	else()
 		set(TARGET_NAME ${TARGET_NAME_INDEPEND})
@@ -240,14 +240,14 @@ macro(internal_compile_independ_object_library)
 		"${FLAME_CUSTOM_TARGET_SUFFIX}")
 	set(POSITION_INDEPEND TRUE)
 
-	if(FLAME_ONLY_POSITION_INDEPEND_OBJECTS)
+	if(FLAME_ONLY_POSITION_INDEPENDENT_OBJECTS)
 		set(OBJECT_ALIASES
-			"${COMPILE_INDEPEND_OBJECT_ALIAS_NAME}"
+			"${COMPILE_INDEPENDENT_OBJECT_ALIAS_NAME}"
 			"${COMPILE_OBJECT_ALIAS_NAME}"
 			"${TARGET_NAME_INDEPEND}")
 	else()
 		set(OBJECT_ALIASES
-			"${COMPILE_INDEPEND_OBJECT_ALIAS_NAME}")
+			"${COMPILE_INDEPENDENT_OBJECT_ALIAS_NAME}")
 	endif()
 
 	#set(DEBUG DEBUG)
@@ -315,7 +315,7 @@ macro(internal_compile_object_library)
 	check_internal_use()
 
 	internal_compile_independ_object_library()
-	if(NOT FLAME_ONLY_POSITION_INDEPEND_OBJECTS)
+	if(NOT FLAME_ONLY_POSITION_INDEPENDENT_OBJECTS)
 		internal_compile_depend_object_library()
 	endif()
 endmacro(internal_compile_object_library)
@@ -338,7 +338,7 @@ macro(internal_compile_static_library)
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_CUSTOM_TARGET_SUFFIX}")
 
-	string(CONCAT TARGET_DEPEND_OBJECT_LIBRARY
+	string(CONCAT TARGET_DEPENDENT_OBJECT_LIBRARY
 		"${COMPILE_LIBRARY_NAME}"
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_OBJECT_MODULE_SUFFIX}"
@@ -349,7 +349,7 @@ macro(internal_compile_static_library)
 		PROPERTY_CONTAINER_NAME "${TARGET_CUSTOM_PROPERTIES}"
 		REAL_TARGET             "${TARGET_NAME}"
 		#ADDING_SOURCES          "${}"
-		ADDING_OBJECTS          "${TARGET_DEPEND_OBJECT_LIBRARY}"
+		ADDING_OBJECTS          "${TARGET_DEPENDENT_OBJECT_LIBRARY}"
 		DEPENDENCY_HEADERS      "${COMPILE_DEPENDENCY_HEADER_TARGETS}"
 		DEPENDENCY_LIBRARIES    "${COMPILE_DEPENDENCY_TARGETS_FOR_STATIC}"
 		#COMPILE_FLAGS           "${}"
@@ -358,7 +358,7 @@ macro(internal_compile_static_library)
 		#DEBUG
 	)
 
-	unset(TARGET_DEPEND_OBJECT_LIBRARY)
+	unset(TARGET_DEPENDENT_OBJECT_LIBRARY)
 	unset(TARGET_CUSTOM_PROPERTIES)
 	unset(TARGET_NAME)
 
@@ -382,12 +382,12 @@ macro(internal_compile_shared_library)
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_CUSTOM_TARGET_SUFFIX}")
 
-	string(CONCAT TARGET_INDEPEND_OBJECT_LIBRARY
+	string(CONCAT TARGET_INDEPENDENT_OBJECT_LIBRARY
 		"${COMPILE_LIBRARY_NAME}"
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_OBJECT_MODULE_SUFFIX}"
 		"${FLAME_NAME_SEPARATOR}"
-		"${FLAME_OBJECT_INDEPEND_MODULE_SUFFIX}"
+		"${FLAME_OBJECT_INDEPENDENT_MODULE_SUFFIX}"
 	)
 
 	#set(DEBUG DEBUG)
@@ -395,7 +395,7 @@ macro(internal_compile_shared_library)
 		PROPERTY_CONTAINER_NAME "${TARGET_CUSTOM_PROPERTIES}"
 		REAL_TARGET             "${TARGET_NAME}"
 		#ADDING_SOURCES          "${}"
-		ADDING_OBJECTS          "${TARGET_INDEPEND_OBJECT_LIBRARY}"
+		ADDING_OBJECTS          "${TARGET_INDEPENDENT_OBJECT_LIBRARY}"
 		DEPENDENCY_HEADERS      "${COMPILE_DEPENDENCY_HEADER_TARGETS}"
 		DEPENDENCY_LIBRARIES    "${COMPILE_DEPENDENCY_TARGETS_FOR_SHARED}"
 		#COMPILE_FLAGS           "${}"
@@ -405,7 +405,7 @@ macro(internal_compile_shared_library)
 		#DEBUG
 	)
 
-	unset(TARGET_DEPEND_OBJECT_LIBRARY)
+	unset(TARGET_DEPENDENT_OBJECT_LIBRARY)
 	unset(TARGET_CUSTOM_PROPERTIES)
 	unset(TARGET_NAME)
 

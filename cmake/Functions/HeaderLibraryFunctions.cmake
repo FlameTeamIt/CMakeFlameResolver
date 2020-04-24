@@ -1,6 +1,31 @@
 #
 #
 #
+function(header_library)
+	enable_internal_use()
+
+	# Parse arguments
+	internal_header_library_parse_arguments(${ARGV})
+
+	# Start function log
+	internal_header_library_start_function()
+
+	# Print results
+	internal_header_library_print_parse_result()
+
+	# Process parameters
+	internal_header_library_process_paramters()
+
+	# Add header library to resolve list
+	internal_header_library()
+
+	# End function log
+	internal_header_library_end_function()
+endfunction(header_library)
+
+#
+#
+#
 macro(internal_header_library_start_function)
 	check_internal_use()
 	start_debug_function(header_library)
@@ -121,28 +146,3 @@ macro(internal_header_library)
 
 	print_newline("-- Adding header library for ${HEADER_LIBRARY_NAME} - done")
 endmacro(internal_header_library)
-
-#
-#
-#
-function(header_library)
-	enable_internal_use()
-
-	# Parse arguments
-	internal_header_library_parse_arguments(${ARGV})
-
-	# Start function log
-	internal_header_library_start_function()
-
-	# Print results
-	internal_header_library_print_parse_result()
-
-	# Process parameters
-	internal_header_library_process_paramters()
-
-	# Add header library to resolve list
-	internal_header_library()
-
-	# End function log
-	internal_header_library_end_function()
-endfunction(header_library)

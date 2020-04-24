@@ -21,7 +21,7 @@ option(FLAME_LOGGING
 
 # code generation options
 
-option(FLAME_ONLY_POSITION_INDEPEND_OBJECTS
+option(FLAME_ONLY_POSITION_INDEPENDENT_OBJECTS
 	"Static and shared libraries are using one object library"
 	ON
 )
