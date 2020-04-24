@@ -402,7 +402,7 @@ macro(internal_compile_shared_library)
 		#DEBUG
 	)
 
-	unset(TARGET_DEPENDENT_OBJECT_LIBRARY)
+	unset(TARGET_INDEPENDENT_OBJECT_LIBRARY)
 	unset(TARGET_CUSTOM_PROPERTIES)
 	unset(TARGET_NAME)
 
