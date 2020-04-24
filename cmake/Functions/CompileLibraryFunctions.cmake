@@ -212,7 +212,7 @@ endmacro(internal_compile_library_print_help)
 #
 #
 #
-macro(internal_compile_independ_object_library)
+macro(internal_compile_independent_object_library)
 	check_internal_use()
 
 	print_newline(
@@ -270,12 +270,12 @@ macro(internal_compile_independ_object_library)
 
 	print_newline(
 		"-- Adding position independ object library for ${COMPILE_LIBRARY_NAME} - done")
-endmacro(internal_compile_independ_object_library)
+endmacro(internal_compile_independent_object_library)
 
 #
 #
 #
-macro(internal_compile_depend_object_library)
+macro(internal_compile_dependent_object_library)
 	check_internal_use()
 
 	print_newline("-- Adding position depend object library for ${COMPILE_LIBRARY_NAME}")
@@ -305,7 +305,7 @@ macro(internal_compile_depend_object_library)
 	unset(TARGET_NAME)
 
 	print_newline("-- Adding object library for ${COMPILE_LIBRARY_NAME} - done")
-endmacro(internal_compile_depend_object_library)
+endmacro(internal_compile_dependent_object_library)
 
 #
 #
@@ -313,9 +313,9 @@ endmacro(internal_compile_depend_object_library)
 macro(internal_compile_object_library)
 	check_internal_use()
 
-	internal_compile_independ_object_library()
+	internal_compile_independent_object_library()
 	if(NOT FLAME_ONLY_POSITION_INDEPENDENT_OBJECTS)
-		internal_compile_depend_object_library()
+		internal_compile_dependent_object_library()
 	endif()
 endmacro(internal_compile_object_library)
 
