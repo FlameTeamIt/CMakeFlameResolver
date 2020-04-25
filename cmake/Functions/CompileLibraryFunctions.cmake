@@ -437,6 +437,7 @@ function(compile_library)
 		else()
 			print_newline(
 				"-- Need 'MAKE_STATIC', but making static libraries are disabled")
+		endif()
 	endif()
 
 	# Add shared library to resolve list
@@ -446,6 +447,7 @@ function(compile_library)
 		else()
 			print_newline(
 				"-- Need 'MAKE_SHARED', but making shared libraries are disabled")
+		endif()
 	endif()
 
 	# End function log
