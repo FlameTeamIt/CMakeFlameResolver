@@ -119,15 +119,15 @@ function(internal_resolve_object_libraries)
 	foreach(target.property ${OBJECT_TARGETS})
 		target_property_get(${target.property} FLAME_REAL_TARGET
 			REAL_TARGET)
-		target_property_get(${target.property} FLAME_POSITION_INDEPEND
-			POSITION_INDEPEND)
+		target_property_get(${target.property} FLAME_POSITION_INDEPENDENT
+			POSITION_INDEPENDENT)
 
-		if(POSITION_INDEPEND)
+		if(POSITION_INDEPENDENT)
 			print_oneline("-- "
-				"Position independ code for object library ${REAL_TARGET} - ")
+				"Position independent code for object library ${REAL_TARGET} - ")
 
 			set_property(TARGET ${REAL_TARGET} PROPERTY
-				POSITION_INDEPENDENT_CODE ${POSITION_INDEPEND})
+				POSITION_INDEPENDENT_CODE ${POSITION_INDEPENDENT})
 
 			print_newline("done")
 		endif()

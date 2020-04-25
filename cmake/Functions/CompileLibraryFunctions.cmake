@@ -228,13 +228,13 @@ macro(internal_compile_independent_object_library)
 	check_internal_use()
 
 	print_newline(
-		"-- Adding position independ object library for ${COMPILE_NAME}")
+		"-- Adding position independent object library for ${COMPILE_NAME}")
 
-	string(CONCAT TARGET_NAME_DEPEND
+	string(CONCAT TARGET_NAME_DEPENDENT
 		"${COMPILE_NAME}"
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_OBJECT_MODULE_SUFFIX}")
-	string(CONCAT TARGET_NAME_INDEPEND
+	string(CONCAT TARGET_NAME_INDEPENDENT
 		"${COMPILE_NAME}"
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_OBJECT_MODULE_SUFFIX}"
@@ -242,9 +242,9 @@ macro(internal_compile_independent_object_library)
 		"${FLAME_OBJECT_INDEPENDENT_MODULE_SUFFIX}")
 
 	if(FLAME_ONLY_POSITION_INDEPENDENT_OBJECTS)
-		set(TARGET_NAME ${TARGET_NAME_DEPEND})
+		set(TARGET_NAME ${TARGET_NAME_DEPENDENT})
 	else()
-		set(TARGET_NAME ${TARGET_NAME_INDEPEND})
+		set(TARGET_NAME ${TARGET_NAME_INDEPENDENT})
 	endif()
 
 	string(CONCAT TARGET_CUSTOM_PROPERTIES
@@ -256,7 +256,7 @@ macro(internal_compile_independent_object_library)
 		set(OBJECT_ALIASES
 			"${COMPILE_INDEPENDENT_OBJECT_ALIAS_NAME}"
 			"${COMPILE_OBJECT_ALIAS_NAME}"
-			"${TARGET_NAME_INDEPEND}")
+			"${TARGET_NAME_INDEPENDENT}")
 	else()
 		set(OBJECT_ALIASES
 			"${COMPILE_INDEPENDENT_OBJECT_ALIAS_NAME}")
@@ -270,18 +270,18 @@ macro(internal_compile_independent_object_library)
 		INCLUDE_PATHS           "${COMPILE_INCLUDE_PATHS}"
 		DEPENDENCY_HEADERS      "${COMPILE_DEPENDENCY_HEADER_TARGETS}"
 		COMPILE_FLAGS           "${COMPILE_COMPILE_FLAGS}"
-		POSITION_INDEPEND
+		POSITION_INDEPENDENT
 		OBJECT_ALIASES          "${OBJECT_ALIASES}"
 		#DEBUG
 	)
 
 	unset(TARGET_CUSTOM_PROPERTIES)
 	unset(TARGET_NAME)
-	unset(TARGET_NAME_INDEPEND)
-	unset(TARGET_NAME_DEPEND)
+	unset(TARGET_NAME_INDEPENDENT)
+	unset(TARGET_NAME_DEPENDENT)
 
 	print_newline(
-		"-- Adding position independ object library for ${COMPILE_NAME} - done")
+		"-- Adding position independent object library for ${COMPILE_NAME} - done")
 endmacro(internal_compile_independent_object_library)
 
 #
@@ -290,7 +290,7 @@ endmacro(internal_compile_independent_object_library)
 macro(internal_compile_dependent_object_library)
 	check_internal_use()
 
-	print_newline("-- Adding position depend object library for ${COMPILE_NAME}")
+	print_newline("-- Adding position dependent object library for ${COMPILE_NAME}")
 
 	string(CONCAT TARGET_NAME
 		"${COMPILE_NAME}"
@@ -316,7 +316,8 @@ macro(internal_compile_dependent_object_library)
 	unset(TARGET_CUSTOM_PROPERTIES)
 	unset(TARGET_NAME)
 
-	print_newline("-- Adding object library for ${COMPILE_NAME} - done")
+	print_newline(
+		"-- Adding position dependent object library for ${COMPILE_NAME} - done")
 endmacro(internal_compile_dependent_object_library)
 
 #

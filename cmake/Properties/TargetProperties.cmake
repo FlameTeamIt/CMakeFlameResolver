@@ -65,15 +65,15 @@ function(internal_add_header_target_properties)
 	end_debug_function()
 endfunction(internal_add_header_target_properties)
 
-# ---- object-target -------
-# FLAME_REAL_TARGET        #
-# FLAME_ADDING_SOURCES     # headers + sources
-# FLAME_INCLUDE_PATHS      #
-# FLAME_DEPENDENCY_HEADERS #
-# FLAME_COMPILE_FLAGS      #
-# FLAME_POSITION_INDEPEND  #
-# FLAME_OBJECT_ALIASES     #
-# --------------------------
+# ------ object-target -------
+# FLAME_REAL_TARGET           #
+# FLAME_ADDING_SOURCES        # headers + sources
+# FLAME_INCLUDE_PATHS         #
+# FLAME_DEPENDENCY_HEADERS    #
+# FLAME_COMPILE_FLAGS         #
+# FLAME_POSITION_INDEPENDENT  #
+# FLAME_OBJECT_ALIASES        #
+# ----------------------------
 
 #
 #
@@ -81,7 +81,7 @@ endfunction(internal_add_header_target_properties)
 function(internal_add_object_target_properties)
 	check_internal_use()
 
-	set(OPTIONS "DEBUG" "POSITION_INDEPEND")
+	set(OPTIONS "DEBUG" "POSITION_INDEPENDENT")
 	set(VALUES "PROPERTY_CONTAINER_NAME" "REAL_TARGET")
 	set(LISTS "ADDING_SOURCES" "INCLUDE_PATHS" "DEPENDENCY_HEADERS" "COMPILE_FLAGS"
 		"OBJECT_ALIASES")
@@ -111,8 +111,8 @@ function(internal_add_object_target_properties)
 		print_debug_function_oneline("FLAME_COMPILE_FLAGS           = ")
 		print_debug_value_newline(${FLAME_COMPILE_FLAGS})
 
-		print_debug_function_oneline("FLAME_POSITION_INDEPEND       = ")
-		print_debug_value_newline(${FLAME_POSITION_INDEPEND})
+		print_debug_function_oneline("FLAME_POSITION_INDEPENDENT    = ")
+		print_debug_value_newline(${FLAME_POSITION_INDEPENDENT})
 
 		print_debug_function_oneline("FLAME_OBJECT_ALIASES          = ")
 		print_debug_value_newline(${FLAME_OBJECT_ALIASES})
@@ -133,8 +133,8 @@ function(internal_add_object_target_properties)
 		"${FLAME_DEPENDENCY_HEADERS}")
 	target_property_set(${FLAME_PROPERTY_CONTAINER_NAME} FLAME_COMPILE_FLAGS
 		"${FLAME_COMPILE_FLAGS}")
-	target_property_set(${FLAME_PROPERTY_CONTAINER_NAME} FLAME_POSITION_INDEPEND
-		"${FLAME_POSITION_INDEPEND}")
+	target_property_set(${FLAME_PROPERTY_CONTAINER_NAME} FLAME_POSITION_INDEPENDENT
+		"${FLAME_POSITION_INDEPENDENT}")
 	target_property_set(${FLAME_PROPERTY_CONTAINER_NAME} FLAME_OBJECT_ALIASES
 		"${FLAME_OBJECT_ALIASES}")
 
