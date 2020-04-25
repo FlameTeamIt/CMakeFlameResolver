@@ -1,6 +1,59 @@
 #
 #
 #
+function(compile_library)
+	enable_internal_use()
+
+	# Parse parameters
+	set(OPTIONS "DEBUG" "MAKE_STATIC" "MAKE_SHARED" "NOT_MAKE_POSITION_DEPENDENT_OBJECTS"
+		"NOT_MAKE_POSITION_INDEPENDENT_OBJECTS" "HELP")
+	set(VALUES "LIBRARY_NAME" "OBJECT_ALIAS_NAME" "INDEPENDENT_OBJECT_ALIAS_NAME"
+		"STATIC_ALIAS_NAME" "SHARED_ALIAS_NAME" "SOURCE_LIST_FILE" "HEADER_LIST_FILE"
+		"STATIC_INSTALL_PATH" "SHARED_INSTALL_PATH")
+	set(LISTS "INCLUDE_PATHS" "SOURCE_LIST" "HEADER_LIST" "COMMPILE_FLAGS" "LINK_FLAGS"
+		"DEPENDENCY_HEADER_TARGETS" "DEPENDENCY_TARGETS_FOR_STATIC"
+		"DEPENDENCY_TARGETS_FOR_SHARED")
+	cmake_parse_arguments("COMPILE" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
+
+	# Start function log
+	internal_compile_library_start_function()
+
+	# Print parse result
+	internal_compile_library_print_parse_result()
+
+	# Check parameters
+	internal_compile_library_process_parameters()
+
+	# Add object library/libraries to resolve list
+	internal_compile_object_library()
+
+	# Add static library to resolve list
+	if(MAKE_STATIC)
+		if(FLAME_MAKE_STATIC)
+			internal_compile_static_library()
+		else()
+			print_newline(
+				"-- Need 'MAKE_STATIC', but making static libraries are disabled")
+		endif()
+	endif()
+
+	# Add shared library to resolve list
+	if(MAKE_SHARED)
+		if(FLAME_MAKE_SHARED)
+			internal_compile_shared_library()
+		else()
+			print_newline(
+				"-- Need 'MAKE_SHARED', but making shared libraries are disabled")
+		endif()
+	endif()
+
+	# End function log
+	internal_compile_library_end_function()
+endfunction(compile_library)
+
+#
+#
+#
 macro(internal_compile_library_start_function)
 	check_internal_use()
 	start_debug_function(compile_library)
@@ -13,50 +66,6 @@ macro(internal_compile_library_end_function)
 	check_internal_use()
 	end_debug_function()
 endmacro(internal_compile_library_end_function)
-
-#
-#
-#
-macro(internal_compile_library_parse_parameters)
-	check_internal_use()
-
-	set(OPTIONS
-		"DEBUG"
-		"MAKE_STATIC"
-		"MAKE_SHARED"
-		"NOT_MAKE_POSITION_DEPENDENT_OBJECTS"
-		"NOT_MAKE_POSITION_INDEPENDENT_OBJECTS"
-		"HELP"
-	)
-	set(VALUES
-		"LIBRARY_NAME"
-
-		"OBJECT_ALIAS_NAME"
-		"INDEPENDENT_OBJECT_ALIAS_NAME"
-		"STATIC_ALIAS_NAME"
-		"SHARED_ALIAS_NAME"
-
-		"SOURCE_LIST_FILE"
-		"HEADER_LIST_FILE"
-
-		"STATIC_INSTALL_PATH"
-		"SHARED_INSTALL_PATH"
-	)
-	set(LISTS
-		"INCLUDE_PATHS"
-
-		"SOURCE_LIST"
-		"HEADER_LIST"
-
-		"COMMPILE_FLAGS"
-		"LINK_FLAGS"
-
-		"DEPENDENCY_HEADER_TARGETS"
-		"DEPENDENCY_TARGETS_FOR_STATIC"
-		"DEPENDENCY_TARGETS_FOR_SHARED"
-	)
-	cmake_parse_arguments("COMPILE" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
-endmacro(internal_compile_library_parse_parameters)
 
 #
 #
@@ -408,48 +417,3 @@ macro(internal_compile_shared_library)
 
 	print_newline("-- Adding shared library for ${COMPILE_LIBRARY_NAME} - done")
 endmacro(internal_compile_shared_library)
-
-#
-#
-#
-function(compile_library)
-	enable_internal_use()
-
-	# Parse parameters
-	internal_compile_library_parse_parameters(${ARGV})
-
-	# Start function log
-	internal_compile_library_start_function()
-
-	# Print parse result
-	internal_compile_library_print_parse_result()
-
-	# Check parameters
-	internal_compile_library_process_parameters()
-
-	# Add object library/libraries to resolve list
-	internal_compile_object_library()
-
-	# Add static library to resolve list
-	if(MAKE_STATIC)
-		if(FLAME_MAKE_STATIC)
-			internal_compile_static_library()
-		else()
-			print_newline(
-				"-- Need 'MAKE_STATIC', but making static libraries are disabled")
-		endif()
-	endif()
-
-	# Add shared library to resolve list
-	if(MAKE_SHARED)
-		if(FLAME_MAKE_SHARED)
-			internal_compile_shared_library()
-		else()
-			print_newline(
-				"-- Need 'MAKE_SHARED', but making shared libraries are disabled")
-		endif()
-	endif()
-
-	# End function log
-	internal_compile_library_end_function()
-endfunction(compile_library)

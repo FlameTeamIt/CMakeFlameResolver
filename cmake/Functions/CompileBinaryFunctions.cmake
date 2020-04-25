@@ -1,6 +1,35 @@
 #
 #
 #
+function(compile_binary)
+	enable_internal_use()
+
+	# Parse parameters
+	set(OPTIONS "DEBUG" "HELP")
+	set(VALUES "NAME" "ALIAS_NAME" "SOURCE_LIST_FILE" "HEADER_LIST_FILE" "INSTALL_PATH")
+	set(LISTS "INCLUDE_PATHS" "SOURCE_LIST" "HEADER_LIST" "COMPILE_FLAGS" "LINK_FLAGS"
+		"DEPENDENCY_TARGET_LIST")
+	cmake_parse_arguments("BINARY" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
+
+	# Start function log
+	internal_compile_binary_start_function()
+
+	# Print parse result
+	internal_compile_binary_print_parse_result()
+
+	# Check parameters
+	internal_compile_binary_process_parameters()
+
+	# Add binary to resolve list
+	internal_compile_binary()
+
+	# End function log
+	internal_compile_binary_end_function()
+endfunction(compile_binary)
+
+#
+#
+#
 macro(internal_compile_binary_start_function)
 	check_internal_use()
 	start_debug_function(compile_binary)
@@ -13,38 +42,6 @@ macro(internal_compile_binary_end_function)
 	check_internal_use()
 	end_debug_function()
 endmacro(internal_compile_binary_end_function)
-
-#
-#
-#
-macro(internal_compile_binary_parse_parameters)
-	check_internal_use()
-
-	set(OPTIONS
-		"DEBUG"
-	)
-	set(VALUES
-		"NAME"
-		"ALIAS_NAME"
-
-		"SOURCE_LIST_FILE"
-		"HEADER_LIST_FILE"
-
-		"INSTALL_PATH"
-	)
-	set(LISTS
-		"INCLUDE_PATHS"
-
-		"SOURCE_LIST"
-		"HEADER_LIST"
-
-		"COMPILE_FLAGS"
-		"LINK_FLAGS"
-
-		"DEPENDENCY_TARGET_LIST"
-	)
-	cmake_parse_arguments("BINARY" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
-endmacro(internal_compile_binary_parse_parameters)
 
 #
 #
@@ -173,28 +170,3 @@ macro(internal_compile_binary)
 		"-- Adding binary for ${BINARY_NAME} - done")
 
 endmacro(internal_compile_binary)
-
-#
-#
-#
-function(compile_binary)
-	enable_internal_use()
-
-	# Parse parameters
-	internal_compile_binary_parse_parameters(${ARGV})
-
-	# Start function log
-	internal_compile_binary_start_function()
-
-	# Print parse result
-	internal_compile_binary_print_parse_result()
-
-	# Check parameters
-	internal_compile_binary_process_parameters()
-
-	# Add binary to resolve list
-	internal_compile_binary()
-
-	# End function log
-	internal_compile_binary_end_function()
-endfunction(compile_binary)

@@ -5,7 +5,10 @@ function(header_library)
 	enable_internal_use()
 
 	# Parse arguments
-	internal_header_library_parse_arguments(${ARGV})
+	set(OPTIONS "DEBUG" "HELP")
+	set(VALUES "LIBRARY_NAME" "LIBRARY_ALIAS_NAME" "HEADER_LIST_FILE" "INSTALL_PATH")
+	set(LISTS "DEPENDENCY_TARGET_LIST" "HEADER_LIST" "INCLUDE_PATHS")
+	cmake_parse_arguments("HEADER" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
 
 	# Start function log
 	internal_header_library_start_function()
@@ -38,19 +41,6 @@ macro(internal_header_library_end_function)
 	check_internal_use()
 	end_debug_function()
 endmacro(internal_header_library_end_function)
-
-#
-#
-#
-macro(internal_header_library_parse_arguments)
-	check_internal_use()
-
-	set(OPTIONS "DEBUG" "HELP")
-	set(VALUES "LIBRARY_NAME" "LIBRARY_ALIAS_NAME" "HEADER_LIST_FILE" "INSTALL_PATH")
-	set(LISTS "DEPENDENCY_TARGET_LIST" "HEADER_LIST" "INCLUDE_PATHS")
-
-	cmake_parse_arguments("HEADER" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
-endmacro(internal_header_library_parse_arguments)
 
 #
 #
