@@ -6,7 +6,7 @@ function(header_library)
 
 	# Parse arguments
 	set(OPTIONS "DEBUG" "HELP")
-	set(VALUES "LIBRARY_NAME" "LIBRARY_ALIAS_NAME" "HEADER_LIST_FILE" "INSTALL_PATH")
+	set(VALUES "NAME" "LIBRARY_ALIAS_NAME" "HEADER_LIST_FILE" "INSTALL_PATH")
 	set(LISTS "DEPENDENCY_TARGET_LIST" "HEADER_LIST" "INCLUDE_PATHS")
 	cmake_parse_arguments("HEADER" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
 
@@ -54,8 +54,8 @@ macro(internal_header_library_print_parse_result)
 		print_debug_function_oneline("HEADER_HELP                   = ")
 		print_debug_value_newline(${HEADER_HELP})
 
-		print_debug_function_oneline("HEADER_LIBRARY_NAME           = ")
-		print_debug_value_newline(${HEADER_LIBRARY_NAME})
+		print_debug_function_oneline("HEADER_NAME                   = ")
+		print_debug_value_newline(${HEADER_NAME})
 
 		print_debug_function_oneline("HEADER_HEADER_LIST_FILE       = ")
 		print_debug_value_newline("${HEADER_HEADER_LIST_FILE}")
@@ -85,10 +85,9 @@ endmacro(internal_header_library_print_parse_result)
 macro(internal_header_library_process_parameters)
 	check_internal_use()
 
-	if(NOT HEADER_LIBRARY_NAME)
-		message_fatal("-- Need 'LIBRARY_NAME'.")
+	if(NOT HEADER_NAME)
+		message_fatal("-- Need 'NAME'.")
 	endif()
-
 	if(HEADER_HEADER_LIST_FILE)
 		if(EXISTS "${HEADER_HEADER_LIST_FILE}")
 			include(${HEADER_HEADER_LIST_FILE})
@@ -110,10 +109,10 @@ endmacro(internal_header_library_process_parameters)
 macro(internal_header_library)
 	check_internal_use()
 
-	print_newline("-- Adding header library for ${HEADER_LIBRARY_NAME}")
+	print_newline("-- Adding header library for ${HEADER_NAME}")
 
 	string(CONCAT TARGET_NAME
-		"${HEADER_LIBRARY_NAME}"
+		"${HEADER_NAME}"
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_HEADER_MODULE_SUFFIX}")
 	string(CONCAT TARGET_CUSTOM_PROPERTIES
@@ -134,5 +133,5 @@ macro(internal_header_library)
 	unset(TARGET_CUSTOM_PROPERTIES)
 	unset(TARGET_NAME)
 
-	print_newline("-- Adding header library for ${HEADER_LIBRARY_NAME} - done")
+	print_newline("-- Adding header library for ${HEADER_NAME} - done")
 endmacro(internal_header_library)

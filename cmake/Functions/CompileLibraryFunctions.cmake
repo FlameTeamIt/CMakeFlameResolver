@@ -7,7 +7,7 @@ function(compile_library)
 	# Parse parameters
 	set(OPTIONS "DEBUG" "MAKE_STATIC" "MAKE_SHARED" "NOT_MAKE_POSITION_DEPENDENT_OBJECTS"
 		"NOT_MAKE_POSITION_INDEPENDENT_OBJECTS" "HELP")
-	set(VALUES "LIBRARY_NAME" "OBJECT_ALIAS_NAME" "INDEPENDENT_OBJECT_ALIAS_NAME"
+	set(VALUES "NAME" "OBJECT_ALIAS_NAME" "INDEPENDENT_OBJECT_ALIAS_NAME"
 		"STATIC_ALIAS_NAME" "SHARED_ALIAS_NAME" "SOURCE_LIST_FILE" "HEADER_LIST_FILE"
 		"STATIC_INSTALL_PATH" "SHARED_INSTALL_PATH")
 	set(LISTS "INCLUDE_PATHS" "SOURCE_LIST" "HEADER_LIST" "COMMPILE_FLAGS" "LINK_FLAGS"
@@ -80,13 +80,13 @@ macro(internal_compile_library_print_parse_result)
 
 		print_debug_function_newline("-- OPTIONS --")
 
-		#print_debug_function_oneline("COMPILE_DEBUG                              = ")
+		#print_debug_function_oneline("COMPILE_DEBUG                                 = ")
 		#print_debug_value_newline("${COMPILE_DEBUG}")
 
-		print_debug_function_oneline("COMPILE_MAKE_STATIC                        = ")
+		print_debug_function_oneline("COMPILE_MAKE_STATIC                           = ")
 		print_debug_value_newline("${COMPILE_MAKE_STATIC}")
 
-		print_debug_function_oneline("COMPILE_MAKE_SHARED                        = ")
+		print_debug_function_oneline("COMPILE_MAKE_SHARED                           = ")
 		print_debug_value_newline("${COMPILE_MAKE_SHARED}")
 
 		print_debug_function_oneline("COMPILE_NOT_MAKE_POSITION_DEPENDENT_OBJECTS   = ")
@@ -95,66 +95,66 @@ macro(internal_compile_library_print_parse_result)
 		print_debug_function_oneline("COMPILE_NOT_MAKE_POSITION_INDEPENDENT_OBJECTS = ")
 		print_debug_value_newline("${COMPILE_NOT_MAKE_POSITION_DEPENDENT_OBJECTS}")
 
-		print_debug_function_oneline("COMPILE_HELP                               = ")
+		print_debug_function_oneline("COMPILE_HELP                                  = ")
 		print_debug_value_newline("${COMPILE_HELP}")
 
 		# values
 
 		print_debug_function_newline("--  VALUES --")
 
-		print_debug_function_oneline("COMPILE_LIBRARY_NAME                       = ")
-		print_debug_value_newline(${COMPILE_LIBRARY_NAME})
+		print_debug_function_oneline("COMPILE_NAME                                  = ")
+		print_debug_value_newline(${COMPILE_NAME})
 
-		print_debug_function_oneline("COMPILE_OBJECT_ALIAS_NAME                  = ")
+		print_debug_function_oneline("COMPILE_OBJECT_ALIAS_NAME                     = ")
 		print_debug_value_newline(${COMPILE_OBJECT_ALIAS_NAME})
 
 		print_debug_function_oneline("COMPILE_INDEPENDENT_OBJECT_ALIAS_NAME         = ")
 		print_debug_value_newline(${COMPILE_INDEPENDENT_OBJECT_ALIAS_NAME})
 
-		print_debug_function_oneline("COMPILE_STATIC_ALIAS_NAME                  = ")
+		print_debug_function_oneline("COMPILE_STATIC_ALIAS_NAME                     = ")
 		print_debug_value_newline(${COMPILE_STATIC_ALIAS_NAME})
 
-		print_debug_function_oneline("COMPILE_SHARED_ALIAS_NAME                  = ")
+		print_debug_function_oneline("COMPILE_SHARED_ALIAS_NAME                     = ")
 		print_debug_value_newline(${COMPILE_SHARED_ALIAS_NAME})
 
-		print_debug_function_oneline("COMPILE_SOURCE_LIST_FILE                   = ")
+		print_debug_function_oneline("COMPILE_SOURCE_LIST_FILE                      = ")
 		print_debug_value_newline(${COMPILE_SOURCE_LIST_FILE})
 
-		print_debug_function_oneline("COMPILE_HEADER_LIST_FILE                   = ")
+		print_debug_function_oneline("COMPILE_HEADER_LIST_FILE                      = ")
 		print_debug_value_newline(${COMPILE_HEADER_LIST_FILE})
 
-		print_debug_function_oneline("COMPILE_STATIC_INSTALL_PATH                = ")
+		print_debug_function_oneline("COMPILE_STATIC_INSTALL_PATH                   = ")
 		print_debug_value_newline(${COMPILE_STATIC_INSTALL_PATH})
 
-		print_debug_function_oneline("COMPILE_SHARED_INSTALL_PATH                = ")
+		print_debug_function_oneline("COMPILE_SHARED_INSTALL_PATH                   = ")
 		print_debug_value_newline(${COMPILE_SHARED_INSTALL_PATH})
 
 		# lists
 
 		print_debug_function_newline("--  LISTS  --")
 
-		print_debug_function_oneline("COMPILE_INCLUDE_PATHS                      = ")
+		print_debug_function_oneline("COMPILE_INCLUDE_PATHS                         = ")
 		print_debug_value_newline("${COMPILE_INCLUDE_PATHS}")
 
-		print_debug_function_oneline("COMPILE_SOURCE_LIST                        = ")
+		print_debug_function_oneline("COMPILE_SOURCE_LIST                           = ")
 		print_debug_value_newline(${COMPILE_SOURCE_LIST})
 
-		print_debug_function_oneline("COMPILE_HEADER_LIST                        = ")
+		print_debug_function_oneline("COMPILE_HEADER_LIST                           = ")
 		print_debug_value_newline(${COMPILE_HEADER_LIST})
 
-		print_debug_function_oneline("COMPILE_COMPILE_FLAGS                      = ")
+		print_debug_function_oneline("COMPILE_COMPILE_FLAGS                         = ")
 		print_debug_value_newline("${COMPILE_COMPILE_FLAGS}")
 
-		print_debug_function_oneline("COMPILE_LINK_FLAGS                         = ")
+		print_debug_function_oneline("COMPILE_LINK_FLAGS                            = ")
 		print_debug_value_newline("${COMPILE_LINK_FLAGS}")
 
-		print_debug_function_oneline("COMPILE_DEPENDENCY_HEADER_TARGETS          = ")
+		print_debug_function_oneline("COMPILE_DEPENDENCY_HEADER_TARGETS             = ")
 		print_debug_value_newline("${COMPILE_DEPENDENCY_HEADER_TARGETS}")
 
-		print_debug_function_oneline("COMPILE_DEPENDENCY_TARGETS_FOR_STATIC      = ")
+		print_debug_function_oneline("COMPILE_DEPENDENCY_TARGETS_FOR_STATIC         = ")
 		print_debug_value_newline("${COMPILE_DEPENDENCY_TARGETS_FOR_STATIC}")
 
-		print_debug_function_oneline("COMPILE_DEPENDENCY_TARGETS_FOR_SHARED      = ")
+		print_debug_function_oneline("COMPILE_DEPENDENCY_TARGETS_FOR_SHARED         = ")
 		print_debug_value_newline("${COMPILE_DEPENDENCY_TARGETS_FOR_SHARED}")
 
 		print_debug_function_newline("-------------- PARSE RESULT --------------")
@@ -167,6 +167,9 @@ endmacro(internal_compile_library_print_parse_result)
 macro(internal_compile_library_process_parameters)
 	check_internal_use()
 
+	if(NOT COMPILE_NAME)
+		message_fatal("-- Need 'NAME'.")
+	endif()
 	if(COMPILE_SOURCE_LIST_FILE)
 		if(EXISTS ${COMPILE_SOURCE_LIST_FILE})
 			include(${COMPILE_SOURCE_LIST_FILE})
@@ -225,14 +228,14 @@ macro(internal_compile_independent_object_library)
 	check_internal_use()
 
 	print_newline(
-		"-- Adding position independ object library for ${COMPILE_LIBRARY_NAME}")
+		"-- Adding position independ object library for ${COMPILE_NAME}")
 
 	string(CONCAT TARGET_NAME_DEPEND
-		"${COMPILE_LIBRARY_NAME}"
+		"${COMPILE_NAME}"
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_OBJECT_MODULE_SUFFIX}")
 	string(CONCAT TARGET_NAME_INDEPEND
-		"${COMPILE_LIBRARY_NAME}"
+		"${COMPILE_NAME}"
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_OBJECT_MODULE_SUFFIX}"
 		"${FLAME_NAME_SEPARATOR}"
@@ -278,7 +281,7 @@ macro(internal_compile_independent_object_library)
 	unset(TARGET_NAME_DEPEND)
 
 	print_newline(
-		"-- Adding position independ object library for ${COMPILE_LIBRARY_NAME} - done")
+		"-- Adding position independ object library for ${COMPILE_NAME} - done")
 endmacro(internal_compile_independent_object_library)
 
 #
@@ -287,10 +290,10 @@ endmacro(internal_compile_independent_object_library)
 macro(internal_compile_dependent_object_library)
 	check_internal_use()
 
-	print_newline("-- Adding position depend object library for ${COMPILE_LIBRARY_NAME}")
+	print_newline("-- Adding position depend object library for ${COMPILE_NAME}")
 
 	string(CONCAT TARGET_NAME
-		"${COMPILE_LIBRARY_NAME}"
+		"${COMPILE_NAME}"
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_OBJECT_MODULE_SUFFIX}")
 	string(CONCAT TARGET_CUSTOM_PROPERTIES
@@ -313,7 +316,7 @@ macro(internal_compile_dependent_object_library)
 	unset(TARGET_CUSTOM_PROPERTIES)
 	unset(TARGET_NAME)
 
-	print_newline("-- Adding object library for ${COMPILE_LIBRARY_NAME} - done")
+	print_newline("-- Adding object library for ${COMPILE_NAME} - done")
 endmacro(internal_compile_dependent_object_library)
 
 #
@@ -335,10 +338,10 @@ endmacro(internal_compile_object_library)
 macro(internal_compile_static_library)
 	check_internal_use()
 
-	print_newline("-- Adding static library for ${COMPILE_LIBRARY_NAME}")
+	print_newline("-- Adding static library for ${COMPILE_NAME}")
 
 	string(CONCAT TARGET_NAME
-		"${COMPILE_LIBRARY_NAME}"
+		"${COMPILE_NAME}"
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_STATIC_MODULE_SUFFIX}")
 	string(CONCAT TARGET_CUSTOM_PROPERTIES
@@ -347,7 +350,7 @@ macro(internal_compile_static_library)
 		"${FLAME_CUSTOM_TARGET_SUFFIX}")
 
 	string(CONCAT TARGET_DEPENDENT_OBJECT_LIBRARY
-		"${COMPILE_LIBRARY_NAME}"
+		"${COMPILE_NAME}"
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_OBJECT_MODULE_SUFFIX}")
 
@@ -360,7 +363,7 @@ macro(internal_compile_static_library)
 		DEPENDENCY_HEADERS      "${COMPILE_DEPENDENCY_HEADER_TARGETS}"
 		DEPENDENCY_LIBRARIES    "${COMPILE_DEPENDENCY_TARGETS_FOR_STATIC}"
 		#COMPILE_FLAGS           "${}"
-		OUTPUT_NAME             "${COMPILE_LIBRARY_NAME}"
+		OUTPUT_NAME             "${COMPILE_NAME}"
 		LIBRARY_ALIASES         "${COMPILE_STATIC_ALIAS_NAME}"
 		#DEBUG
 	)
@@ -369,7 +372,7 @@ macro(internal_compile_static_library)
 	unset(TARGET_CUSTOM_PROPERTIES)
 	unset(TARGET_NAME)
 
-	print_newline("-- Adding static library for ${COMPILE_LIBRARY_NAME} - done")
+	print_newline("-- Adding static library for ${COMPILE_NAME} - done")
 endmacro(internal_compile_static_library)
 
 #
@@ -378,10 +381,10 @@ endmacro(internal_compile_static_library)
 macro(internal_compile_shared_library)
 	check_internal_use()
 
-	print_newline("-- Adding shared library for ${COMPILE_LIBRARY_NAME}")
+	print_newline("-- Adding shared library for ${COMPILE_NAME}")
 
 	string(CONCAT TARGET_NAME
-		"${COMPILE_LIBRARY_NAME}"
+		"${COMPILE_NAME}"
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_SHARED_MODULE_SUFFIX}")
 	string(CONCAT TARGET_CUSTOM_PROPERTIES
@@ -390,7 +393,7 @@ macro(internal_compile_shared_library)
 		"${FLAME_CUSTOM_TARGET_SUFFIX}")
 
 	string(CONCAT TARGET_INDEPENDENT_OBJECT_LIBRARY
-		"${COMPILE_LIBRARY_NAME}"
+		"${COMPILE_NAME}"
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_OBJECT_MODULE_SUFFIX}"
 		"${FLAME_NAME_SEPARATOR}"
@@ -406,7 +409,7 @@ macro(internal_compile_shared_library)
 		DEPENDENCY_LIBRARIES    "${COMPILE_DEPENDENCY_TARGETS_FOR_SHARED}"
 		#COMPILE_FLAGS           "${}"
 		#LINK_FLAGS              "${}"
-		OUTPUT_NAME             "${COMPILE_LIBRARY_NAME}"
+		OUTPUT_NAME             "${COMPILE_NAME}"
 		LIBRARY_ALIASES         "${COMPILE_SHARED_ALIAS_NAME}"
 		#DEBUG
 	)
@@ -415,5 +418,5 @@ macro(internal_compile_shared_library)
 	unset(TARGET_CUSTOM_PROPERTIES)
 	unset(TARGET_NAME)
 
-	print_newline("-- Adding shared library for ${COMPILE_LIBRARY_NAME} - done")
+	print_newline("-- Adding shared library for ${COMPILE_NAME} - done")
 endmacro(internal_compile_shared_library)
