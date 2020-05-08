@@ -1,8 +1,8 @@
 #
 #
 #
-function(compile_binary)
-	enable_internal_use()
+function(internal_compile_binary)
+	check_internal_use()
 
 	# Parse parameters
 	set(OPTIONS "DEBUG" "HELP")
@@ -21,25 +21,23 @@ function(compile_binary)
 	internal_compile_binary_process_parameters()
 
 	# Add binary to resolve list
-	internal_compile_binary()
+	internal_compile_binary_add()
 
 	# End function log
 	internal_compile_binary_end_function()
-endfunction(compile_binary)
+endfunction(internal_compile_binary)
 
 #
 #
 #
 macro(internal_compile_binary_start_function)
-	check_internal_use()
-	start_debug_function(compile_binary)
+	start_debug_function(internal_compile_binary)
 endmacro(internal_compile_binary_start_function)
 
 #
 #
 #
 macro(internal_compile_binary_end_function)
-	check_internal_use()
 	end_debug_function()
 endmacro(internal_compile_binary_end_function)
 
@@ -99,8 +97,6 @@ endmacro(internal_compile_binary_print_parse_result)
 #
 #
 macro(internal_compile_binary_process_parameters)
-	check_internal_use()
-
 	if(NOT BINARY_NAME)
 		message_fatal("-- Need 'NAME'.")
 	endif()
@@ -133,11 +129,8 @@ endmacro(internal_compile_binary_process_parameters)
 #
 #
 #
-macro(internal_compile_binary)
-	check_internal_use()
-
-	print_newline(
-		"-- Adding binary for ${BINARY_NAME}")
+macro(internal_compile_binary_add)
+	print_newline("-- Adding binary for ${BINARY_NAME}")
 
 	string(CONCAT TARGET_NAME
 		"${BINARY_NAME}"
@@ -169,7 +162,5 @@ macro(internal_compile_binary)
 	unset(TARGET_CUSTOM_PROPERTIES)
 	unset(TARGET_NAME)
 
-	print_newline(
-		"-- Adding binary for ${BINARY_NAME} - done")
-
-endmacro(internal_compile_binary)
+	print_newline("-- Adding binary for ${BINARY_NAME} - done")
+endmacro(internal_compile_binary_add)

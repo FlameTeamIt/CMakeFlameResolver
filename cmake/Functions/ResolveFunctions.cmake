@@ -364,8 +364,8 @@ endfunction(internal_clean_global_properties)
 #
 #
 #
-function(resolve_dependencies)
-	enable_internal_use()
+function(internal_resolve_targets)
+	check_internal_use()
 
 	message("-- Start resolving")
 
@@ -380,4 +380,4 @@ function(resolve_dependencies)
 	internal_clean_global_properties()
 
 	message("-- Resolve finished")
-endfunction(resolve_dependencies)
+endfunction(internal_resolve_targets)

@@ -1,8 +1,8 @@
 #
 #
 #
-function(compile_library)
-	enable_internal_use()
+function(internal_compile_library)
+	check_internal_use()
 
 	# Parse parameters
 	set(OPTIONS "DEBUG" "MAKE_STATIC" "MAKE_SHARED" "NOT_MAKE_POSITION_DEPENDENT_OBJECTS"
@@ -15,19 +15,12 @@ function(compile_library)
 		"DEPENDENCY_TARGETS_FOR_SHARED")
 	cmake_parse_arguments("COMPILE" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
 
-	# Start function log
 	internal_compile_library_start_function()
 
-	# Print parse result
 	internal_compile_library_print_parse_result()
-
-	# Check parameters
 	internal_compile_library_process_parameters()
-
-	# Add object library/libraries to resolve list
 	internal_compile_object_library()
 
-	# Add static library to resolve list
 	if(MAKE_STATIC)
 		if(FLAME_MAKE_STATIC)
 			internal_compile_static_library()
@@ -37,7 +30,6 @@ function(compile_library)
 		endif()
 	endif()
 
-	# Add shared library to resolve list
 	if(MAKE_SHARED)
 		if(FLAME_MAKE_SHARED)
 			internal_compile_shared_library()
@@ -47,23 +39,20 @@ function(compile_library)
 		endif()
 	endif()
 
-	# End function log
 	internal_compile_library_end_function()
-endfunction(compile_library)
+endfunction(internal_compile_library)
 
 #
 #
 #
 macro(internal_compile_library_start_function)
-	check_internal_use()
-	start_debug_function(compile_library)
+	start_debug_function(internal_ompile_library)
 endmacro(internal_compile_library_start_function)
 
 #
 #
 #
 macro(internal_compile_library_end_function)
-	check_internal_use()
 	end_debug_function()
 endmacro(internal_compile_library_end_function)
 
@@ -71,8 +60,6 @@ endmacro(internal_compile_library_end_function)
 #
 #
 macro(internal_compile_library_print_parse_result)
-	check_internal_use()
-
 	if(COMPILE_DEBUG)
 		print_debug_function_newline("-------------- PARSE RESULT --------------")
 
@@ -165,8 +152,6 @@ endmacro(internal_compile_library_print_parse_result)
 #
 #
 macro(internal_compile_library_process_parameters)
-	check_internal_use()
-
 	if(NOT COMPILE_NAME)
 		message_fatal("-- Need 'NAME'.")
 	endif()
@@ -324,8 +309,6 @@ endmacro(internal_compile_dependent_object_library)
 #
 #
 macro(internal_compile_object_library)
-	check_internal_use()
-
 	internal_compile_independent_object_library()
 	if(NOT FLAME_ONLY_POSITION_INDEPENDENT_OBJECTS)
 		internal_compile_dependent_object_library()
@@ -337,8 +320,6 @@ endmacro(internal_compile_object_library)
 #
 #
 macro(internal_compile_static_library)
-	check_internal_use()
-
 	print_newline("-- Adding static library for ${COMPILE_NAME}")
 
 	string(CONCAT TARGET_NAME
@@ -380,8 +361,6 @@ endmacro(internal_compile_static_library)
 #
 #
 macro(internal_compile_shared_library)
-	check_internal_use()
-
 	print_newline("-- Adding shared library for ${COMPILE_NAME}")
 
 	string(CONCAT TARGET_NAME

@@ -1,8 +1,8 @@
 #
 #
 #
-function(header_library)
-	enable_internal_use()
+function(internal_header_library)
+	check_internal_use()
 
 	# Parse arguments
 	set(OPTIONS "DEBUG" "HELP")
@@ -10,35 +10,26 @@ function(header_library)
 	set(LISTS "DEPENDENCY_TARGET_LIST" "HEADER_LIST" "INCLUDE_PATHS")
 	cmake_parse_arguments("HEADER" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
 
-	# Start function log
 	internal_header_library_start_function()
 
-	# Print results
 	internal_header_library_print_parse_result()
-
-	# Process parameters
 	internal_header_library_process_parameters()
+	internal_header_library_add()
 
-	# Add header library to resolve list
-	internal_header_library()
-
-	# End function log
 	internal_header_library_end_function()
-endfunction(header_library)
+endfunction(internal_header_library)
 
 #
 #
 #
 macro(internal_header_library_start_function)
-	check_internal_use()
-	start_debug_function(header_library)
+	start_debug_function(internal_header_library)
 endmacro(internal_header_library_start_function)
 
 #
 #
 #
 macro(internal_header_library_end_function)
-	check_internal_use()
 	end_debug_function()
 endmacro(internal_header_library_end_function)
 
@@ -46,8 +37,6 @@ endmacro(internal_header_library_end_function)
 #
 #
 macro(internal_header_library_print_parse_result)
-	check_internal_use()
-
 	if(HEADER_DEBUG)
 		print_debug_function_newline("-------- PARSE RESULT --------")
 
@@ -106,9 +95,7 @@ macro(internal_header_library_process_parameters)
 	internal_print_warning_not_support("${HEADER_INSTALL_PATH}" INSTALL_PATH)
 endmacro(internal_header_library_process_parameters)
 
-macro(internal_header_library)
-	check_internal_use()
-
+macro(internal_header_library_add)
 	print_newline("-- Adding header library for ${HEADER_NAME}")
 
 	string(CONCAT TARGET_NAME
@@ -134,4 +121,4 @@ macro(internal_header_library)
 	unset(TARGET_NAME)
 
 	print_newline("-- Adding header library for ${HEADER_NAME} - done")
-endmacro(internal_header_library)
+endmacro(internal_header_library_add)
