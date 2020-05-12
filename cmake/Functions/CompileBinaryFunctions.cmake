@@ -4,26 +4,18 @@
 function(internal_compile_binary)
 	check_internal_use()
 
-	# Parse parameters
 	set(OPTIONS "DEBUG" "HELP")
 	set(VALUES "NAME" "ALIAS_NAME" "SOURCE_LIST_FILE" "HEADER_LIST_FILE" "INSTALL_PATH")
 	set(LISTS "INCLUDE_PATHS" "SOURCE_LIST" "HEADER_LIST" "COMPILE_FLAGS" "LINK_FLAGS"
 		"DEPENDENCY_TARGET_LIST")
 	cmake_parse_arguments("BINARY" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
 
-	# Start function log
 	internal_compile_binary_start_function()
 
-	# Print parse result
 	internal_compile_binary_print_parse_result()
-
-	# Check parameters
 	internal_compile_binary_process_parameters()
-
-	# Add binary to resolve list
 	internal_compile_binary_add()
 
-	# End function log
 	internal_compile_binary_end_function()
 endfunction(internal_compile_binary)
 
@@ -45,8 +37,6 @@ endmacro(internal_compile_binary_end_function)
 #
 #
 macro(internal_compile_binary_print_parse_result)
-	check_internal_use()
-
 	if(BINARY_DEBUG)
 		print_debug_function_newline("-------- PARSE RESULT -------")
 
