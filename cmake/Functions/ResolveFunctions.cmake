@@ -14,7 +14,7 @@ function(internal_resolve_headers)
 
 		print_oneline("-- Header library ${REAL_TARGET} - ")
 
-		target_property_get(${target.property} FLAME_ADDING_HEADERS
+		target_property_get(${target.property} FLAME_ADDING_FILES
 			HEADER_LIST)
 		add_library(${REAL_TARGET} INTERFACE)
 		target_sources(${REAL_TARGET} INTERFACE "$<BUILD_INTERFACE:${HEADER_LIST}>")
@@ -67,7 +67,7 @@ function(internal_resolve_object_libraries)
 
 		print_oneline("-- Object library ${REAL_TARGET} - ")
 
-		target_property_get(${target.property} FLAME_ADDING_SOURCES
+		target_property_get(${target.property} FLAME_ADDING_FILES
 			SOURCE_LIST)
 		if(NOT SOURCE_LIST)
 			print_newline("fail")
