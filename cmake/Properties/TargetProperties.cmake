@@ -67,7 +67,7 @@ endfunction(internal_add_header_target_properties)
 
 # ------ object-target -------
 # FLAME_REAL_TARGET           #
-# FLAME_ADDING_SOURCES        # headers + sources
+# FLAME_ADDING_FILES          # headers + sources
 # FLAME_INCLUDE_PATHS         #
 # FLAME_DEPENDENCY_HEADERS    #
 # FLAME_COMPILE_FLAGS         #
@@ -83,7 +83,7 @@ function(internal_add_object_target_properties)
 
 	set(OPTIONS "DEBUG" "POSITION_INDEPENDENT")
 	set(VALUES "PROPERTY_CONTAINER_NAME" "REAL_TARGET")
-	set(LISTS "ADDING_SOURCES" "INCLUDE_PATHS" "DEPENDENCY_HEADERS" "COMPILE_FLAGS"
+	set(LISTS "ADDING_FILES" "INCLUDE_PATHS" "DEPENDENCY_HEADERS" "COMPILE_FLAGS"
 		"OBJECT_ALIASES")
 
 	cmake_parse_arguments("FLAME" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
@@ -99,8 +99,8 @@ function(internal_add_object_target_properties)
 		print_debug_function_oneline("FLAME_REAL_TARGET             = ")
 		print_debug_value_newline(${FLAME_REAL_TARGET})
 
-		print_debug_function_oneline("FLAME_ADDING_SOURCES          = ")
-		print_debug_value_newline(${FLAME_ADDING_SOURCES})
+		print_debug_function_oneline("FLAME_ADDING_FILES            = ")
+		print_debug_value_newline(${FLAME_ADDING_FILES})
 
 		print_debug_function_oneline("FLAME_INCLUDE_PATHS           = ")
 		print_debug_value_newline(${FLAME_INCLUDE_PATHS})
@@ -125,8 +125,8 @@ function(internal_add_object_target_properties)
 
 	target_property_set(${FLAME_PROPERTY_CONTAINER_NAME} FLAME_REAL_TARGET
 		"${FLAME_REAL_TARGET}")
-	target_property_set(${FLAME_PROPERTY_CONTAINER_NAME} FLAME_ADDING_SOURCES
-		"${FLAME_ADDING_SOURCES}")
+	target_property_set(${FLAME_PROPERTY_CONTAINER_NAME} FLAME_ADDING_FILES
+		"${FLAME_ADDING_FILES}")
 	target_property_set(${FLAME_PROPERTY_CONTAINER_NAME} FLAME_INCLUDE_PATHS
 		"${FLAME_INCLUDE_PATHS}")
 	target_property_set(${FLAME_PROPERTY_CONTAINER_NAME} FLAME_DEPENDENCY_HEADERS
@@ -323,8 +323,7 @@ endfunction(internal_add_shared_target_properties)
 
 # ---- binary-target ---------
 # FLAME_REAL_TARGET          #
-# FLAME_ADDING_HEADERS       #
-# FLAME_ADDING_SOURCES       #
+# FLAME_ADDING_FILES         #
 # FLAME_INCLUDE_PATHS        #
 # FLAME_DEPENDENCY_HEADERS   #
 # FLAME_DEPENDENCY_LIBRARIES #
@@ -342,7 +341,7 @@ function(internal_add_binary_target_properties)
 
 	set(OPTIONS "DEBUG")
 	set(VALUES "PROPERTY_CONTAINER_NAME" "REAL_TARGET" "OUTPUT_NAME" "INSTALL_PATH")
-	set(LISTS "ADDING_HEADERS" "ADDING_SOURCES" "INCLUDE_PATHS" "DEPENDENCY_HEADERS"
+	set(LISTS "ADDING_FILES" "INCLUDE_PATHS" "DEPENDENCY_HEADERS"
 		"DEPENDENCY_LIBRARIES" "COMPILE_FLAGS" "LINK_FLAGS" )
 
 	cmake_parse_arguments("FLAME" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
@@ -358,8 +357,8 @@ function(internal_add_binary_target_properties)
 		print_debug_function_oneline("FLAME_REAL_TARGET             = ")
 		print_debug_value_newline(${FLAME_REAL_TARGET})
 
-		print_debug_function_oneline("FLAME_ADDING_SOURCES          = ")
-		print_debug_value_newline(${FLAME_ADDING_SOURCES})
+		print_debug_function_oneline("FLAME_ADDING_FILES          = ")
+		print_debug_value_newline(${FLAME_ADDING_FILES})
 
 		print_debug_function_oneline("FLAME_DEPENDENCY_HEADERS      = ")
 		print_debug_value_newline(${FLAME_DEPENDENCY_HEADERS})
@@ -389,8 +388,8 @@ function(internal_add_binary_target_properties)
 		"${FLAME_REAL_TARGET}")
 	target_property_set(${FLAME_PROPERTY_CONTAINER_NAME} FLAME_ADDING_HEADERS
 		"${FLAME_ADDING_HEADERS}")
-	target_property_set(${FLAME_PROPERTY_CONTAINER_NAME} FLAME_ADDING_SOURCES
-		"${FLAME_ADDING_SOURCES}")
+	target_property_set(${FLAME_PROPERTY_CONTAINER_NAME} FLAME_ADDING_FILES
+		"${FLAME_ADDING_FILES}")
 	target_property_set(${FLAME_PROPERTY_CONTAINER_NAME} FLAME_INCLUDE_PATHS
 		"${FLAME_INCLUDE_PATHS}")
 	target_property_set(${FLAME_PROPERTY_CONTAINER_NAME} FLAME_DEPENDENCY_HEADERS

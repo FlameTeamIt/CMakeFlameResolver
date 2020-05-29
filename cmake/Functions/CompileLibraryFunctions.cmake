@@ -8,9 +8,9 @@ function(internal_compile_library)
 	set(OPTIONS "DEBUG" "MAKE_STATIC" "MAKE_SHARED" "NOT_MAKE_POSITION_DEPENDENT_OBJECTS"
 		"NOT_MAKE_POSITION_INDEPENDENT_OBJECTS" "HELP")
 	set(VALUES "NAME" "OBJECT_ALIAS_NAME" "INDEPENDENT_OBJECT_ALIAS_NAME"
-		"STATIC_ALIAS_NAME" "SHARED_ALIAS_NAME" "SOURCE_LIST_FILE" "HEADER_LIST_FILE"
-		"STATIC_INSTALL_PATH" "SHARED_INSTALL_PATH")
-	set(LISTS "INCLUDE_PATHS" "SOURCE_LIST" "HEADER_LIST" "COMMPILE_FLAGS" "LINK_FLAGS"
+		"STATIC_ALIAS_NAME" "SHARED_ALIAS_NAME" "STATIC_INSTALL_PATH"
+		"SHARED_INSTALL_PATH")
+	set(LISTS "INCLUDE_PATHS" "SOURCE_LIST" "COMMPILE_FLAGS" "LINK_FLAGS"
 		"DEPENDENCY_HEADER_TARGETS" "DEPENDENCY_TARGETS_FOR_STATIC"
 		"DEPENDENCY_TARGETS_FOR_SHARED")
 	cmake_parse_arguments("COMPILE" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
@@ -46,7 +46,7 @@ endfunction(internal_compile_library)
 #
 #
 macro(internal_compile_library_start_function)
-	start_debug_function(internal_ompile_library)
+	start_debug_function("internal_compile_library")
 endmacro(internal_compile_library_start_function)
 
 #
@@ -155,22 +155,10 @@ macro(internal_compile_library_process_parameters)
 	if(NOT COMPILE_NAME)
 		message_fatal("-- Need 'NAME'.")
 	endif()
-	if(COMPILE_SOURCE_LIST_FILE)
-		if(EXISTS ${COMPILE_SOURCE_LIST_FILE})
-			include(${COMPILE_SOURCE_LIST_FILE})
-		else()
-			message_fatal("-- "
-				"Need source list file with defined 'SOURCE_LIST' variable.")
-		endif()
-	endif()
 	if(COMPILE_SOURCE_LIST)
 		list(APPEND SOURCE_LIST ${COMPILE_SOURCE_LIST})
-	endif()
-	if(NOT COMPILE_SOURCE_LIST_FILE)
-		if(NOT COMPILE_SOURCE_LIST)
-			message_fatal("-- "
-				"Need 'SOURCE_LIST_FILE' or/and 'SOURCE_LIST'.")
-		endif()
+	else()
+		message_fatal("-- Need 'SOURCE_LIST'.")
 	endif()
 
 	if(COMPILE_HEADER_LIST_FILE)
@@ -180,7 +168,7 @@ macro(internal_compile_library_process_parameters)
 		endif()
 	endif()
 	if(COMPILE_HEADER_LIST)
-		list(APPEND SOURCE_LIST ${COMPILE_SOURCE_LIST})
+		list(APPEND SOURCE_LIST ${COMPILE_HEADER_LIST})
 	endif()
 
 	internal_print_warning_not_support("${COMPILE_HELP}"
@@ -251,7 +239,7 @@ macro(internal_compile_independent_object_library)
 	internal_add_object_target_properties(
 		PROPERTY_CONTAINER_NAME "${TARGET_CUSTOM_PROPERTIES}"
 		REAL_TARGET             "${TARGET_NAME}"
-		ADDING_SOURCES          "${SOURCE_LIST}"
+		ADDING_FILES            "${SOURCE_LIST}"
 		INCLUDE_PATHS           "${COMPILE_INCLUDE_PATHS}"
 		DEPENDENCY_HEADERS      "${COMPILE_DEPENDENCY_HEADER_TARGETS}"
 		COMPILE_FLAGS           "${COMPILE_COMPILE_FLAGS}"
@@ -290,7 +278,7 @@ macro(internal_compile_dependent_object_library)
 	internal_add_object_target_properties(
 		PROPERTY_CONTAINER_NAME "${TARGET_CUSTOM_PROPERTIES}"
 		REAL_TARGET             "${TARGET_NAME}"
-		ADDING_SOURCES          "${SOURCE_LIST}"
+		ADDING_FILES            "${SOURCE_LIST}"
 		INCLUDE_PATHS           "${COMPILE_INCLUDE_PATHS}"
 		DEPENDENCY_HEADERS      "${COMPILE_DEPENDENCY_HEADER_TARGETS}"
 		COMPILE_FLAGS           "${COMPILE_COMPILE_FLAGS}"
