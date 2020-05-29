@@ -10,7 +10,7 @@ option(FLAME_PRINT_COMMON_STATISTIC
 )
 
 option(FLAME_PRINT_COMMON_STATISTIC
-	"Print detailed statistic about targets with add files, filags and etc. Not support"
+	"Print detailed statistic about targets with add files, flags and etc. Not support"
 	OFF
 )
 
@@ -22,6 +22,16 @@ option(FLAME_LOGGING
 option(FLAME_THREADING
 	"Use native threads"
 	ON
+)
+
+option(FLAME_TESTING
+	"Enable testing. Not support"
+	ON
+)
+
+option(FLAME_LOCAL_INSTALL
+	"Installing to local directory (<binary directory>/install). Not support"
+	OFF
 )
 
 # code generation options
