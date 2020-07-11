@@ -138,8 +138,7 @@ macro(internal_compile_binary_add)
 		OUTPUT_NAME             "${BINARY_NAME}"
 		#INSTALL_PATH            "${BINARY_INSTALL_PATH}"
 
-		ADDING_HEADERS          "${HEADER_LIST}"
-		ADDING_SOURCES          "${SOURCE_LIST}"
+		ADDING_FILES            "${HEADER_LIST};${SOURCE_LIST}"
 		#COMPILE_FLAGS           "${BINARY_COMPILE_FLAGS}"
 		DEPENDENCY_LIBRARIES    "${BINARY_DEPENDENCY_TARGET_LIST}"
 		#LINK_FLAGS              "${BINARY_LINK_FLAGS}"

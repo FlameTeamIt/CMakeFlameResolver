@@ -288,7 +288,7 @@ function(internal_resolve_binaries)
 
 		print_oneline("-- Binary ${REAL_TARGET} - ")
 
-		target_property_get(${target.property} FLAME_ADDING_SOURCES
+		target_property_get(${target.property} FLAME_ADDING_FILES
 			SOURCE_LIST)
 		if(SOURCE_LIST)
 			list(APPEND SOURCE_LIST ${ADDING_SOURCES})
