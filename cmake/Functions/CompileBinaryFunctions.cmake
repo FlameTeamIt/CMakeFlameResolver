@@ -50,12 +50,6 @@ macro(internal_compile_binary_print_parse_result)
 		print_debug_function_oneline("BINARY_ALIAS_NAME             = ")
 		print_debug_value_newline(${BINARY_ALIAS_NAME})
 
-		print_debug_function_oneline("BINARY_SOURCE_LIST_FILE       = ")
-		print_debug_value_newline(${BINARY_SOURCE_LIST_FILE})
-
-		print_debug_function_oneline("BINARY_HEADER_LIST_FILE       = ")
-		print_debug_value_newline(${BINARY_HEADER_LIST_FILE})
-
 		print_debug_function_oneline("BINARY_INSTALL_PATH           = ")
 		print_debug_value_newline(${BINARY_INSTALL_PATH})
 
@@ -66,9 +60,6 @@ macro(internal_compile_binary_print_parse_result)
 
 		print_debug_function_oneline("BINARY_SOURCE_LIST            = ")
 		print_debug_value_newline(${BINARY_SOURCE_LIST})
-
-		print_debug_function_oneline("BINARY_HEADER_LIST            = ")
-		print_debug_value_newline(${BINARY_HEADER_LIST})
 
 		print_debug_function_oneline("BINARY_COMPILE_FLAGS          = ")
 		print_debug_value_newline(${BINARY_COMPILE_FLAGS})
@@ -90,25 +81,12 @@ macro(internal_compile_binary_process_parameters)
 	if(NOT BINARY_NAME)
 		message_fatal("-- Need 'NAME'.")
 	endif()
-	if(BINARY_SOURCE_LIST_FILE)
-		include(${BINARY_SOURCE_LIST_FILE})
-	endif()
 	if(BINARY_SOURCE_LIST)
 		list(APPEND SOURCE_LIST ${BINARY_SOURCE_LIST})
 	endif()
-	if(NOT BINARY_SOURCE_LIST_FILE)
-		if(NOT BINARY_SOURCE_LIST)
-			message_fatal("-- "
-				"Need 'SOURCE_LIST_FILE' or/and 'SOURCE_LIST'.")
-		endif()
-	endif()
-
-	if(BINARY_HEADER_LIST_FILE)
-		include(${BINARY_HEADER_LIST_FILE})
-		list(APPEND HEADER_LIST ${BINARY_SOURCE_LIST})
-	endif()
-	if(BINARY_HEADER_LIST)
-		list(APPEND HEADER_LIST ${BINARY_SOURCE_LIST})
+	if(NOT BINARY_SOURCE_LIST)
+		message_fatal("-- "
+			"Need 'SOURCE_LIST'.")
 	endif()
 
 	internal_print_warning_not_support("${BINARY_COMPILE_FLAGS}" COMPILE_FLAGS)
@@ -138,7 +116,7 @@ macro(internal_compile_binary_add)
 		OUTPUT_NAME             "${BINARY_NAME}"
 		#INSTALL_PATH            "${BINARY_INSTALL_PATH}"
 
-		ADDING_FILES            "${HEADER_LIST};${SOURCE_LIST}"
+		ADDING_FILES            "${SOURCE_LIST}"
 		#COMPILE_FLAGS           "${BINARY_COMPILE_FLAGS}"
 		DEPENDENCY_LIBRARIES    "${BINARY_DEPENDENCY_TARGET_LIST}"
 		#LINK_FLAGS              "${BINARY_LINK_FLAGS}"

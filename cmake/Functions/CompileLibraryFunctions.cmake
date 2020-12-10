@@ -5,12 +5,13 @@ function(internal_compile_library)
 	check_internal_use()
 
 	# Parse parameters
-	set(OPTIONS "DEBUG" "MAKE_STATIC" "MAKE_SHARED" "NOT_MAKE_POSITION_DEPENDENT_OBJECTS"
-		"NOT_MAKE_POSITION_INDEPENDENT_OBJECTS" "HELP")
+	set(OPTIONS "DEBUG" "HELP" "MAKE_STATIC" "MAKE_SHARED"
+		"NOT_MAKE_POSITION_DEPENDENT_OBJECTS"
+		"NOT_MAKE_POSITION_INDEPENDENT_OBJECTS")
 	set(VALUES "NAME" "OBJECT_ALIAS_NAME" "INDEPENDENT_OBJECT_ALIAS_NAME"
 		"STATIC_ALIAS_NAME" "SHARED_ALIAS_NAME" "STATIC_INSTALL_PATH"
 		"SHARED_INSTALL_PATH")
-	set(LISTS "INCLUDE_PATHS" "SOURCE_LIST" "COMMPILE_FLAGS" "LINK_FLAGS"
+	set(LISTS "INCLUDE_PATHS" "SOURCE_LIST" "COMPILE_FLAGS" "LINK_FLAGS"
 		"DEPENDENCY_HEADER_TARGETS" "DEPENDENCY_TARGETS_FOR_STATIC"
 		"DEPENDENCY_TARGETS_FOR_SHARED")
 	cmake_parse_arguments("COMPILE" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
@@ -104,12 +105,6 @@ macro(internal_compile_library_print_parse_result)
 		print_debug_function_oneline("COMPILE_SHARED_ALIAS_NAME                     = ")
 		print_debug_value_newline(${COMPILE_SHARED_ALIAS_NAME})
 
-		print_debug_function_oneline("COMPILE_SOURCE_LIST_FILE                      = ")
-		print_debug_value_newline(${COMPILE_SOURCE_LIST_FILE})
-
-		print_debug_function_oneline("COMPILE_HEADER_LIST_FILE                      = ")
-		print_debug_value_newline(${COMPILE_HEADER_LIST_FILE})
-
 		print_debug_function_oneline("COMPILE_STATIC_INSTALL_PATH                   = ")
 		print_debug_value_newline(${COMPILE_STATIC_INSTALL_PATH})
 
@@ -125,9 +120,6 @@ macro(internal_compile_library_print_parse_result)
 
 		print_debug_function_oneline("COMPILE_SOURCE_LIST                           = ")
 		print_debug_value_newline(${COMPILE_SOURCE_LIST})
-
-		print_debug_function_oneline("COMPILE_HEADER_LIST                           = ")
-		print_debug_value_newline(${COMPILE_HEADER_LIST})
 
 		print_debug_function_oneline("COMPILE_COMPILE_FLAGS                         = ")
 		print_debug_value_newline("${COMPILE_COMPILE_FLAGS}")
@@ -159,16 +151,6 @@ macro(internal_compile_library_process_parameters)
 		list(APPEND SOURCE_LIST ${COMPILE_SOURCE_LIST})
 	else()
 		message_fatal("-- Need 'SOURCE_LIST'.")
-	endif()
-
-	if(COMPILE_HEADER_LIST_FILE)
-		if(EXISTS ${COMPILE_HEADER_LIST_FILE})
-			include(${COMPILE_HEADER_LIST_FILE})
-			list(APPEND SOURCE_LIST "${HEADER_LIST}")
-		endif()
-	endif()
-	if(COMPILE_HEADER_LIST)
-		list(APPEND SOURCE_LIST ${COMPILE_HEADER_LIST})
 	endif()
 
 	internal_print_warning_not_support("${COMPILE_HELP}"

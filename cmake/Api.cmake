@@ -5,7 +5,6 @@
 #   Values:
 #     NAME               -
 #     LIBRARY_ALIAS_NAME -
-#     HEADER_LIST_FILE   -
 #     INSTALL_PATH       -
 #   Lists:
 #     DEPENDENCY_TARGET_LIST -

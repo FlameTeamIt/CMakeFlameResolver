@@ -6,7 +6,7 @@ function(internal_header_library)
 
 	# Parse arguments
 	set(OPTIONS "DEBUG" "HELP")
-	set(VALUES "NAME" "LIBRARY_ALIAS_NAME" "HEADER_LIST_FILE" "INSTALL_PATH")
+	set(VALUES "NAME" "LIBRARY_ALIAS_NAME" "INSTALL_PATH")
 	set(LISTS "DEPENDENCY_TARGET_LIST" "HEADER_LIST" "INCLUDE_PATHS")
 	cmake_parse_arguments("HEADER" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
 
@@ -46,9 +46,6 @@ macro(internal_header_library_print_parse_result)
 		print_debug_function_oneline("HEADER_NAME                   = ")
 		print_debug_value_newline(${HEADER_NAME})
 
-		print_debug_function_oneline("HEADER_HEADER_LIST_FILE       = ")
-		print_debug_value_newline("${HEADER_HEADER_LIST_FILE}")
-
 		print_debug_function_oneline("HEADER_HEADER_LIST            = ")
 		print_debug_value_newline(${HEADER_HEADER_LIST})
 
@@ -77,18 +74,11 @@ macro(internal_header_library_process_parameters)
 	if(NOT HEADER_NAME)
 		message_fatal("-- Need 'NAME'.")
 	endif()
-	if(HEADER_HEADER_LIST_FILE)
-		if(EXISTS "${HEADER_HEADER_LIST_FILE}")
-			include(${HEADER_HEADER_LIST_FILE})
-		else()
-			message_fatal("-- "
-				"Need header list file with defined 'HEADER_LIST' variable.")
-		endif()
-	elseif(HEADER_HEADER_LIST)
+	if(HEADER_HEADER_LIST)
 		set(HEADER_LIST "${HEADER_HEADER_LIST}")
 	else()
 		message_fatal("-- "
-			"Need 'HEADER_LIST_FILE' or 'HEADER_LIST'.")
+			"Need 'HEADER_LIST'.")
 	endif()
 
 	internal_print_warning_not_support("${HEADER_HELP}" HELP)
