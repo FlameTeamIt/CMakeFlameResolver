@@ -1,14 +1,6 @@
 #
 #
 #
-function(remove_source_dir PATH REMOVE_PATH OUT)
-	string(REPLACE "${REMOVE_PATH}" "" ${OUT} "${PATH}")
-	set(${OUT} "${${OUT}}" PARENT_SCOPE)
-endfunction(remove_source_dir)
-
-#
-#
-#
 function(get_real_target CURRENT_TARGET_NAME REAL_TARGET_NAME)
 	if(TARGET ${CURRENT_TARGET_NAME})
 		get_target_property(aliased ${CURRENT_TARGET_NAME} ALIASED_TARGET)
@@ -21,4 +13,3 @@ function(get_real_target CURRENT_TARGET_NAME REAL_TARGET_NAME)
 		message_fatal("-- '${CURRENT_TARGET_NAME}' is not a target")
 	endif()
 endfunction(get_real_target)
-
