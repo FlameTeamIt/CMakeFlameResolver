@@ -4,6 +4,12 @@ option(FLAME_CMAKE_DEBUG
 	"Print debug messages"
 	OFF
 )
+
+option(FLAME_CMAKE_DEBUG_SHOW_PARSE_RESULTS
+	"Print debug messages with parse results"
+	OFF
+)
+
 option(FLAME_PRINT_COMMON_STATISTIC
 	"Print statistic about targets. Not support"
 	OFF
