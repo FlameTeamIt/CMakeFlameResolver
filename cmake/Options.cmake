@@ -15,7 +15,7 @@ option(FLAME_PRINT_COMMON_STATISTIC
 	OFF
 )
 
-option(FLAME_PRINT_COMMON_STATISTIC
+option(FLAME_PRINT_DETAILED_STATISTIC
 	"Print detailed statistic about targets with add files, flags and etc. Not support"
 	OFF
 )
