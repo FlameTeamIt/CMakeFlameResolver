@@ -1,19 +1,6 @@
 #
 #
 #
-function(set_global_property PROPERTY_NAME PROPERTY_VALUE)
-	set_property(
-		GLOBAL
-		PROPERTY
-			${PROPERTY_NAME}
-			"${PROPERTY_VALUE}"
-	)
-endfunction(set_global_property)
-
-
-#
-#
-#
 function(get_global_property PROPERTY_NAME RETURN_PROPERTY_VALUE)
 	get_property(VALUE
 		GLOBAL
@@ -28,9 +15,12 @@ endfunction(get_global_property)
 #
 #
 function(add_to_global_property PROPERTY_NAME ADDITION_VALUE)
-	get_global_property(${PROPERTY_NAME} VALUE)
-	list(APPEND VALUE ${ADDITION_VALUE})
-	set_global_property(${PROPERTY_NAME} "${VALUE}")
+	set_property(
+		GLOBAL APPEND
+		PROPERTY
+			"${PROPERTY_NAME}"
+			"${ADDITION_VALUE}"
+	)
 endfunction(add_to_global_property)
 
 

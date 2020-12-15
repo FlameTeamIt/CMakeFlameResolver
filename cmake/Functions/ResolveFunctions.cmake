@@ -353,12 +353,11 @@ endfunction(internal_resolve_binaries)
 #
 function(internal_clean_global_properties)
 	check_internal_use()
-
-	set_global_property(FLAME_HEADER_TARGETS "")
-	set_global_property(FLAME_OBJECT_TARGETS "")
-	set_global_property(FLAME_STATIC_TARGETS "")
-	set_global_property(FLAME_SHARED_TARGETS "")
-	set_global_property(FLAME_BINARY_TARGETS "")
+	if(FLAME_CLEAN_AFTER_RESOLVE)
+		foreach(property ${FLAME_GLOBAL_PROPERTY_LIST})
+			set_property(GLOBAL PROPERTY ${property} "")
+		endforeach()
+	endif()
 endfunction(internal_clean_global_properties)
 
 #
