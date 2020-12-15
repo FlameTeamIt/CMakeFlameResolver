@@ -61,7 +61,7 @@ endmacro(internal_compile_library_end_function)
 #
 #
 macro(internal_compile_library_print_parse_result)
-	if(COMPILE_DEBUG)
+	if(COMPILE_DEBUG OR (FLAME_CMAKE_DEBUG AND FLAME_CMAKE_DEBUG_SHOW_PARSE_RESULTS))
 		print_debug_function_newline("-------------- PARSE RESULT --------------")
 
 		# options

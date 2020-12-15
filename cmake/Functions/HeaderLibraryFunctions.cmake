@@ -37,7 +37,7 @@ endmacro(internal_header_library_end_function)
 #
 #
 macro(internal_header_library_print_parse_result)
-	if(HEADER_DEBUG)
+	if(HEADER_DEBUG OR (FLAME_CMAKE_DEBUG AND FLAME_CMAKE_DEBUG_SHOW_PARSE_RESULTS))
 		print_debug_function_newline("-------- PARSE RESULT --------")
 
 		print_debug_function_oneline("HEADER_HELP                   = ")

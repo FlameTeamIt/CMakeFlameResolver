@@ -37,7 +37,7 @@ endmacro(internal_compile_binary_end_function)
 #
 #
 macro(internal_compile_binary_print_parse_result)
-	if(BINARY_DEBUG)
+	if(BINARY_DEBUG OR (FLAME_CMAKE_DEBUG AND FLAME_CMAKE_DEBUG_SHOW_PARSE_RESULTS))
 		print_debug_function_newline("-------- PARSE RESULT -------")
 
 		#print_debug_function_newline("-- OPTIONS --")
