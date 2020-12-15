@@ -1,22 +1,37 @@
-define_global_property(FLAME_HEADER_TARGETS
-	"List of header targets"
-	"List of header targets"
+define_property(GLOBAL
+	PROPERTY   "FLAME_HEADER_TARGETS"
+	BRIEF_DOCS "List of header targets"
+	FULL_DOCS  "List of header targets"
 )
 
-define_global_property(FLAME_OBJECT_TARGETS
-	"List of object targets"
-	"List of object targets"
-)
-define_global_property(FLAME_STATIC_TARGETS
-	"List of static library targets"
-	"List of static library targets"
-)
-define_global_property(FLAME_SHARED_TARGETS
-	"List of shared library targets"
-	"List of shared library targets"
+define_property(GLOBAL
+	PROPERTY   "FLAME_OBJECT_TARGETS"
+	BRIEF_DOCS "List of object targets"
+	FULL_DOCS  "List of object targets"
 )
 
-define_global_property(FLAME_BINARY_TARGETS
-	"List of shared library targets"
-	"List of binary targets"
+define_property(GLOBAL
+	PROPERTY   "FLAME_STATIC_TARGETS"
+	BRIEF_DOCS "List of static library targets"
+	FULL_DOCS  "List of static library targets"
+)
+
+define_property(GLOBAL
+	PROPERTY   "FLAME_SHARED_TARGETS"
+	BRIEF_DOCS "List of shared library targets"
+	FULL_DOCS  "List of shared library targets"
+)
+
+define_property(GLOBAL
+	PROPERTY   "FLAME_BINARY_TARGETS"
+	BRIEF_DOCS "List of binary targets"
+	FULL_DOCS  "List of binary targets"
+)
+
+set(FLAME_GLOBAL_PROPERTY_LIST
+	"FLAME_HEADER_TARGETS"
+	"FLAME_OBJECT_TARGETS"
+	"FLAME_STATIC_TARGETS"
+	"FLAME_SHARED_TARGETS"
+	"FLAME_BINARY_TARGETS"
 )
