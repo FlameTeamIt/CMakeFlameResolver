@@ -1,19 +1,6 @@
 #
 #
 #
-function(get_global_property PROPERTY_NAME RETURN_PROPERTY_VALUE)
-	get_property(VALUE
-		GLOBAL
-		PROPERTY
-			${PROPERTY_NAME}
-	)
-	set(${RETURN_PROPERTY_VALUE} "${VALUE}" PARENT_SCOPE)
-endfunction(get_global_property)
-
-
-#
-#
-#
 function(add_to_global_property PROPERTY_NAME ADDITION_VALUE)
 	set_property(
 		GLOBAL APPEND

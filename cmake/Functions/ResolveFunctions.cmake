@@ -6,8 +6,7 @@ function(internal_resolve_headers)
 
 	start_debug_function(internal_resolve_headers)
 
-	get_global_property(FLAME_HEADER_TARGETS HEADER_TARGETS)
-
+	get_property(HEADER_TARGETS GLOBAL PROPERTY FLAME_HEADER_TARGETS)
 	foreach(target.property ${HEADER_TARGETS})
 		target_property_get(${target.property} FLAME_REAL_TARGET
 			REAL_TARGET)
@@ -60,7 +59,7 @@ endfunction(internal_resolve_headers)
 function(internal_resolve_object_libraries)
 	start_debug_function(internal_resolve_object_libraries)
 
-	get_global_property(FLAME_OBJECT_TARGETS OBJECT_TARGETS)
+	get_property(OBJECT_TARGETS GLOBAL PROPERTY FLAME_OBJECT_TARGETS)
 	foreach(target.property ${OBJECT_TARGETS})
 		target_property_get(${target.property} FLAME_REAL_TARGET
 			REAL_TARGET)
@@ -117,7 +116,7 @@ endfunction(internal_resolve_object_libraries)
 function(internal_resolve_static_libraries)
 	start_debug_function(internal_resolve_static_libraries)
 
-	get_global_property(FLAME_STATIC_TARGETS STATIC_TARGETS)
+	get_property(STATIC_TARGETS GLOBAL PROPERTY FLAME_STATIC_TARGETS)
 	foreach(target.property ${STATIC_TARGETS})
 		target_property_get(${target.property} FLAME_REAL_TARGET
 			REAL_TARGET)
@@ -196,7 +195,7 @@ endfunction(internal_resolve_static_libraries)
 function(internal_resolve_shared_libraries)
 	start_debug_function(internal_resolve_shared_libraries)
 
-	get_global_property(FLAME_SHARED_TARGETS SHARED_TARGETS)
+	get_property(SHARED_TARGETS GLOBAL PROPERTY FLAME_SHARED_TARGETS)
 	foreach(target.property ${SHARED_TARGETS})
 		target_property_get(${target.property} FLAME_REAL_TARGET
 			REAL_TARGET)
@@ -281,7 +280,7 @@ function(internal_resolve_binaries)
 
 	start_debug_function(internal_resolve_binaries)
 
-	get_global_property(FLAME_BINARY_TARGETS BINARY_TARGETS)
+	get_property(BINARY_TARGETS GLOBAL PROPERTY FLAME_BINARY_TARGETS)
 	foreach(target.property ${BINARY_TARGETS})
 		target_property_get(${target.property} FLAME_REAL_TARGET
 			REAL_TARGET)
