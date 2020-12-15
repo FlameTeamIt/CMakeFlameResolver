@@ -50,7 +50,9 @@ function(internal_add_header_target_properties)
 	endif()
 
 	add_custom_target(${FLAME_PROPERTY_CONTAINER_NAME})
-	add_to_global_property(FLAME_HEADER_TARGETS ${FLAME_PROPERTY_CONTAINER_NAME})
+	set_property(GLOBAL APPEND PROPERTY FLAME_HEADER_TARGETS
+		${FLAME_PROPERTY_CONTAINER_NAME}
+	)
 
 	target_property_set(${FLAME_PROPERTY_CONTAINER_NAME} FLAME_REAL_TARGET
 		"${FLAME_REAL_TARGET}")
@@ -121,7 +123,9 @@ function(internal_add_object_target_properties)
 	endif()
 
 	add_custom_target(${FLAME_PROPERTY_CONTAINER_NAME})
-	add_to_global_property(FLAME_OBJECT_TARGETS ${FLAME_PROPERTY_CONTAINER_NAME})
+	set_property(GLOBAL APPEND PROPERTY FLAME_OBJECT_TARGETS
+		${FLAME_PROPERTY_CONTAINER_NAME}
+	)
 
 	target_property_set(${FLAME_PROPERTY_CONTAINER_NAME} FLAME_REAL_TARGET
 		"${FLAME_REAL_TARGET}")
@@ -204,7 +208,9 @@ function(internal_add_static_target_properties)
 	endif()
 
 	add_custom_target(${FLAME_PROPERTY_CONTAINER_NAME})
-	add_to_global_property(FLAME_STATIC_TARGETS ${FLAME_PROPERTY_CONTAINER_NAME})
+	set_property(GLOBAL APPEND PROPERTY FLAME_STATIC_TARGETS
+		${FLAME_PROPERTY_CONTAINER_NAME}
+	)
 
 	target_property_set(${FLAME_PROPERTY_CONTAINER_NAME} FLAME_REAL_TARGET
 		"${FLAME_REAL_TARGET}")
@@ -295,7 +301,9 @@ function(internal_add_shared_target_properties)
 	endif()
 
 	add_custom_target(${FLAME_PROPERTY_CONTAINER_NAME})
-	add_to_global_property(FLAME_SHARED_TARGETS ${FLAME_PROPERTY_CONTAINER_NAME})
+	set_property(GLOBAL APPEND PROPERTY FLAME_SHARED_TARGETS
+		${FLAME_PROPERTY_CONTAINER_NAME}
+	)
 
 	target_property_set(${FLAME_PROPERTY_CONTAINER_NAME} FLAME_REAL_TARGET
 		"${FLAME_REAL_TARGET}")
@@ -379,7 +387,9 @@ function(internal_add_binary_target_properties)
 	endif()
 
 	add_custom_target(${FLAME_PROPERTY_CONTAINER_NAME})
-	add_to_global_property(FLAME_BINARY_TARGETS ${FLAME_PROPERTY_CONTAINER_NAME})
+	set_property(GLOBAL APPEND PROPERTY FLAME_BINARY_TARGETS
+		${FLAME_PROPERTY_CONTAINER_NAME}
+	)
 
 	target_property_set(${FLAME_PROPERTY_CONTAINER_NAME} FLAME_REAL_TARGET
 		"${FLAME_REAL_TARGET}")

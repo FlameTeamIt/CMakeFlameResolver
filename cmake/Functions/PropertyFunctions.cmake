@@ -1,19 +1,6 @@
 #
 #
 #
-function(add_to_global_property PROPERTY_NAME ADDITION_VALUE)
-	set_property(
-		GLOBAL APPEND
-		PROPERTY
-			"${PROPERTY_NAME}"
-			"${ADDITION_VALUE}"
-	)
-endfunction(add_to_global_property)
-
-
-#
-#
-#
 function(target_property_define PROPERTY_NAME PROPERTY_INFO PROPERTY_FULL_INFO)
 	define_property(TARGET
 		PROPERTY   ${PROPERTY_NAME}
