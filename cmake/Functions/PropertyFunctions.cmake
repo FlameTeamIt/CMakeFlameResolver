@@ -1,18 +1,6 @@
 #
 #
 #
-function(define_global_property PROPERTY_NAME PROPERTY_INFO PROPERTY_FULL_INFO)
-	define_property(GLOBAL
-		PROPERTY   ${PROPERTY_NAME}
-		BRIEF_DOCS "${PROPERTY_INFO}"
-		FULL_DOCS  "${PROPERTY_FULL_INFO}"
-	)
-endfunction(define_global_property)
-
-
-#
-#
-#
 function(set_global_property PROPERTY_NAME PROPERTY_VALUE)
 	set_property(
 		GLOBAL
