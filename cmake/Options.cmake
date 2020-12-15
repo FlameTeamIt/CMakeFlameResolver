@@ -45,7 +45,7 @@ option(FLAME_LOCAL_INSTALL
 	OFF
 )
 
-# code generation options
+# code generation and install options
 
 option(FLAME_ONLY_POSITION_INDEPENDENT_OBJECTS
 	"Static and shared libraries are using one object library"
