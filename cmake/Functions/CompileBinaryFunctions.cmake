@@ -4,7 +4,7 @@
 function(internal_compile_binary)
 	check_internal_use()
 
-	set(OPTIONS "DEBUG" "HELP")
+	set(OPTIONS "DEBUG")
 	set(VALUES "NAME" "ALIAS_NAME" "INSTALL_PATH")
 	set(LISTS "INCLUDE_PATHS" "SOURCE_LIST" "COMPILE_FLAGS" "LINK_FLAGS"
 		"DEPENDENCY_TARGET_LIST")
@@ -19,30 +19,19 @@ function(internal_compile_binary)
 	internal_compile_binary_end_function()
 endfunction(internal_compile_binary)
 
-#
-#
-#
+# macros
+
 macro(internal_compile_binary_start_function)
 	start_debug_function(internal_compile_binary)
 endmacro(internal_compile_binary_start_function)
 
-#
-#
-#
 macro(internal_compile_binary_end_function)
 	end_debug_function()
 endmacro(internal_compile_binary_end_function)
 
-#
-#
-#
 macro(internal_compile_binary_print_parse_result)
 	if(BINARY_DEBUG OR (FLAME_CMAKE_DEBUG AND FLAME_CMAKE_DEBUG_SHOW_PARSE_RESULTS))
 		print_debug_function_newline("-------- PARSE RESULT -------")
-
-		#print_debug_function_newline("-- OPTIONS --")
-
-		print_debug_function_newline("--  VALUES --")
 
 		print_debug_function_oneline("BINARY_NAME                   = ")
 		print_debug_value_newline(${BINARY_NAME})
@@ -52,8 +41,6 @@ macro(internal_compile_binary_print_parse_result)
 
 		print_debug_function_oneline("BINARY_INSTALL_PATH           = ")
 		print_debug_value_newline(${BINARY_INSTALL_PATH})
-
-		print_debug_function_newline("--  LISTS  --")
 
 		print_debug_function_oneline("BINARY_INCLUDE_PATHS          = ")
 		print_debug_value_newline(${BINARY_INCLUDE_PATHS})
@@ -72,21 +59,20 @@ macro(internal_compile_binary_print_parse_result)
 
 		print_debug_function_newline("-------- PARSE RESULT -------")
 	endif()
+	if (BINARY_DEBUG)
+		set(BINARY_DEBUG DEBUG)
+	endif()
 endmacro(internal_compile_binary_print_parse_result)
 
-#
-#
-#
 macro(internal_compile_binary_process_parameters)
 	if(NOT BINARY_NAME)
-		message_fatal("-- Need 'NAME'.")
+		message_fatal("Need 'NAME'.")
 	endif()
 	if(BINARY_SOURCE_LIST)
 		list(APPEND SOURCE_LIST ${BINARY_SOURCE_LIST})
 	endif()
 	if(NOT BINARY_SOURCE_LIST)
-		message_fatal("-- "
-			"Need 'SOURCE_LIST'.")
+		message_fatal("Need 'SOURCE_LIST'.")
 	endif()
 
 	internal_print_warning_not_support("${BINARY_COMPILE_FLAGS}" COMPILE_FLAGS)
@@ -94,9 +80,6 @@ macro(internal_compile_binary_process_parameters)
 	internal_print_warning_not_support("${BINARY_INSTALL_PATH}"  INSTALL_PATH)
 endmacro(internal_compile_binary_process_parameters)
 
-#
-#
-#
 macro(internal_compile_binary_add)
 	print_newline("-- Adding binary for ${BINARY_NAME}")
 
@@ -109,7 +92,6 @@ macro(internal_compile_binary_add)
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_CUSTOM_TARGET_SUFFIX}")
 
-	#set(DEBUG DEBUG)
 	internal_add_binary_target_properties(
 		PROPERTY_CONTAINER_NAME "${TARGET_CUSTOM_PROPERTIES}"
 		REAL_TARGET             "${TARGET_NAME}"
@@ -121,9 +103,7 @@ macro(internal_compile_binary_add)
 		DEPENDENCY_LIBRARIES    "${BINARY_DEPENDENCY_TARGET_LIST}"
 		#LINK_FLAGS              "${BINARY_LINK_FLAGS}"
 		INCLUDE_PATHS           "${BINARY_INCLUDE_PATHS}"
-
-
-		#DEBUG
+		${BINARY_DEBUG}
 	)
 
 	unset(TARGET_CUSTOM_PROPERTIES)

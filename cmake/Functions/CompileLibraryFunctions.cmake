@@ -5,7 +5,7 @@ function(internal_compile_library)
 	check_internal_use()
 
 	# Parse parameters
-	set(OPTIONS "DEBUG" "HELP" "MAKE_STATIC" "MAKE_SHARED"
+	set(OPTIONS "DEBUG" "MAKE_STATIC" "MAKE_SHARED"
 		"NOT_MAKE_POSITION_DEPENDENT_OBJECTS"
 		"NOT_MAKE_POSITION_INDEPENDENT_OBJECTS")
 	set(VALUES "NAME" "OBJECT_ALIAS_NAME" "INDEPENDENT_OBJECT_ALIAS_NAME"
@@ -43,33 +43,21 @@ function(internal_compile_library)
 	internal_compile_library_end_function()
 endfunction(internal_compile_library)
 
-#
-#
-#
+# macros
+
 macro(internal_compile_library_start_function)
 	start_debug_function("internal_compile_library")
 endmacro(internal_compile_library_start_function)
 
-#
-#
-#
 macro(internal_compile_library_end_function)
 	end_debug_function()
 endmacro(internal_compile_library_end_function)
 
-#
-#
-#
 macro(internal_compile_library_print_parse_result)
 	if(COMPILE_DEBUG OR (FLAME_CMAKE_DEBUG AND FLAME_CMAKE_DEBUG_SHOW_PARSE_RESULTS))
 		print_debug_function_newline("-------------- PARSE RESULT --------------")
 
 		# options
-
-		print_debug_function_newline("-- OPTIONS --")
-
-		#print_debug_function_oneline("COMPILE_DEBUG                                 = ")
-		#print_debug_value_newline("${COMPILE_DEBUG}")
 
 		print_debug_function_oneline("COMPILE_MAKE_STATIC                           = ")
 		print_debug_value_newline("${COMPILE_MAKE_STATIC}")
@@ -83,12 +71,7 @@ macro(internal_compile_library_print_parse_result)
 		print_debug_function_oneline("COMPILE_NOT_MAKE_POSITION_INDEPENDENT_OBJECTS = ")
 		print_debug_value_newline("${COMPILE_NOT_MAKE_POSITION_DEPENDENT_OBJECTS}")
 
-		print_debug_function_oneline("COMPILE_HELP                                  = ")
-		print_debug_value_newline("${COMPILE_HELP}")
-
 		# values
-
-		print_debug_function_newline("--  VALUES --")
 
 		print_debug_function_oneline("COMPILE_NAME                                  = ")
 		print_debug_value_newline(${COMPILE_NAME})
@@ -113,8 +96,6 @@ macro(internal_compile_library_print_parse_result)
 
 		# lists
 
-		print_debug_function_newline("--  LISTS  --")
-
 		print_debug_function_oneline("COMPILE_INCLUDE_PATHS                         = ")
 		print_debug_value_newline("${COMPILE_INCLUDE_PATHS}")
 
@@ -138,19 +119,19 @@ macro(internal_compile_library_print_parse_result)
 
 		print_debug_function_newline("-------------- PARSE RESULT --------------")
 	endif()
+	if (COMPILE_DEBUG)
+		set(COMPILE_DEBUG DEBUG)
+	endif()
 endmacro(internal_compile_library_print_parse_result)
 
-#
-#
-#
 macro(internal_compile_library_process_parameters)
 	if(NOT COMPILE_NAME)
-		message_fatal("-- Need 'NAME'.")
+		message_fatal("Need 'NAME'.")
 	endif()
 	if(COMPILE_SOURCE_LIST)
 		list(APPEND SOURCE_LIST ${COMPILE_SOURCE_LIST})
 	else()
-		message_fatal("-- Need 'SOURCE_LIST'.")
+		message_fatal("Need 'SOURCE_LIST'.")
 	endif()
 
 	internal_print_warning_not_support("${COMPILE_HELP}"
@@ -169,16 +150,6 @@ macro(internal_compile_library_process_parameters)
 		SHARED_INSTALL_PATH)
 endmacro(internal_compile_library_process_parameters)
 
-#
-#
-#
-macro(internal_compile_library_print_help)
-	check_internal_use()
-endmacro(internal_compile_library_print_help)
-
-#
-#
-#
 macro(internal_compile_independent_object_library)
 	check_internal_use()
 
@@ -217,7 +188,6 @@ macro(internal_compile_independent_object_library)
 			"${COMPILE_INDEPENDENT_OBJECT_ALIAS_NAME}")
 	endif()
 
-	#set(DEBUG DEBUG)
 	internal_add_object_target_properties(
 		PROPERTY_CONTAINER_NAME "${TARGET_CUSTOM_PROPERTIES}"
 		REAL_TARGET             "${TARGET_NAME}"
@@ -227,7 +197,7 @@ macro(internal_compile_independent_object_library)
 		COMPILE_FLAGS           "${COMPILE_COMPILE_FLAGS}"
 		POSITION_INDEPENDENT
 		OBJECT_ALIASES          "${OBJECT_ALIASES}"
-		#DEBUG
+		${COMPILE_DEBUG}
 	)
 
 	unset(TARGET_CUSTOM_PROPERTIES)
@@ -256,7 +226,6 @@ macro(internal_compile_dependent_object_library)
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_CUSTOM_TARGET_SUFFIX}")
 
-	#set(DEBUG DEBUG)
 	internal_add_object_target_properties(
 		PROPERTY_CONTAINER_NAME "${TARGET_CUSTOM_PROPERTIES}"
 		REAL_TARGET             "${TARGET_NAME}"
@@ -265,7 +234,7 @@ macro(internal_compile_dependent_object_library)
 		DEPENDENCY_HEADERS      "${COMPILE_DEPENDENCY_HEADER_TARGETS}"
 		COMPILE_FLAGS           "${COMPILE_COMPILE_FLAGS}"
 		OBJECT_ALIASES          "${COMPILE_OBJECT_ALIAS_NAME}"
-		#DEBUG
+		${COMPILE_DEBUG}
 	)
 
 	unset(TARGET_CUSTOM_PROPERTIES)
@@ -306,7 +275,6 @@ macro(internal_compile_static_library)
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_OBJECT_MODULE_SUFFIX}")
 
-	#set(DEBUG DEBUG)
 	internal_add_static_target_properties(
 		PROPERTY_CONTAINER_NAME "${TARGET_CUSTOM_PROPERTIES}"
 		REAL_TARGET             "${TARGET_NAME}"
@@ -317,7 +285,7 @@ macro(internal_compile_static_library)
 		#COMPILE_FLAGS           "${}"
 		OUTPUT_NAME             "${COMPILE_NAME}"
 		LIBRARY_ALIASES         "${COMPILE_STATIC_ALIAS_NAME}"
-		#DEBUG
+		${COMPILE_DEBUG}
 	)
 
 	unset(TARGET_DEPENDENT_OBJECT_LIBRARY)
@@ -361,7 +329,7 @@ macro(internal_compile_shared_library)
 		#LINK_FLAGS              "${}"
 		OUTPUT_NAME             "${COMPILE_NAME}"
 		LIBRARY_ALIASES         "${COMPILE_SHARED_ALIAS_NAME}"
-		#DEBUG
+		${COMPILE_DEBUG}
 	)
 
 	unset(TARGET_INDEPENDENT_OBJECT_LIBRARY)
