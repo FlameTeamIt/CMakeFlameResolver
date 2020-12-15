@@ -25,6 +25,11 @@ option(FLAME_LOGGING
 	ON
 )
 
+option(FLAME_CLEAN_AFTER_RESOLVE
+	"Clean global properties after resove dependencies"
+	ON
+)
+
 option(FLAME_THREADING
 	"Use native threads"
 	ON
