@@ -7,7 +7,7 @@ if(WIN32)
 endif(WIN32)
 
 if(FLAME_THREADING)
-	find_package(Threads)
+	find_package(Threads REQUIRED)
 	if(NOT (TARGET Threads::Threads))
 		message(FATAL_ERROR "Target 'Threads::Threads' not found")
 	endif()
