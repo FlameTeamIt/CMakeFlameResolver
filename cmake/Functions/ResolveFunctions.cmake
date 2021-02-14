@@ -90,6 +90,17 @@ function(internal_resolve_object_libraries)
 			target_link_libraries(${REAL_TARGET} PUBLIC ${dependency})
 		endif()
 
+		if(FLAME_CXX_NO_RTTI)
+			target_compile_options(${REAL_TARGET} PUBLIC "${FLAME_CXX_FLAG_NO_RTTI}")
+		else()
+			target_compile_options(${REAL_TARGET} PUBLIC "${FLAME_CXX_FLAG_RTTI}")
+		endif()
+		if(FLAME_CXX_NO_EXCEPTIONS)
+			target_compile_options(${REAL_TARGET} PUBLIC "${FLAME_CXX_FLAG_NO_EXCEPTIONS}")
+		else()
+			target_compile_options(${REAL_TARGET} PUBLIC "${FLAME_CXX_FLAG_EXCEPTIONS}")
+		endif()
+
 		# Not supported now
 		#get_target_property(COMPILE_FLAGS ${target.property} FLAME_COMPILE_FLAGS)
 
