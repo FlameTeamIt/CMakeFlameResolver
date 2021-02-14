@@ -6,6 +6,13 @@ if(WIN32)
 	include(Platform/Windows)
 endif(WIN32)
 
+if(FLAME_THREADING)
+	find_package(Threads)
+	if(NOT (TARGET Threads::Threads))
+		message(FATAL_ERROR "Target 'Threads::Threads' not found")
+	endif()
+endif()
+
 if(CMAKE_CXX_COMPILER)
 	if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 		set(FLAME_CXX_FLAG_NO_RTTI "-fno-rtti")
