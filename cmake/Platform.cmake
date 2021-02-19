@@ -1,11 +1,3 @@
-if(UNIX)
-	include(Platform/Unix)
-endif(UNIX)
-
-if(WIN32)
-	include(Platform/Windows)
-endif(WIN32)
-
 if(FLAME_THREADING)
 	find_package(Threads REQUIRED)
 	if(NOT (TARGET Threads::Threads))
@@ -34,3 +26,11 @@ if(CMAKE_CXX_COMPILER)
 		set(FLAME_CXX_FLAG_EXCEPTIONS "/EHs")
 	endif()
 endif()
+
+if(UNIX)
+	include(Platform/Unix)
+endif(UNIX)
+
+if(WIN32)
+	include(Platform/Windows)
+endif(WIN32)
