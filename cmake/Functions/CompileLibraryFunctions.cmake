@@ -7,7 +7,8 @@ function(internal_compile_library)
 	# Parse parameters
 	set(OPTIONS "DEBUG" "MAKE_STATIC" "MAKE_SHARED"
 		"NOT_MAKE_POSITION_DEPENDENT_OBJECTS"
-		"NOT_MAKE_POSITION_INDEPENDENT_OBJECTS")
+		"NOT_MAKE_POSITION_INDEPENDENT_OBJECTS"
+		"RTTI" "NO_RTTI" "EXCEPTIONS" "NO_EXCEPTIONS")
 	set(VALUES "NAME" "OBJECT_ALIAS_NAME" "INDEPENDENT_OBJECT_ALIAS_NAME"
 		"STATIC_ALIAS_NAME" "SHARED_ALIAS_NAME" "STATIC_INSTALL_PATH"
 		"SHARED_INSTALL_PATH")
@@ -71,6 +72,18 @@ macro(internal_compile_library_print_parse_result)
 		print_debug_function_oneline("COMPILE_NOT_MAKE_POSITION_INDEPENDENT_OBJECTS = ")
 		print_debug_value_newline("${COMPILE_NOT_MAKE_POSITION_DEPENDENT_OBJECTS}")
 
+		print_debug_function_oneline("COMPILE_NO_RTTI =                               ")
+		print_debug_value_newline("${COMPILE_NO_RTTI}")
+
+		print_debug_function_oneline("COMPILE_RTTI =                                  ")
+		print_debug_value_newline("${COMPILE_RTTI}")
+
+		print_debug_function_oneline("COMPILE_NO_EXCEPTIONS =                         ")
+		print_debug_value_newline("${COMPILE_NO_EXCEPTIONS}")
+
+		print_debug_function_oneline("COMPILE_EXCEPTIONS =                            ")
+		print_debug_value_newline("${COMPILE_EXCEPTIONS}")
+
 		# values
 
 		print_debug_function_oneline("COMPILE_NAME                                  = ")
@@ -131,17 +144,59 @@ macro(internal_compile_library_process_parameters)
 	if(COMPILE_SOURCE_LIST)
 		list(APPEND SOURCE_LIST ${COMPILE_SOURCE_LIST})
 	else()
-		message_fatal("Need 'SOURCE_LIST'.")
+		message_fatal("${COMPILE_NAME}: need 'SOURCE_LIST'.")
 	endif()
 
-	internal_print_warning_not_support("${COMPILE_HELP}"
-		HELP)
+	if(COMPILE_RTTI AND COMPILE_NO_RTTI)
+		message_fatal(
+			"internal_compile_library.${COMPILE_NAME}: options 'RTTI' and 'NO_RTTI' cannot be used simultaneously."
+		)
+	elseif((NOT COMPILE_RTTI) AND (NOT COMPILE_NO_RTTI))
+		if(FLAME_CXX_NO_RTTI)
+			set(MESSAGE_OPTION "NO_RTTI")
+			list(APPEND COMPILE_COMPILE_FLAGS "${FLAME_CXX_FLAG_NO_RTTI}")
+		else()
+			set(MESSAGE_OPTION "RTTI")
+			list(APPEND COMPILE_COMPILE_FLAGS "${FLAME_CXX_FLAG_RTTI}")
+		endif()
+		message_status(
+			"internal_compile_library.${COMPILE_NAME}: not set 'RTTI' or 'NO_RTTI'. Used '${MESSAGE_OPTION}'."
+		)
+		unset(MESSAGE_OPTION)
+	elseif(COMPILE_RTTI)
+		list(APPEND COMPILE_COMPILE_FLAGS "${FLAME_CXX_FLAG_RTTI}")
+	elseif(COMPILE_NO_RTTI)
+		list(APPEND COMPILE_COMPILE_FLAGS "${FLAME_CXX_FLAG_NO_RTTI}")
+	endif()
+
+	if(COMPILE_EXCEPTIONS AND COMPILE_NO_EXCEPTIONS)
+		message_fatal(
+			"internal_compile_library.${COMPILE_NAME}: options 'EXCEPTIONS' and 'NO_EXCEPTIONS' cannot be used simultaneously."
+		)
+	elseif((NOT COMPILE_EXCEPTIONS) AND (NOT COMPILE_NO_EXCEPTIONS))
+		if(FLAME_CXX_NO_EXCEPTIONS)
+			set(MESSAGE_OPTION "NO_EXCEPTIONS")
+			list(APPEND COMPILE_COMPILE_FLAGS "${FLAME_CXX_FLAG_NO_EXCEPTIONS}")
+		else()
+			set(MESSAGE_OPTION "EXCEPTIONS")
+			list(APPEND COMPILE_COMPILE_FLAGS "${FLAME_CXX_FLAG_EXCEPTIONS}")
+		endif()
+		message_status(
+			"internal_compile_library.${COMPILE_NAME}: not set 'EXCEPTIONS' or 'NO_EXCEPTIONS'. Used '${MESSAGE_OPTION}'."
+		)
+		unset(MESSAGE_OPTION)
+	elseif(COMPILE_EXCEPTIONS)
+		list(APPEND COMPILE_COMPILE_FLAGS "${FLAME_CXX_FLAG_EXCEPTIONS}")
+	elseif(COMPILE_NO_EXCEPTIONS)
+		list(APPEND COMPILE_COMPILE_FLAGS "${FLAME_CXX_FLAG_NO_EXCEPTIONS}")
+	endif()
+
+	message_status("internal_compile_library.${COMPILE_NAME}: COMPILE_COMPILE_FLAGS = ${COMPILE_COMPILE_FLAGS}")
+
 	internal_print_warning_not_support("${COMPILE_NOT_MAKE_POSITION_DEPENDENT_OBJECTS}"
 		NOT_MAKE_POSITION_DEPENDENT_OBJECTS)
 	internal_print_warning_not_support("${COMPILE_NOT_MAKE_POSITION_INDEPENDENT_OBJECTS}"
 		NOT_MAKE_INPOSITION_DEPENDENT_OBJECTS)
-	internal_print_warning_not_support("${COMPILE_COMPILE_FLAGS}"
-		COMPILE_FLAGS)
 	internal_print_warning_not_support("${COMPILE_LINK_FLAGS}"
 		LINK_FLAGS)
 	internal_print_warning_not_support("${COMPILE_STATIC_INSTALL_PATH}"
@@ -282,7 +337,6 @@ macro(internal_compile_static_library)
 		ADDING_OBJECTS          "${TARGET_DEPENDENT_OBJECT_LIBRARY}"
 		DEPENDENCY_HEADERS      "${COMPILE_DEPENDENCY_HEADER_TARGETS}"
 		DEPENDENCY_LIBRARIES    "${COMPILE_DEPENDENCY_TARGETS_FOR_STATIC}"
-		#COMPILE_FLAGS           "${}"
 		OUTPUT_NAME             "${COMPILE_NAME}"
 		LIBRARY_ALIASES         "${COMPILE_STATIC_ALIAS_NAME}"
 		${COMPILE_DEBUG}
