@@ -90,8 +90,12 @@ function(internal_resolve_object_libraries)
 			target_link_libraries(${REAL_TARGET} PUBLIC ${dependency})
 		endif()
 
-		# Not supported now
-		#get_target_property(COMPILE_FLAGS ${target.property} FLAME_COMPILE_FLAGS)
+		get_target_property(COMPILE_FLAGS ${target.property} FLAME_COMPILE_FLAGS)
+		if(COMPILE_FLAGS)
+			foreach(flag ${COMPILE_FLAGS})
+				target_compile_options(${REAL_TARGET} PUBLIC ${flag})
+			endforeach()
+		endif()
 
 		print_newline("done")
 	endforeach()

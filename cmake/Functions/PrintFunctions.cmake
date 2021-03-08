@@ -24,6 +24,13 @@ endfunction(message_warning)
 #
 #
 #
+function(message_status)
+	message(STATUS ${ARGV})
+endfunction(message_status)
+
+#
+#
+#
 function(print_oneline)
 	if(FLAME_LOGGING)
 		foreach(str ${ARGV})
