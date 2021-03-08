@@ -214,6 +214,11 @@ function(internal_resolve_shared_libraries)
 				OUTPUT_NAME "${OUTPUT_NAME}")
 		endif()
 
+		if(FLAME_IMPLIB_LIBRARY_SUFFIX)
+			set_target_properties(${REAL_TARGET} PROPERTIES
+				IMPORT_SUFFIX "${FLAME_IMPLIB_LIBRARY_SUFFIX}")
+		endif()
+
 		print_newline("done")
 	endforeach()
 
