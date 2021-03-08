@@ -278,8 +278,12 @@ function(internal_resolve_binaries)
 			target_link_libraries(${REAL_TARGET} PUBLIC ${DEPENDENCY_HEADERS})
 		endif()
 
-		# Not supported now
-		#get_target_property(COMPILE_FLAGS ${target.property} FLAME_COMPILE_FLAGS)
+		get_target_property(COMPILE_FLAGS ${target.property} FLAME_COMPILE_FLAGS)
+		if(COMPILE_FLAGS)
+			foreach(flag ${COMPILE_FLAGS})
+				target_compile_options(${REAL_TARGET} PUBLIC ${flag})
+			endforeach()
+		endif()
 
 		# Not supported now
 		#get_target_property(LINK_FLAGS ${target.property} FLAME_LINK_FLAGS)
@@ -298,6 +302,15 @@ function(internal_resolve_binaries)
 			foreach(alias ${BINARY_ALIASES})
 				add_executable(${alias} ALIAS ${REAL_TARGET})
 			endforeach()
+		endif()
+
+		get_target_property(IS_TEST ${target.property} FLAME_TEST)
+		if(IS_TEST)
+			get_target_property(TEST_ARGUMENTS ${target.property} FLAME_TEST_ARGUMENTS)
+			add_test(
+				NAME "${REAL_TARGET}"
+				COMMAND ${OUTPUT_NAME} ${TEST_ARGUMENTS}
+			)
 		endif()
 
 		print_newline("done")
