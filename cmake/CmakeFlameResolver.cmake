@@ -3,10 +3,12 @@ cmake_minimum_required(VERSION 3.14)
 include(Macros)
 
 include(Options)
-include(Platform)
+include(Properties)
 include(Variables)
 include(Functions)
-include(Properties)
+include(Platform)
+
+include(Checks)
 
 # Public API:
 
