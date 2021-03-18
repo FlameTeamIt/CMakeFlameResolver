@@ -83,6 +83,9 @@ function(internal_resolve_object_libraries)
 		if(POSITION_INDEPENDENT)
 			set_property(TARGET ${REAL_TARGET} PROPERTY
 				POSITION_INDEPENDENT_CODE ${POSITION_INDEPENDENT})
+			if(FLAME_ALL_EXPORT_SYMBOLS)
+				flame_shared_set_export_symbols("${REAL_TARGET}")
+			endif()
 		endif()
 
 		get_target_property(HEADER_DEPENDENCIES ${target.property} FLAME_DEPENDENCY_HEADERS)
@@ -95,6 +98,10 @@ function(internal_resolve_object_libraries)
 			foreach(flag ${COMPILE_FLAGS})
 				target_compile_options(${REAL_TARGET} PUBLIC ${flag})
 			endforeach()
+		endif()
+
+		if(FLAME_PLATFORM_DEFINES)
+			flame_set_platform_defines("${REAL_TARGET}")
 		endif()
 
 		print_newline("done")
@@ -216,6 +223,10 @@ function(internal_resolve_shared_libraries)
 		if(OUTPUT_NAME)
 			set_target_properties(${REAL_TARGET} PROPERTIES
 				OUTPUT_NAME "${OUTPUT_NAME}")
+		endif()
+
+		if(FLAME_ALL_EXPORT_SYMBOLS)
+			flame_shared_set_export_symbols("${REAL_TARGET}")
 		endif()
 
 		if(FLAME_IMPLIB_LIBRARY_SUFFIX)
