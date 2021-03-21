@@ -8,13 +8,14 @@ function(internal_compile_library)
 	set(OPTIONS "DEBUG" "MAKE_STATIC" "MAKE_SHARED"
 		"NOT_MAKE_POSITION_DEPENDENT_OBJECTS"
 		"NOT_MAKE_POSITION_INDEPENDENT_OBJECTS"
-		"RTTI" "NO_RTTI" "EXCEPTIONS" "NO_EXCEPTIONS")
+		"RTTI" "NO_RTTI" "EXCEPTIONS" "NO_EXCEPTIONS"
+		"USE_RESOLVER_DEFINES")
 	set(VALUES "NAME" "OBJECT_ALIAS_NAME" "INDEPENDENT_OBJECT_ALIAS_NAME"
 		"STATIC_ALIAS_NAME" "SHARED_ALIAS_NAME" "STATIC_INSTALL_PATH"
 		"SHARED_INSTALL_PATH")
-	set(LISTS "INCLUDE_PATHS" "SOURCE_LIST" "COMPILE_FLAGS" "LINK_FLAGS"
-		"DEPENDENCY_HEADER_TARGETS" "DEPENDENCY_TARGETS_FOR_STATIC"
-		"DEPENDENCY_TARGETS_FOR_SHARED")
+	set(LISTS "DEFINES" "INCLUDE_PATHS" "SOURCE_LIST" "SOURCE_LIST_STATIC"
+		"SOURCE_LIST_SHARED" "COMPILE_FLAGS" "LINK_FLAGS" "DEPENDENCY_HEADER_TARGETS"
+		"DEPENDENCY_TARGETS_FOR_STATIC" "DEPENDENCY_TARGETS_FOR_SHARED")
 	cmake_parse_arguments("COMPILE" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
 
 	internal_compile_library_start_function()
@@ -84,6 +85,9 @@ macro(internal_compile_library_print_parse_result)
 		print_debug_function_oneline("COMPILE_EXCEPTIONS =                            ")
 		print_debug_value_newline("${COMPILE_EXCEPTIONS}")
 
+		print_debug_function_oneline("COMPILE_USE_RESOLVER_DEFINES                  = ")
+		print_debug_value_newline("${COMPILE_USE_RESOLVER_DEFINES}")
+
 		# values
 
 		print_debug_function_oneline("COMPILE_NAME                                  = ")
@@ -108,6 +112,9 @@ macro(internal_compile_library_print_parse_result)
 		print_debug_value_newline(${COMPILE_SHARED_INSTALL_PATH})
 
 		# lists
+
+		print_debug_function_oneline("COMPILE_DEFINES                               = ")
+		print_debug_value_newline("${COMPILE_DEFINES}")
 
 		print_debug_function_oneline("COMPILE_INCLUDE_PATHS                         = ")
 		print_debug_value_newline("${COMPILE_INCLUDE_PATHS}")
@@ -154,9 +161,11 @@ macro(internal_compile_library_process_parameters)
 	elseif((NOT COMPILE_RTTI) AND (NOT COMPILE_NO_RTTI))
 		if(FLAME_CXX_NO_RTTI)
 			set(MESSAGE_OPTION "NO_RTTI")
+			set(COMPILE_RTTI OFF)
 			list(APPEND COMPILE_COMPILE_FLAGS "${FLAME_CXX_FLAG_NO_RTTI}")
 		else()
 			set(MESSAGE_OPTION "RTTI")
+			set(COMPILE_RTTI ON)
 			list(APPEND COMPILE_COMPILE_FLAGS "${FLAME_CXX_FLAG_RTTI}")
 		endif()
 		message_status(
@@ -176,9 +185,11 @@ macro(internal_compile_library_process_parameters)
 	elseif((NOT COMPILE_EXCEPTIONS) AND (NOT COMPILE_NO_EXCEPTIONS))
 		if(FLAME_CXX_NO_EXCEPTIONS)
 			set(MESSAGE_OPTION "NO_EXCEPTIONS")
+			set(COMPILE_EXCEPTIONS OFF)
 			list(APPEND COMPILE_COMPILE_FLAGS "${FLAME_CXX_FLAG_NO_EXCEPTIONS}")
 		else()
 			set(MESSAGE_OPTION "EXCEPTIONS")
+			set(COMPILE_EXCEPTIONS ON)
 			list(APPEND COMPILE_COMPILE_FLAGS "${FLAME_CXX_FLAG_EXCEPTIONS}")
 		endif()
 		message_status(
@@ -189,6 +200,22 @@ macro(internal_compile_library_process_parameters)
 		list(APPEND COMPILE_COMPILE_FLAGS "${FLAME_CXX_FLAG_EXCEPTIONS}")
 	elseif(COMPILE_NO_EXCEPTIONS)
 		list(APPEND COMPILE_COMPILE_FLAGS "${FLAME_CXX_FLAG_NO_EXCEPTIONS}")
+	endif()
+
+	if(COMPILE_USE_RESOLVER_DEFINES)
+		flame_get_platform_defines(PLATFORM_DEFINES)
+		list(APPEND COMPILE_DEFINES ${PLATFORM_DEFINES})
+
+		if(CMAKE_CXX_COMPILER)
+			flame_get_rtti_defines(${COMPILE_RTTI} DEFINE_RTTI)
+			flame_get_exception_defines(${COMPILE_EXCEPTIONS} DEFINE_EXCEPTIONS)
+			list(APPEND COMPILE_DEFINES ${DEFINE_RTTI} ${DEFINE_EXCEPTIONS})
+
+			unset(DEFINE_RTTI)
+			unset(DEFINE_EXCEPTIONS)
+		endif()
+
+		unset(PLATFORM_DEFINES)
 	endif()
 
 	message_status("internal_compile_library.${COMPILE_NAME}: COMPILE_COMPILE_FLAGS = ${COMPILE_COMPILE_FLAGS}")
@@ -248,6 +275,7 @@ macro(internal_compile_independent_object_library)
 		REAL_TARGET             "${TARGET_NAME}"
 		ADDING_FILES            "${SOURCE_LIST}"
 		INCLUDE_PATHS           "${COMPILE_INCLUDE_PATHS}"
+		DEFINES                 "${COMPILE_DEFINES}"
 		DEPENDENCY_HEADERS      "${COMPILE_DEPENDENCY_HEADER_TARGETS}"
 		COMPILE_FLAGS           "${COMPILE_COMPILE_FLAGS}"
 		POSITION_INDEPENDENT
@@ -286,6 +314,7 @@ macro(internal_compile_dependent_object_library)
 		REAL_TARGET             "${TARGET_NAME}"
 		ADDING_FILES            "${SOURCE_LIST}"
 		INCLUDE_PATHS           "${COMPILE_INCLUDE_PATHS}"
+		DEFINES                 "${COMPILE_DEFINES}"
 		DEPENDENCY_HEADERS      "${COMPILE_DEPENDENCY_HEADER_TARGETS}"
 		COMPILE_FLAGS           "${COMPILE_COMPILE_FLAGS}"
 		OBJECT_ALIASES          "${COMPILE_OBJECT_ALIAS_NAME}"

@@ -25,7 +25,7 @@ endforeach()
 
 function(flame_shared_set_export_symbols TARGET_NAME)
 	if(CMAKE_RESOLVER_COMPILER_CURRENT_ID EQUAL CMAKE_RESOLVER_COMPILER_GCC_ID)
-			flame_shared_set_export_symbols_gcc(${TARGET_NAME})
+		flame_shared_set_export_symbols_gcc(${TARGET_NAME})
 	elseif(CMAKE_RESOLVER_COMPILER_CURRENT_ID EQUAL CMAKE_RESOLVER_COMPILER_CLANG_ID)
 		flame_shared_set_export_symbols_clang(${TARGET_NAME})
 	elseif(CMAKE_RESOLVER_COMPILER_CURRENT_ID EQUAL CMAKE_RESOLVER_COMPILER_MSVC_ID)
@@ -33,7 +33,7 @@ function(flame_shared_set_export_symbols TARGET_NAME)
 	endif()
 endfunction()
 
-function(flame_set_platform_defines TARGET_NAME)
+function(flame_get_platform_defines OUT_LIST)
 	set(FLAME_PLATFORM_FLAGS
 		${FLAME_DEFINE_COMPILER_CURRENT}
 		${FLAME_DEFINE_COMPILER_GCC}
@@ -41,8 +41,33 @@ function(flame_set_platform_defines TARGET_NAME)
 		${FLAME_DEFINE_COMPILER_MSVC}
 		${FLAME_DEFINE_EXPORT}
 	)
-	target_compile_definitions(${TARGET_NAME} PUBLIC ${FLAME_PLATFORM_FLAGS})
+	set(${OUT_LIST} ${FLAME_PLATFORM_FLAGS} PARENT_SCOPE)
+endfunction()
 
-	get_target_property(OPTIONS ${TARGET_NAME} COMPILE_OPTIONS)
-	#message(FATAL_ERROR "Options = ${OPTIONS}")
+function(flame_get_rtti_defines RTTI_ON OUT_LIST)
+	if(RTTI_ON)
+		set(DEFINE_RTTI
+			CMAKE_RESOLVER_RTTI_ENABLED=1
+			CMAKE_RESOLVER_RTTI_DISABLED=0)
+	else()
+		set(DEFINE_RTTI
+			CMAKE_RESOLVER_RTTI_ENABLED=0
+			CMAKE_RESOLVER_RTTI_DISABLED=1)
+	endif()
+
+	set(${OUT_LIST} ${DEFINE_RTTI} PARENT_SCOPE)
+endfunction()
+
+function(flame_get_exception_defines EXCEPTIONS_ON OUT_LIST)
+	if(EXCEPTIONS_ON)
+		set(DEFINE_EXCEPTIONS
+			CMAKE_RESOLVER_EXCEPTIONS_ENABLED=1
+			CMAKE_RESOLVER_EXCEPTIONS_DISABLED=0)
+	else()
+		set(DEFINE_EXCEPTIONS
+			CMAKE_RESOLVER_EXCEPTIONS_ENABLED=0
+			CMAKE_RESOLVER_EXCEPTIONS_DISABLED=1)
+	endif()
+
+	set(${OUT_LIST} ${DEFINE_EXCEPTIONS} PARENT_SCOPE)
 endfunction()

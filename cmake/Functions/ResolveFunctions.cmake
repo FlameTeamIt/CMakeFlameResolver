@@ -79,7 +79,8 @@ function(internal_resolve_object_libraries)
 			target_include_directories(${REAL_TARGET} PUBLIC ${INCLUDE_PATHS})
 		endif()
 
-		get_target_property(POSITION_INDEPENDENT ${target.property} FLAME_POSITION_INDEPENDENT)
+		get_target_property(POSITION_INDEPENDENT ${target.property}
+			FLAME_POSITION_INDEPENDENT)
 		if(POSITION_INDEPENDENT)
 			set_property(TARGET ${REAL_TARGET} PROPERTY
 				POSITION_INDEPENDENT_CODE ${POSITION_INDEPENDENT})
@@ -88,7 +89,8 @@ function(internal_resolve_object_libraries)
 			endif()
 		endif()
 
-		get_target_property(HEADER_DEPENDENCIES ${target.property} FLAME_DEPENDENCY_HEADERS)
+		get_target_property(HEADER_DEPENDENCIES ${target.property}
+			FLAME_DEPENDENCY_HEADERS)
 		if(HEADER_DEPENDENCIES)
 			target_link_libraries(${REAL_TARGET} PUBLIC ${dependency})
 		endif()
@@ -100,8 +102,9 @@ function(internal_resolve_object_libraries)
 			endforeach()
 		endif()
 
-		if(FLAME_PLATFORM_DEFINES)
-			flame_set_platform_defines("${REAL_TARGET}")
+		get_target_property(DEFINES ${target.property} FLAME_DEFINES)
+		if(DEFINES)
+			target_compile_definitions(${REAL_TARGET} PRIVATE ${DEFINES})
 		endif()
 
 		print_newline("done")

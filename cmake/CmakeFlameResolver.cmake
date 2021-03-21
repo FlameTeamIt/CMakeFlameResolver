@@ -44,7 +44,10 @@ endfunction(flame_header_library)
 #   SHARED_INSTALL_PATH           -
 # Lists:
 #   INCLUDE_PATHS                 -
+#   DEFINES                       -
 #   SOURCE_LIST                   -
+#   SOURCE_LIST_STATIC            -
+#   SOURCE_LIST_SHARED            -
 #   COMMPILE_FLAGS                -
 #   LINK_FLAGS                    -
 #   DEPENDENCY_HEADER_TARGETS     -

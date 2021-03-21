@@ -24,5 +24,5 @@ if(("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
 endif()
 
 function(flame_shared_set_export_symbols_gcc TARGET_NAME)
-	target_compile_options(${TARGET_NAME} PUBLIC ${FLAME_FLAG_ALL_EXPORT})
+	target_compile_options(${TARGET_NAME} PRIVATE ${FLAME_FLAG_ALL_EXPORT})
 endfunction()

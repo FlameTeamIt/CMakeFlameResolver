@@ -23,7 +23,7 @@ if(("${CMAKE_C_COMPILER_ID}" STREQUAL "MSVC")
 endif()
 
 function(flame_shared_set_export_symbols_msvc TARGET_NAME)
-	target_compile_options(${TARGET_NAME} PUBLIC ${FLAME_FLAG_BIG_OBJECT})
+	target_compile_options(${TARGET_NAME} PRIVATE ${FLAME_FLAG_BIG_OBJECT})
 	set_target_properties(${TARGET_NAME}
 		PROPERTIES
 			WINDOWS_EXPORT_ALL_SYMBOLS ON)

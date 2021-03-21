@@ -74,6 +74,7 @@ endfunction(internal_add_header_target_properties)
 # Lists:
 #   ADDING_FILES       -
 #   INCLUDE_PATHS      -
+#   DEFINES            -
 #   DEPENDENCY_HEADERS -
 #   COMPILE_FLAGS      -
 #   OBJECT_ALIASES     -
@@ -82,8 +83,8 @@ function(internal_add_object_target_properties)
 
 	set(OPTIONS "DEBUG" "POSITION_INDEPENDENT")
 	set(VALUES "PROPERTY_CONTAINER_NAME" "REAL_TARGET")
-	set(LISTS "ADDING_FILES" "INCLUDE_PATHS" "DEPENDENCY_HEADERS" "COMPILE_FLAGS"
-		"OBJECT_ALIASES")
+	set(LISTS "ADDING_FILES" "INCLUDE_PATHS" "DEFINES" "DEPENDENCY_HEADERS" "COMPILE_FLAGS"
+		"COMPILE_DIFINITIONS" "OBJECT_ALIASES")
 
 	cmake_parse_arguments("FLAME" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
 
@@ -103,6 +104,9 @@ function(internal_add_object_target_properties)
 
 		print_debug_function_oneline("FLAME_INCLUDE_PATHS           = ")
 		print_debug_value_newline(${FLAME_INCLUDE_PATHS})
+
+		print_debug_function_oneline("FLAME_DEFINES                 = ")
+		print_debug_value_newline(${FLAME_DEFINES})
 
 		print_debug_function_oneline("FLAME_DEPENDENCY_HEADERS      = ")
 		print_debug_value_newline(${FLAME_DEPENDENCY_HEADERS})
@@ -128,6 +132,7 @@ function(internal_add_object_target_properties)
 			FLAME_REAL_TARGET          "${FLAME_REAL_TARGET}"
 			FLAME_ADDING_FILES         "${FLAME_ADDING_FILES}"
 			FLAME_INCLUDE_PATHS        "${FLAME_INCLUDE_PATHS}"
+			FLAME_DEFINES              "${FLAME_DEFINES}"
 			FLAME_DEPENDENCY_HEADERS   "${FLAME_DEPENDENCY_HEADERS}"
 			FLAME_COMPILE_FLAGS        "${FLAME_COMPILE_FLAGS}"
 			FLAME_POSITION_INDEPENDENT "${FLAME_POSITION_INDEPENDENT}"
@@ -414,7 +419,7 @@ function(internal_target_add_property NAME TARGET_TYPE PROPERTY_NAME PROPERTY_VA
 			OR ("${TARGET_TYPE}" STREQUAL "SHARED")
 			OR ("${TARGET_TYPE}" STREQUAL "BINARY")
 	))
-		message_fatal("-- Invalid 'TARGET_TYPE'")
+		message_fatal("Invalid 'TARGET_TYPE' (TARGET_TYPE != {HEADER, OBJECT, STATIC, SHARED, BINARY})")
 	endif()
 endfunction(internal_target_add_property)
 
