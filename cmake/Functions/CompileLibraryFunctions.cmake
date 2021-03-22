@@ -9,7 +9,7 @@ function(internal_compile_library)
 		"NOT_MAKE_POSITION_DEPENDENT_OBJECTS"
 		"NOT_MAKE_POSITION_INDEPENDENT_OBJECTS"
 		"RTTI" "NO_RTTI" "EXCEPTIONS" "NO_EXCEPTIONS"
-		"USE_RESOLVER_DEFINES")
+		"EXPORT_ALL" "USE_RESOLVER_DEFINES")
 	set(VALUES "NAME" "OBJECT_ALIAS_NAME" "INDEPENDENT_OBJECT_ALIAS_NAME"
 		"STATIC_ALIAS_NAME" "SHARED_ALIAS_NAME" "STATIC_INSTALL_PATH"
 		"SHARED_INSTALL_PATH")
@@ -83,6 +83,9 @@ macro(internal_compile_library_print_parse_result)
 		print_debug_value_newline("${COMPILE_NO_EXCEPTIONS}")
 
 		print_debug_function_oneline("COMPILE_EXCEPTIONS =                            ")
+		print_debug_value_newline("${COMPILE_EXCEPTIONS}")
+
+		print_debug_function_oneline("COMPILE_EXPORT_ALL                            = ")
 		print_debug_value_newline("${COMPILE_EXCEPTIONS}")
 
 		print_debug_function_oneline("COMPILE_USE_RESOLVER_DEFINES                  = ")
@@ -400,6 +403,10 @@ macro(internal_compile_shared_library)
 		"${FLAME_NAME_SEPARATOR}"
 		"${FLAME_OBJECT_INDEPENDENT_MODULE_SUFFIX}")
 
+	if(COMPILE_EXPORT_ALL)
+		set(COMPILE_EXPORT_ALL EXPORT_ALL)
+	endif()
+
 	#set(DEBUG DEBUG)
 	internal_add_shared_target_properties(
 		PROPERTY_CONTAINER_NAME "${TARGET_CUSTOM_PROPERTIES}"
@@ -412,6 +419,8 @@ macro(internal_compile_shared_library)
 		#LINK_FLAGS              "${}"
 		OUTPUT_NAME             "${COMPILE_NAME}"
 		LIBRARY_ALIASES         "${COMPILE_SHARED_ALIAS_NAME}"
+		${COMPILE_EXPORT_ALL}
+
 		${COMPILE_DEBUG}
 	)
 

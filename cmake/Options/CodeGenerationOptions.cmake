@@ -18,7 +18,7 @@ option(FLAME_MAKE_STANDALONE
 	OFF
 )
 
-option(FLAME_ALL_EXPORT_SYMBOLS
+option(FLAME_EXPORT_ALL_SYMBOLS
 	"Export all symbols from shared libraries"
 	ON
 )

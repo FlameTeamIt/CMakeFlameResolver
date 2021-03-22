@@ -226,7 +226,8 @@ function(internal_add_static_target_properties)
 endfunction(internal_add_static_target_properties)
 
 # Options:
-#   DEBUG -
+#   DEBUG      -
+#   EXPORT_ALL -
 # Values:
 #   PROPERTY_CONTAINER_NAME -
 #   REAL_TARGET             -
@@ -243,7 +244,7 @@ endfunction(internal_add_static_target_properties)
 function(internal_add_shared_target_properties)
 	check_internal_use()
 
-	set(OPTIONS "DEBUG")
+	set(OPTIONS "DEBUG" "EXPORT_ALL")
 	set(VALUES "PROPERTY_CONTAINER_NAME" "REAL_TARGET" "OUTPUT_NAME" "INSTALL_PATH")
 	set(LISTS "ADDING_SOURCES" "ADDING_OBJECTS" "DEPENDENCY_HEADERS"
 		"DEPENDENCY_LIBRARIES" "COMPILE_FLAGS" "LINK_FLAGS" "LIBRARY_ALIASES")
@@ -276,6 +277,9 @@ function(internal_add_shared_target_properties)
 		print_debug_function_oneline("FLAME_COMPILE_FLAGS           = ")
 		print_debug_value_newline(${FLAME_COMPILE_FLAGS})
 
+		print_debug_function_oneline("FLAME_EXPORT_ALL              = ")
+		print_debug_value_newline(${FLAME_EXPORT_ALL})
+
 		print_debug_function_oneline("FLAME_LINK_FLAGS              = ")
 		print_debug_value_newline(${FLAME_LINK_FLAGS})
 
@@ -295,6 +299,11 @@ function(internal_add_shared_target_properties)
 	set_property(GLOBAL APPEND PROPERTY FLAME_SHARED_TARGETS
 		${FLAME_PROPERTY_CONTAINER_NAME}
 	)
+	if(FLAME_EXPORT_ALL)
+		set(FLAME_EXPORT_ALL ON)
+	else()
+		set(FLAME_EXPORT_ALL OFF)
+	endif()
 	set_target_properties(${FLAME_PROPERTY_CONTAINER_NAME}
 		PROPERTIES
 			FLAME_REAL_TARGET          "${FLAME_REAL_TARGET}"
@@ -303,6 +312,7 @@ function(internal_add_shared_target_properties)
 			FLAME_DEPENDENCY_HEADERS   "${FLAME_DEPENDENCY_HEADERS}"
 			FLAME_DEPENDENCY_LIBRARIES "${FLAME_DEPENDENCY_LIBRARIES}"
 			FLAME_COMPILE_FLAGS        "${FLAME_COMPILE_FLAGS}"
+			FLAME_EXPORT_ALL           "${FLAME_EXPORT_ALL}"
 			FLAME_OUTPUT_NAME          "${FLAME_OUTPUT_NAME}"
 			FLAME_LIBRARY_ALIASES      "${FLAME_LIBRARY_ALIASES}"
 			FLAME_INSTALL_PATH         "${FLAME_INSTALL_PATH}"
@@ -322,6 +332,7 @@ endfunction(internal_add_shared_target_properties)
 # Lists:
 #   ADDING_FILES         -
 #   INCLUDE_PATHS        -
+#   DEFINES              -
 #   DEPENDENCY_HEADERS   -
 #   DEPENDENCY_LIBRARIES -
 #   COMPILE_FLAGS        -
@@ -348,8 +359,14 @@ function(internal_add_binary_target_properties)
 		print_debug_function_oneline("FLAME_REAL_TARGET             = ")
 		print_debug_value_newline(${FLAME_REAL_TARGET})
 
-		print_debug_function_oneline("FLAME_ADDING_FILES          = ")
+		print_debug_function_oneline("FLAME_ADDING_FILES            = ")
 		print_debug_value_newline(${FLAME_ADDING_FILES})
+
+		print_debug_function_oneline("FLAME_INCLUDE_PATHS           = ")
+		print_debug_value_newline(${FLAME_INCLUDE_PATHS})
+
+		print_debug_function_oneline("FLAME_DEFINES                 = ")
+		print_debug_value_newline(${FLAME_DEFINES})
 
 		print_debug_function_oneline("FLAME_DEPENDENCY_HEADERS      = ")
 		print_debug_value_newline(${FLAME_DEPENDENCY_HEADERS})
@@ -392,6 +409,7 @@ function(internal_add_binary_target_properties)
 			FLAME_REAL_TARGET          "${FLAME_REAL_TARGET}"
 			FLAME_ADDING_FILES         "${FLAME_ADDING_FILES}"
 			FLAME_INCLUDE_PATHS        "${FLAME_INCLUDE_PATHS}"
+			FLAME_DEFINES              "${FLAME_DEFINES}"
 			FLAME_DEPENDENCY_HEADERS   "${FLAME_DEPENDENCY_HEADERS}"
 			FLAME_DEPENDENCY_LIBRARIES "${FLAME_DEPENDENCY_LIBRARIES}"
 			FLAME_COMPILE_FLAGS        "${FLAME_COMPILE_FLAGS}"
