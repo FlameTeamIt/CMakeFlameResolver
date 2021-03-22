@@ -7,7 +7,7 @@ include(Compilers/Clang)
 include(Compilers/Msvc)
 
 if(NOT CMAKE_RESOLVER_COMPILER_CURRENT_ID)
-	message(FATAL_ERROR "Compiler is not support")
+	message(FATAL_ERROR "Compiler is not supported")
 endif()
 
 set(FLAME_DEFINE_COMPILER_CURRENT
