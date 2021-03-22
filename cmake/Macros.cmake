@@ -50,3 +50,12 @@ macro(check_internal_use)
 		message_fatal("${FLAME_SIMPLE_PREFIX} It's internal function. You can not use it")
 	endif()
 endmacro(check_internal_use)
+
+#
+#
+#
+macro(generate_random_id OUT_VAR)
+	string(RANDOM LENGTH 8 ALPHABET 0123456789ABCDEF TMP)
+	set(${OUT_VAR} 0x${TMP})
+	unset(TMP)
+endmacro()
