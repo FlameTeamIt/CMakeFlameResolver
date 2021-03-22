@@ -9,6 +9,7 @@
 # Lists:
 #   ADDING_FILES       - Sources and headers
 #   INCLUDE_PATHS      -
+#   DEFINES            -
 #   DEPENDENCY_HEADERS -
 #   LIBRARY_ALIASES    -
 function(internal_add_header_target_properties)
@@ -37,6 +38,9 @@ function(internal_add_header_target_properties)
 		print_debug_function_oneline("FLAME_INCLUDE_PATHS           = ")
 		print_debug_value_newline(${FLAME_INCLUDE_PATHS})
 
+		print_debug_function_oneline("FLAME_DEFINES                 = ")
+		print_debug_value_newline(${FLAME_DEFINES})
+
 		print_debug_function_oneline("FLAME_DEPENDENCY_HEADERS      = ")
 		print_debug_value_newline(${FLAME_DEPENDENCY_HEADERS})
 
@@ -57,6 +61,7 @@ function(internal_add_header_target_properties)
 		PROPERTIES
 			FLAME_REAL_TARGET        "${FLAME_REAL_TARGET}"
 			FLAME_ADDING_FILES       "${FLAME_ADDING_FILES}"
+			FLAME_DEFINES            "${FLAME_DEFINES}"
 			FLAME_DEPENDENCY_HEADERS "${FLAME_DEPENDENCY_HEADERS}"
 			FLAME_LIBRARY_ALIASES    "${FLAME_LIBRARY_ALIASES}"
 			FLAME_INSTALL_PATH       "${FLAME_INSTALL_PATH}"
@@ -221,7 +226,6 @@ function(internal_add_static_target_properties)
 			FLAME_INSTALL_PATH         "${FLAME_INSTALL_PATH}"
 	)
 
-
 	end_debug_function()
 endfunction(internal_add_static_target_properties)
 
@@ -343,7 +347,7 @@ function(internal_add_binary_target_properties)
 
 	set(OPTIONS "DEBUG" "TEST")
 	set(VALUES "PROPERTY_CONTAINER_NAME" "REAL_TARGET" "OUTPUT_NAME" "INSTALL_PATH")
-	set(LISTS "ADDING_FILES" "INCLUDE_PATHS" "DEPENDENCY_HEADERS"
+	set(LISTS "ADDING_FILES" "DEFINES" "INCLUDE_PATHS" "DEPENDENCY_HEADERS"
 		"DEPENDENCY_LIBRARIES" "COMPILE_FLAGS" "LINK_FLAGS" "TEST_ARGUMENTS")
 
 	cmake_parse_arguments("FLAME" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")

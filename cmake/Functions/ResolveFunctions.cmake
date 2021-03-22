@@ -76,7 +76,7 @@ function(internal_resolve_object_libraries)
 
 		get_target_property(INCLUDE_PATHS ${target.property} FLAME_INCLUDE_PATHS)
 		if(INCLUDE_PATHS)
-			target_include_directories(${REAL_TARGET} PUBLIC ${INCLUDE_PATHS})
+			target_include_directories(${REAL_TARGET} PRIVATE ${INCLUDE_PATHS})
 		endif()
 
 		get_target_property(DEFINES ${target.property} FLAME_DEFINES)
@@ -100,13 +100,13 @@ function(internal_resolve_object_libraries)
 		get_target_property(HEADER_DEPENDENCIES ${target.property}
 			FLAME_DEPENDENCY_HEADERS)
 		if(HEADER_DEPENDENCIES)
-			target_link_libraries(${REAL_TARGET} PUBLIC ${dependency})
+			target_link_libraries(${REAL_TARGET} PRIVATE ${dependency})
 		endif()
 
 		get_target_property(COMPILE_FLAGS ${target.property} FLAME_COMPILE_FLAGS)
 		if(COMPILE_FLAGS)
 			foreach(flag ${COMPILE_FLAGS})
-				target_compile_options(${REAL_TARGET} PUBLIC ${flag})
+				target_compile_options(${REAL_TARGET} PRIVATE ${flag})
 			endforeach()
 		endif()
 
@@ -149,7 +149,7 @@ function(internal_resolve_static_libraries)
 
 		get_target_property(HEADER_TARGETS ${target.property} FLAME_DEPENDENCY_HEADERS)
 		if(HEADER_TARGETS)
-			target_link_libraries(${REAL_TARGET} PUBLIC ${HEADER_TARGETS})
+			target_link_libraries(${REAL_TARGET} PRIVATE ${HEADER_TARGETS})
 		endif()
 
 		# Not supported now
@@ -216,7 +216,7 @@ function(internal_resolve_shared_libraries)
 
 		get_target_property(HEADER_TARGETS ${target.property} FLAME_DEPENDENCY_HEADERS)
 		if(HEADER_TARGETS)
-			target_link_libraries(${REAL_TARGET} PUBLIC ${HEADER_TARGETS})
+			target_link_libraries(${REAL_TARGET} PRIVATE ${HEADER_TARGETS})
 		endif()
 
 		# Not supported now
@@ -304,13 +304,13 @@ function(internal_resolve_binaries)
 
 		get_target_property(DEPENDENCY_HEADERS ${target.property} FLAME_DEPENDENCY_HEADERS)
 		if(DEPENDENCY_HEADERS)
-			target_link_libraries(${REAL_TARGET} PUBLIC ${DEPENDENCY_HEADERS})
+			target_link_libraries(${REAL_TARGET} PRIVATE ${DEPENDENCY_HEADERS})
 		endif()
 
 		get_target_property(COMPILE_FLAGS ${target.property} FLAME_COMPILE_FLAGS)
 		if(COMPILE_FLAGS)
 			foreach(flag ${COMPILE_FLAGS})
-				target_compile_options(${REAL_TARGET} PUBLIC ${flag})
+				target_compile_options(${REAL_TARGET} PRIVATE ${flag})
 			endforeach()
 		endif()
 
