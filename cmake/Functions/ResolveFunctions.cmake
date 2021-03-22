@@ -76,24 +76,37 @@ function(internal_resolve_object_libraries)
 
 		get_target_property(INCLUDE_PATHS ${target.property} FLAME_INCLUDE_PATHS)
 		if(INCLUDE_PATHS)
-			target_include_directories(${REAL_TARGET} PUBLIC ${INCLUDE_PATHS})
+			target_include_directories(${REAL_TARGET} PRIVATE ${INCLUDE_PATHS})
 		endif()
 
-		get_target_property(POSITION_INDEPENDENT ${target.property} FLAME_POSITION_INDEPENDENT)
+		get_target_property(DEFINES ${target.property} FLAME_DEFINES)
+		if(DEFINES)
+			target_compile_definitions(${REAL_TARGET} PRIVATE ${DEFINES})
+		endif()
+
+		get_target_property(POSITION_INDEPENDENT ${target.property}
+			FLAME_POSITION_INDEPENDENT)
 		if(POSITION_INDEPENDENT)
 			set_property(TARGET ${REAL_TARGET} PROPERTY
 				POSITION_INDEPENDENT_CODE ${POSITION_INDEPENDENT})
+
+			get_target_property(EXPORT_ALL_SYMBOLS ${target.property}
+				FLAME_EXPORT_ALL_SYMBOLS)
+			if(EXPORT_ALL_SYMBOLS)
+				flame_shared_set_export_symbols("${REAL_TARGET}")
+			endif()
 		endif()
 
-		get_target_property(HEADER_DEPENDENCIES ${target.property} FLAME_DEPENDENCY_HEADERS)
+		get_target_property(HEADER_DEPENDENCIES ${target.property}
+			FLAME_DEPENDENCY_HEADERS)
 		if(HEADER_DEPENDENCIES)
-			target_link_libraries(${REAL_TARGET} PUBLIC ${dependency})
+			target_link_libraries(${REAL_TARGET} PRIVATE ${dependency})
 		endif()
 
 		get_target_property(COMPILE_FLAGS ${target.property} FLAME_COMPILE_FLAGS)
 		if(COMPILE_FLAGS)
 			foreach(flag ${COMPILE_FLAGS})
-				target_compile_options(${REAL_TARGET} PUBLIC ${flag})
+				target_compile_options(${REAL_TARGET} PRIVATE ${flag})
 			endforeach()
 		endif()
 
@@ -136,7 +149,7 @@ function(internal_resolve_static_libraries)
 
 		get_target_property(HEADER_TARGETS ${target.property} FLAME_DEPENDENCY_HEADERS)
 		if(HEADER_TARGETS)
-			target_link_libraries(${REAL_TARGET} PUBLIC ${HEADER_TARGETS})
+			target_link_libraries(${REAL_TARGET} PRIVATE ${HEADER_TARGETS})
 		endif()
 
 		# Not supported now
@@ -203,7 +216,7 @@ function(internal_resolve_shared_libraries)
 
 		get_target_property(HEADER_TARGETS ${target.property} FLAME_DEPENDENCY_HEADERS)
 		if(HEADER_TARGETS)
-			target_link_libraries(${REAL_TARGET} PUBLIC ${HEADER_TARGETS})
+			target_link_libraries(${REAL_TARGET} PRIVATE ${HEADER_TARGETS})
 		endif()
 
 		# Not supported now
@@ -216,6 +229,17 @@ function(internal_resolve_shared_libraries)
 		if(OUTPUT_NAME)
 			set_target_properties(${REAL_TARGET} PROPERTIES
 				OUTPUT_NAME "${OUTPUT_NAME}")
+		endif()
+
+		get_target_property(EXPORT_ALL_SYMBOLS ${target.property}
+			FLAME_EXPORT_ALL)
+		if(EXPORT_ALL_SYMBOLS)
+			flame_shared_set_export_symbols("${REAL_TARGET}")
+		endif()
+
+		if(FLAME_IMPLIB_LIBRARY_SUFFIX)
+			set_target_properties(${REAL_TARGET} PROPERTIES
+				IMPORT_SUFFIX "${FLAME_IMPLIB_LIBRARY_SUFFIX}")
 		endif()
 
 		print_newline("done")
@@ -268,6 +292,11 @@ function(internal_resolve_binaries)
 			target_include_directories(${REAL_TARGET} PUBLIC ${INCLUDE_PATHS})
 		endif()
 
+		get_target_property(DEFINES ${target.property} FLAME_DEFINES)
+		if(DEFINES)
+			target_compile_definitions(${REAL_TARGET} PRIVATE ${DEFINES})
+		endif()
+
 		get_target_property(DEPENDENCY_LIBRARIES ${target.property} FLAME_DEPENDENCY_LIBRARIES)
 		if(DEPENDENCY_LIBRARIES)
 			target_link_libraries(${REAL_TARGET} PUBLIC ${DEPENDENCY_LIBRARIES})
@@ -275,11 +304,15 @@ function(internal_resolve_binaries)
 
 		get_target_property(DEPENDENCY_HEADERS ${target.property} FLAME_DEPENDENCY_HEADERS)
 		if(DEPENDENCY_HEADERS)
-			target_link_libraries(${REAL_TARGET} PUBLIC ${DEPENDENCY_HEADERS})
+			target_link_libraries(${REAL_TARGET} PRIVATE ${DEPENDENCY_HEADERS})
 		endif()
 
-		# Not supported now
-		#get_target_property(COMPILE_FLAGS ${target.property} FLAME_COMPILE_FLAGS)
+		get_target_property(COMPILE_FLAGS ${target.property} FLAME_COMPILE_FLAGS)
+		if(COMPILE_FLAGS)
+			foreach(flag ${COMPILE_FLAGS})
+				target_compile_options(${REAL_TARGET} PRIVATE ${flag})
+			endforeach()
+		endif()
 
 		# Not supported now
 		#get_target_property(LINK_FLAGS ${target.property} FLAME_LINK_FLAGS)
@@ -298,6 +331,15 @@ function(internal_resolve_binaries)
 			foreach(alias ${BINARY_ALIASES})
 				add_executable(${alias} ALIAS ${REAL_TARGET})
 			endforeach()
+		endif()
+
+		get_target_property(IS_TEST ${target.property} FLAME_TEST)
+		if(IS_TEST)
+			get_target_property(TEST_ARGUMENTS ${target.property} FLAME_TEST_ARGUMENTS)
+			add_test(
+				NAME "${REAL_TARGET}"
+				COMMAND ${OUTPUT_NAME} ${TEST_ARGUMENTS}
+			)
 		endif()
 
 		print_newline("done")
