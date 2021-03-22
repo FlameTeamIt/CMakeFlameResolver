@@ -4,9 +4,10 @@
 function(internal_compile_binary)
 	check_internal_use()
 
-	set(OPTIONS "DEBUG" "TEST" "RTTI" "NO_RTTI" "EXCEPTIONS" "NO_EXCEPTIONS")
+	set(OPTIONS "DEBUG" "TEST" "RTTI" "NO_RTTI" "EXCEPTIONS" "NO_EXCEPTIONS"
+		"USE_RESOLVER_DEFINES")
 	set(VALUES "NAME" "ALIAS_NAME" "INSTALL_PATH")
-	set(LISTS "INCLUDE_PATHS" "SOURCE_LIST" "COMPILE_FLAGS" "LINK_FLAGS"
+	set(LISTS "DEFINES" "INCLUDE_PATHS" "SOURCE_LIST" "COMPILE_FLAGS" "LINK_FLAGS"
 		"DEPENDENCY_TARGET_LIST" "TEST_ARGUMENTS")
 	cmake_parse_arguments("BINARY" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
 
@@ -60,6 +61,12 @@ macro(internal_compile_binary_print_parse_result)
 		print_debug_function_oneline("BINARY_INSTALL_PATH           = ")
 		print_debug_value_newline(${BINARY_INSTALL_PATH})
 
+		print_debug_function_oneline("BINARY_USE_RESOLVER_DEFINES   = ")
+		print_debug_value_newline(${BINARY_USE_RESOLVER_DEFINES})
+
+		print_debug_function_oneline("BINARY_DEFINES                = ")
+		print_debug_value_newline(${BINARY_DEFINES})
+
 		print_debug_function_oneline("BINARY_INCLUDE_PATHS          = ")
 		print_debug_value_newline(${BINARY_INCLUDE_PATHS})
 
@@ -111,9 +118,11 @@ macro(internal_compile_binary_process_parameters)
 	if((NOT BINARY_RTTI) AND (NOT BINARY_NO_RTTI))
 		if(FLAME_CXX_NO_RTTI)
 			set(MESSAGE_OPTION "NO_RTTI")
+			set(BINARY_RTTI OFF)
 			list(APPEND BINARY_COMPILE_FLAGS "${FLAME_CXX_FLAG_NO_RTTI}")
 		else()
 			set(MESSAGE_OPTION "RTTI")
+			set(BINARY_RTTI ON)
 			list(APPEND BINARY_COMPILE_FLAGS "${FLAME_CXX_FLAG_RTTI}")
 		endif()
 		set(MESSAGE_STRING "not set 'RTTI' or 'NO_RTTI'. Used '${MESSAGE_OPTION}'")
@@ -136,9 +145,11 @@ macro(internal_compile_binary_process_parameters)
 	if((NOT BINARY_EXCEPTIONS) AND (NOT BINARY_NO_EXCEPTIONS))
 		if(FLAME_CXX_NO_EXCEPTIONS)
 			set(MESSAGE_OPTION "NO_EXCEPTIONS")
+			set(BINARY_EXCEPTIONS OFF)
 			list(APPEND BINARY_COMPILE_FLAGS "${FLAME_CXX_FLAG_NO_EXCEPTIONS}")
 		else()
 			set(MESSAGE_OPTION "EXCEPTIONS")
+			set(BINARY_EXCEPTIONS ON)
 			list(APPEND BINARY_COMPILE_FLAGS "${FLAME_CXX_FLAG_EXCEPTIONS}")
 		endif()
 
@@ -151,6 +162,22 @@ macro(internal_compile_binary_process_parameters)
 		list(APPEND BINARY_COMPILE_FLAGS "${FLAME_CXX_FLAG_EXCEPTIONS}")
 	elseif(BINARY_NO_EXCEPTIONS)
 		list(APPEND BINARY_COMPILE_FLAGS "${FLAME_CXX_FLAG_NO_EXCEPTIONS}")
+	endif()
+
+	if(BINARY_USE_RESOLVER_DEFINES)
+		flame_get_platform_defines(PLATFORM_DEFINES)
+		list(APPEND BINARY_DEFINES ${PLATFORM_DEFINES})
+
+		if(CMAKE_CXX_COMPILER)
+			flame_get_rtti_defines(${BINARY_RTTI} DEFINE_RTTI)
+			flame_get_exception_defines(${BINARY_EXCEPTIONS} DEFINE_EXCEPTIONS)
+			list(APPEND BINARY_DEFINES ${DEFINE_RTTI} ${DEFINE_EXCEPTIONS})
+
+			unset(DEFINE_RTTI)
+			unset(DEFINE_EXCEPTIONS)
+		endif()
+
+		unset(PLATFORM_DEFINES)
 	endif()
 endmacro(internal_compile_binary_process_parameters)
 
@@ -180,6 +207,7 @@ macro(internal_compile_binary_add)
 		DEPENDENCY_LIBRARIES    "${BINARY_DEPENDENCY_TARGET_LIST}"
 		#LINK_FLAGS              "${BINARY_LINK_FLAGS}"
 		INCLUDE_PATHS           "${BINARY_INCLUDE_PATHS}"
+		DEFINES                 "${BINARY_DEFINES}"
 
 		${BINARY_TEST}
 		TEST_ARGUMENTS          "${BINARY_TEST_ARGUMENTS}"

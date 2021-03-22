@@ -6,9 +6,8 @@ include(Options)
 include(Properties)
 include(Variables)
 include(Functions)
+include(Compilers)
 include(Platform)
-
-include(Checks)
 
 # Public API:
 
@@ -35,6 +34,8 @@ endfunction(flame_header_library)
 #   MAKE_SHARED                           -
 #   NOT_MAKE_POSITION_DEPENDENT_OBJECTS   -
 #   NOT_MAKE_POSITION_INDEPENDENT_OBJECTS -
+#   EXPORT_ALL                            -
+#   USE_RESOLVER_DEFINES                  -
 # Values:
 #   NAME                          -
 #   OBJECT_ALIAS_NAME             -
@@ -45,7 +46,10 @@ endfunction(flame_header_library)
 #   SHARED_INSTALL_PATH           -
 # Lists:
 #   INCLUDE_PATHS                 -
+#   DEFINES                       -
 #   SOURCE_LIST                   -
+#   SOURCE_LIST_STATIC            -
+#   SOURCE_LIST_SHARED            -
 #   COMMPILE_FLAGS                -
 #   LINK_FLAGS                    -
 #   DEPENDENCY_HEADER_TARGETS     -
@@ -58,8 +62,9 @@ function(flame_compile_library)
 endfunction(flame_compile_library)
 
 # Options:
-#   DEBUG -
-#   HELP  -
+#   DEBUG                -
+#   HELP                 -
+#   USE_RESOLVER_DEFINES -
 # Values:
 #   NAME         -
 #   ALIAS_NAME   -
@@ -67,6 +72,7 @@ endfunction(flame_compile_library)
 # Lists:
 #   INCLUDE_PATHS                 -
 #   SOURCE_LIST                   -
+#   DEFINES                       -
 #   COMPILE_FLAGS                 -
 #   LINK_FLAGS                    -
 #   DEPENDENCY_HEADER_TARGETS     -
