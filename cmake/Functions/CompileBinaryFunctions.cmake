@@ -86,6 +86,8 @@ macro(internal_compile_binary_print_parse_result)
 	endif()
 	if (BINARY_DEBUG)
 		set(BINARY_DEBUG DEBUG)
+	else()
+		set(BINARY_DEBUG NO_DEBUG)
 	endif()
 endmacro(internal_compile_binary_print_parse_result)
 
@@ -195,6 +197,11 @@ macro(internal_compile_binary_add)
 
 	if (BINARY_TEST)
 		set(BINARY_TEST TEST)
+		if (BINARY_TEST_ARGUMENTS)
+			set(BINARY_TEST_ARGUMENTS ${BINARY_TEST} TEST_ARGUMENTS ${BINARY_TEST_ARGUMENTS})
+		else()
+			set(BINARY_TEST_ARGUMENTS ${BINARY_TEST})
+		endif()
 	endif()
 	internal_add_binary_target_properties(
 		PROPERTY_CONTAINER_NAME "${TARGET_CUSTOM_PROPERTIES}"
@@ -209,9 +216,7 @@ macro(internal_compile_binary_add)
 		INCLUDE_PATHS           "${BINARY_INCLUDE_PATHS}"
 		DEFINES                 "${BINARY_DEFINES}"
 
-		${BINARY_TEST}
-		TEST_ARGUMENTS          "${BINARY_TEST_ARGUMENTS}"
-
+		${BINARY_TEST_ARGUMENTS}
 		${BINARY_DEBUG}
 	)
 

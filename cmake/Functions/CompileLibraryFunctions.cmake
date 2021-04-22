@@ -144,6 +144,8 @@ macro(internal_compile_library_print_parse_result)
 	endif()
 	if (COMPILE_DEBUG)
 		set(COMPILE_DEBUG DEBUG)
+	else()
+		set(COMPILE_DEBUG NO_DEBUG)
 	endif()
 endmacro(internal_compile_library_print_parse_result)
 
@@ -405,6 +407,8 @@ macro(internal_compile_shared_library)
 
 	if(COMPILE_EXPORT_ALL)
 		set(COMPILE_EXPORT_ALL EXPORT_ALL)
+	else()
+		set(COMPILE_EXPORT_ALL NO_EXPORT_ALL)
 	endif()
 
 	#set(DEBUG DEBUG)

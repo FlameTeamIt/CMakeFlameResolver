@@ -55,6 +55,8 @@ macro(internal_header_library_print_parse_result)
 	endif()
 	if (HEADER_DEBUG)
 		set(HEADER_DEBUG DEBUG)
+	else()
+		set(HEADER_DEBUG NO_DEBUG)
 	endif()
 endmacro(internal_header_library_print_parse_result)
 
