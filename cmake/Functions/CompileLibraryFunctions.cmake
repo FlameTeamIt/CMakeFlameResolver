@@ -73,16 +73,16 @@ macro(internal_compile_library_print_parse_result)
 		print_debug_function_oneline("COMPILE_NOT_MAKE_POSITION_INDEPENDENT_OBJECTS = ")
 		print_debug_value_newline("${COMPILE_NOT_MAKE_POSITION_DEPENDENT_OBJECTS}")
 
-		print_debug_function_oneline("COMPILE_NO_RTTI =                               ")
+		print_debug_function_oneline("COMPILE_NO_RTTI                               = ")
 		print_debug_value_newline("${COMPILE_NO_RTTI}")
 
-		print_debug_function_oneline("COMPILE_RTTI =                                  ")
+		print_debug_function_oneline("COMPILE_RTTI                                  = ")
 		print_debug_value_newline("${COMPILE_RTTI}")
 
-		print_debug_function_oneline("COMPILE_NO_EXCEPTIONS =                         ")
+		print_debug_function_oneline("COMPILE_NO_EXCEPTIONS                         = ")
 		print_debug_value_newline("${COMPILE_NO_EXCEPTIONS}")
 
-		print_debug_function_oneline("COMPILE_EXCEPTIONS =                            ")
+		print_debug_function_oneline("COMPILE_EXCEPTIONS                            = ")
 		print_debug_value_newline("${COMPILE_EXCEPTIONS}")
 
 		print_debug_function_oneline("COMPILE_EXPORT_ALL                            = ")
