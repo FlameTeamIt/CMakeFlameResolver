@@ -15,7 +15,7 @@
 function(internal_add_header_target_properties)
 	check_internal_use()
 
-	set(OPTIONS "DEBUG")
+	set(OPTIONS "DEBUG" "NO_DEBUG")
 	set(VALUES "PROPERTY_CONTAINER_NAME" "REAL_TARGET" "INSTALL_PATH")
 	set(LISTS "ADDING_FILES" "INCLUDE_PATHS" "DEPENDENCY_HEADERS" "LIBRARY_ALIASES")
 
@@ -86,7 +86,7 @@ endfunction(internal_add_header_target_properties)
 function(internal_add_object_target_properties)
 	check_internal_use()
 
-	set(OPTIONS "DEBUG" "POSITION_INDEPENDENT")
+	set(OPTIONS "DEBUG" "NO_DEBUG" "POSITION_INDEPENDENT")
 	set(VALUES "PROPERTY_CONTAINER_NAME" "REAL_TARGET")
 	set(LISTS "ADDING_FILES" "INCLUDE_PATHS" "DEFINES" "DEPENDENCY_HEADERS" "COMPILE_FLAGS"
 		"COMPILE_DIFINITIONS" "OBJECT_ALIASES")
@@ -164,7 +164,7 @@ endfunction(internal_add_object_target_properties)
 function(internal_add_static_target_properties)
 	check_internal_use()
 
-	set(OPTIONS "DEBUG")
+	set(OPTIONS "DEBUG" "NO_DEBUG")
 	set(VALUES "PROPERTY_CONTAINER_NAME" "REAL_TARGET" "OUTPUT_NAME" "INSTALL_PATH")
 	set(LISTS "ADDING_SOURCES" "ADDING_OBJECTS" "DEPENDENCY_HEADERS"
 		"DEPENDENCY_LIBRARIES" "COMPILE_FLAGS" "LIBRARY_ALIASES")
@@ -248,7 +248,7 @@ endfunction(internal_add_static_target_properties)
 function(internal_add_shared_target_properties)
 	check_internal_use()
 
-	set(OPTIONS "DEBUG" "EXPORT_ALL")
+	set(OPTIONS "DEBUG" "NO_DEBUG" "EXPORT_ALL" "NO_EXPORT_ALL")
 	set(VALUES "PROPERTY_CONTAINER_NAME" "REAL_TARGET" "OUTPUT_NAME" "INSTALL_PATH")
 	set(LISTS "ADDING_SOURCES" "ADDING_OBJECTS" "DEPENDENCY_HEADERS"
 		"DEPENDENCY_LIBRARIES" "COMPILE_FLAGS" "LINK_FLAGS" "LIBRARY_ALIASES")
@@ -345,7 +345,7 @@ endfunction(internal_add_shared_target_properties)
 function(internal_add_binary_target_properties)
 	enable_internal_use()
 
-	set(OPTIONS "DEBUG" "TEST")
+	set(OPTIONS "DEBUG" "NO_DEBUG" "TEST")
 	set(VALUES "PROPERTY_CONTAINER_NAME" "REAL_TARGET" "OUTPUT_NAME" "INSTALL_PATH")
 	set(LISTS "ADDING_FILES" "DEFINES" "INCLUDE_PATHS" "DEPENDENCY_HEADERS"
 		"DEPENDENCY_LIBRARIES" "COMPILE_FLAGS" "LINK_FLAGS" "TEST_ARGUMENTS")
