@@ -223,8 +223,6 @@ macro(internal_compile_library_process_parameters)
 		unset(PLATFORM_DEFINES)
 	endif()
 
-	message_status("internal_compile_library.${COMPILE_NAME}: COMPILE_COMPILE_FLAGS = ${COMPILE_COMPILE_FLAGS}")
-
 	internal_print_warning_not_support("${COMPILE_NOT_MAKE_POSITION_DEPENDENT_OBJECTS}"
 		NOT_MAKE_POSITION_DEPENDENT_OBJECTS)
 	internal_print_warning_not_support("${COMPILE_NOT_MAKE_POSITION_INDEPENDENT_OBJECTS}"
