@@ -7,8 +7,8 @@ endif()
 
 if(UNIX)
 	include(Platform/Unix)
-endif(UNIX)
-
-if(WIN32)
+elseif(WIN32)
 	include(Platform/Windows)
-endif(WIN32)
+else()
+	message(FATAL_ERROR "Not supported platform")
+endif()
