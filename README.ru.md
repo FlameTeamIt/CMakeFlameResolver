@@ -31,7 +31,7 @@ include(CmakeFlameResolver)
 
 ## API
 
-Далее для просты CMakeFlameResolver будет зваться просто "реслвером".
+Далее для просты CMakeFlameResolver будет зваться просто "ресолвером".
 
 ### Функции
 
