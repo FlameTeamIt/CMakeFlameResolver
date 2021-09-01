@@ -12,6 +12,34 @@ include(Platform)
 # Public API:
 
 # Options:
+#   Common options:
+#     CMAKE_DEBUG                    -
+#     CMAKE_DEBUG_SHOW_PARSE_RESULTS -
+#     PRINT_COMMON_STATISTIC         -
+#     PRINT_DETAILED_STATISTIC       -
+#     LOGGING                        -
+#     CLEAN_AFTER_RESOLVE            -
+#     THREADING                      -
+#     TESTING                        -
+#     LOCAL_INSTALL                  -
+#   Code generation options:
+#     ONLY_POSITION_INDEPENDENT_OBJECTS -
+#     MAKE_STATIC                       -
+#     MAKE_SHARED                       -
+#     MAKE_STANDALONE                   -
+#     EXPORT_ALL_SYMBOLS                -
+#   Flag options:
+#     CXX_NO_RTTI       -
+#     CXX_NO_EXCEPTIONS -
+#     PLATFORM_DEFINES  -
+# Values:
+#   PROJECT_ROOT_PATH -
+function(flame_settings)
+	enable_internal_use()
+	internal_settings(${ARGN})
+endfunction(flame_settings)
+
+# Options:
 #   DEBUG -
 #   HELP  -
 # Values:

@@ -47,3 +47,45 @@ function(flame_find_shared_lib NAME LOCATION)
 	internal_flame_find_lib(${NAME})
 	set(${LOCATION} ${LIBRARY_${CMAKE_FIND_LIBRARY_SUFFIXES}} PARENT_SCOPE)
 endfunction()
+
+#
+#
+#
+macro(internal_settings)
+	check_internal_use()
+	set(OPTIONS
+		# Common options
+		"CMAKE_DEBUG"
+		"CMAKE_DEBUG_SHOW_PARSE_RESULTS"
+		"PRINT_COMMON_STATISTIC"
+		"PRINT_DETAILED_STATISTIC"
+		"LOGGING"
+		"CLEAN_AFTER_RESOLVE"
+		"THREADING"
+		"TESTING"
+		"LOCAL_INSTALL"
+
+		# Code generation options
+		"ONLY_POSITION_INDEPENDENT_OBJECTS"
+		"MAKE_STATIC"
+		"MAKE_SHARED"
+		"MAKE_STANDALONE"
+		"EXPORT_ALL_SYMBOLS"
+
+		# Flag options
+		"CXX_NO_RTTI"
+		"CXX_NO_EXCEPTIONS"
+		"PLATFORM_DEFINES"
+	)
+	set(VALUES
+		"PROJECT_ROOT_PATH")
+	set(LISTS)
+
+	cmake_parse_arguments("FLAME" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
+	foreach(option ${OPTIONS})
+		set(FLAME_${option} ${FLAME_${option}} PARENT_SCOPE)
+	endforeach()
+	foreach(value ${VALUES})
+		set(FLAME_${value} ${FLAME_${value}} PARENT_SCOPE)
+	endforeach()
+endmacro()
