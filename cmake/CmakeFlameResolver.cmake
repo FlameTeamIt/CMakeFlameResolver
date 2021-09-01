@@ -74,6 +74,8 @@ endfunction(flame_header_library)
 #   SHARED_ALIAS_NAME             -
 #   STATIC_INSTALL_PATH           -
 #   SHARED_INSTALL_PATH           -
+#   STATIC_INSTALL_DIR            - # имя папки, которая будет после префикса
+#   SHARED_INSTALL_DIR            - # имя папки, которая будет после префикса
 # Lists:
 #   INCLUDE_PATHS                 -
 #   DEFINES                       -

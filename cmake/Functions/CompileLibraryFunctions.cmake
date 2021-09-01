@@ -12,7 +12,7 @@ function(internal_compile_library)
 		"EXPORT_ALL" "USE_RESOLVER_DEFINES")
 	set(VALUES "NAME" "OBJECT_ALIAS_NAME" "INDEPENDENT_OBJECT_ALIAS_NAME"
 		"STATIC_ALIAS_NAME" "SHARED_ALIAS_NAME" "STATIC_INSTALL_PATH"
-		"SHARED_INSTALL_PATH")
+		"SHARED_INSTALL_PATH" "STATIC_INSTALL_DIR" "SHARED_INSTALL_DIR")
 	set(LISTS "DEFINES" "INCLUDE_PATHS" "SOURCE_LIST" "SOURCE_LIST_STATIC"
 		"SOURCE_LIST_SHARED" "COMPILE_FLAGS" "LINK_FLAGS" "DEPENDENCY_HEADER_TARGETS"
 		"DEPENDENCY_TARGETS_FOR_STATIC" "DEPENDENCY_TARGETS_FOR_SHARED")
@@ -113,6 +113,12 @@ macro(internal_compile_library_print_parse_result)
 
 		print_debug_function_oneline("COMPILE_SHARED_INSTALL_PATH                   = ")
 		print_debug_value_newline(${COMPILE_SHARED_INSTALL_PATH})
+
+		print_debug_function_oneline("COMPILE_STATIC_INSTALL_DIR                    = ")
+		print_debug_value_newline(${COMPILE_STATIC_INSTALL_DIR})
+
+		print_debug_function_oneline("COMPILE_SHARED_INSTALL_DIR                    = ")
+		print_debug_value_newline(${COMPILE_SHARED_INSTALL_DIR})
 
 		# lists
 
