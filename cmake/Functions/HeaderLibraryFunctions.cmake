@@ -6,7 +6,7 @@ function(internal_header_library)
 
 	# Parse arguments
 	set(OPTIONS "DEBUG")
-	set(VALUES "NAME" "LIBRARY_ALIAS_NAME" "INSTALL_PATH")
+	set(VALUES "NAME" "LIBRARY_ALIAS_NAME" "INSTALL_PATH" "INSTALL_DIR")
 	set(LISTS "DEPENDENCY_TARGET_LIST" "HEADER_LIST" "INCLUDE_PATHS")
 	cmake_parse_arguments("HEADER" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
 
@@ -51,6 +51,9 @@ macro(internal_header_library_print_parse_result)
 		print_debug_function_oneline("HEADER_INSTALL_PATH           = ")
 		print_debug_value_newline(${HEADER_INSTALL_PATH})
 
+		print_debug_function_oneline("HEADER_INSTALL_DIR            = ")
+		print_debug_value_newline(${HEADER_INSTALL_DIR})
+
 		print_debug_function_newline("-------- PARSE RESULT --------")
 	endif()
 	if (HEADER_DEBUG)
@@ -72,8 +75,16 @@ macro(internal_header_library_process_parameters)
 		message_fatal("Need 'HEADER_LIST'.")
 	endif()
 
+	if(FLAME_LOCAL_INSTALL)
+		set(HEADER_INSTALL_PATH
+			${FLAME_LOCAL_INSTALL_PREFIX}/${FLAME_PLATFORM_INSTALL_HEADER_PATH})
+	elseif(NOT HEADER_INSTALL_PATH)
+		set(HEADER_INSTALL_PATH
+			${CMAKE_INSTALL_PREFIX}/${FLAME_PLATFORM_INSTALL_HEADER_DIR})
+	endif()
+
 	internal_print_warning_not_support("${HEADER_HELP}" HELP)
-	internal_print_warning_not_support("${HEADER_INSTALL_PATH}" INSTALL_PATH)
+#	internal_print_warning_not_support("${HEADER_INSTALL_PATH}" INSTALL_PATH)
 endmacro(internal_header_library_process_parameters)
 
 macro(internal_header_library_add)

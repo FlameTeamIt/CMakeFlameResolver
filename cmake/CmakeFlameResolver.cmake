@@ -47,6 +47,7 @@ endfunction(flame_settings)
 #   NAME               -
 #   LIBRARY_ALIAS_NAME -
 #   INSTALL_PATH       -
+#   INSTALL_DIR        - # имя папки, которая будет после префикса
 # Lists:
 #   DEPENDENCY_TARGET_LIST -
 #   HEADER_LIST            -
