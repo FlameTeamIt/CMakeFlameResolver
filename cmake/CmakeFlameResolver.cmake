@@ -33,7 +33,8 @@ include(Platform)
 #     CXX_NO_EXCEPTIONS -
 #     PLATFORM_DEFINES  -
 # Values:
-#   PROJECT_ROOT_PATH -
+#   PROJECT_ROOT_PATH    -
+#   LOCAL_INSTALL_PREFIX -
 function(flame_settings)
 	enable_internal_use()
 	internal_settings(${ARGN})
