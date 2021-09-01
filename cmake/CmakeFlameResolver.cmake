@@ -21,6 +21,7 @@ include(Platform)
 #     CLEAN_AFTER_RESOLVE            -
 #     THREADING                      -
 #     TESTING                        -
+#     ENABLE_INSTALL                 -
 #     LOCAL_INSTALL                  -
 #   Code generation options:
 #     ONLY_POSITION_INDEPENDENT_OBJECTS -
