@@ -96,7 +96,7 @@ endmacro(internal_compile_binary_print_parse_result)
 
 macro(internal_compile_binary_process_parameters)
 	internal_print_warning_not_support("${BINARY_LINK_FLAGS}"    LINK_FLAGS)
-	internal_print_warning_not_support("${BINARY_INSTALL_PATH}"  INSTALL_PATH)
+#	internal_print_warning_not_support("${BINARY_INSTALL_PATH}"  INSTALL_PATH)
 
 	# BINARY_NAME
 
@@ -183,6 +183,18 @@ macro(internal_compile_binary_process_parameters)
 		endif()
 
 		unset(PLATFORM_DEFINES)
+	endif()
+
+	if(FLAME_ENABLE_INSTALL)
+		if(FLAME_LOCAL_INSTALL)
+			set(BINARY_INSTALL_PREFIX
+				${FLAME_LOCAL_INSTALL_PREFIX}/${FLAME_PLATFORM_INSTALL_BINARY_DIR})
+			set(BINARY_INSTALL_PATH ${BINARY_INSTALL_PREFIX}/${BINARY_INSTALL_DIR})
+		elseif(NOT BINARY_INSTALL_PATH)
+			set(BINARY_INSTALL_PREFIX
+				${CMAKE_INSTALL_PREFIX}/${FLAME_PLATFORM_INSTALL_BINARY_DIR})
+			set(BINARY_INSTALL_PATH ${BINARY_INSTALL_PREFIX}/${BINARY_INSTALL_DIR})
+		endif()
 	endif()
 endmacro(internal_compile_binary_process_parameters)
 
