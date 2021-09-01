@@ -6,7 +6,7 @@ function(internal_compile_binary)
 
 	set(OPTIONS "DEBUG" "TEST" "RTTI" "NO_RTTI" "EXCEPTIONS" "NO_EXCEPTIONS"
 		"USE_RESOLVER_DEFINES")
-	set(VALUES "NAME" "ALIAS_NAME" "INSTALL_PATH")
+	set(VALUES "NAME" "ALIAS_NAME" "INSTALL_PATH" "INSTALL_DIR")
 	set(LISTS "DEFINES" "INCLUDE_PATHS" "SOURCE_LIST" "COMPILE_FLAGS" "LINK_FLAGS"
 		"DEPENDENCY_TARGET_LIST" "TEST_ARGUMENTS")
 	cmake_parse_arguments("BINARY" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
@@ -60,6 +60,9 @@ macro(internal_compile_binary_print_parse_result)
 
 		print_debug_function_oneline("BINARY_INSTALL_PATH           = ")
 		print_debug_value_newline(${BINARY_INSTALL_PATH})
+
+		print_debug_function_oneline("BINARY_INSTALL_DIR            = ")
+		print_debug_value_newline(${BINARY_INSTALL_DIR})
 
 		print_debug_function_oneline("BINARY_USE_RESOLVER_DEFINES   = ")
 		print_debug_value_newline(${BINARY_USE_RESOLVER_DEFINES})

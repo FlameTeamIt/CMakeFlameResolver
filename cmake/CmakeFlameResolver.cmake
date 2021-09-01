@@ -101,6 +101,7 @@ endfunction(flame_compile_library)
 #   NAME         -
 #   ALIAS_NAME   -
 #   INSTALL_PATH -
+#   INSTALL_DIR  - # имя папки, которая будет после префикса
 # Lists:
 #   INCLUDE_PATHS                 -
 #   SOURCE_LIST                   -
