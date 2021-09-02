@@ -222,7 +222,7 @@ macro(internal_compile_binary_add)
 		PROPERTY_CONTAINER_NAME "${TARGET_CUSTOM_PROPERTIES}"
 		REAL_TARGET             "${TARGET_NAME}"
 		OUTPUT_NAME             "${BINARY_NAME}"
-		#INSTALL_PATH            "${BINARY_INSTALL_PATH}"
+		INSTALL_PATH            "${BINARY_INSTALL_PATH}"
 
 		ADDING_FILES            "${SOURCE_LIST}"
 		COMPILE_FLAGS           "${BINARY_COMPILE_FLAGS}"
