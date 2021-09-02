@@ -28,8 +28,10 @@ function(internal_resolve_headers)
 			endforeach()
 		endif()
 
-		# Not supported now
-		#get_target_property(INSTALL_PATH ${target.property} FLAME_INSTALL_PATH)
+		get_target_property(INSTALL_PATH ${target.property} FLAME_INSTALL_PATH)
+		if(INSTALL_PATH)
+			install(FILES ${HEADER_LIST} DESTINATION ${INSTALL_PATH})
+		endif()
 
 		print_newline("done")
 	endforeach()
