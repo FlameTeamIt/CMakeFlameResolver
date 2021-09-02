@@ -46,6 +46,12 @@ function(internal_resolve_shared_libraries)
 				OUTPUT_NAME "${OUTPUT_NAME}")
 		endif()
 
+		get_target_property(INSTALL_PATH ${target.property} FLAME_INSTALL_PATH)
+		if(INSTALL_PATH)
+			print_oneline("INSTALL_PATH = \"${INSTALL_PATH}\" -")
+			install(TARGETS ${REAL_TARGET} DESTINATION ${INSTALL_PATH})
+		endif()
+
 		get_target_property(EXPORT_ALL_SYMBOLS ${target.property}
 			FLAME_EXPORT_ALL)
 		if(EXPORT_ALL_SYMBOLS)
