@@ -109,6 +109,7 @@ macro(internal_header_library_add)
 		ADDING_FILES            "${HEADER_LIST}"
 		DEPENDENCY_HEADERS      "${HEADER_DEPENDENCY_TARGET_LIST}"
 		LIBRARY_ALIASES         "${HEADER_LIBRARY_ALIAS_NAME}"
+		INSTALL_PATH            "${HEADER_INSTALL_PATH}"
 		${HEADER_DEBUG}
 	)
 
