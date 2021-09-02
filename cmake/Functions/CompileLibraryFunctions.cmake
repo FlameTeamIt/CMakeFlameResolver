@@ -405,6 +405,7 @@ macro(internal_compile_static_library)
 		DEPENDENCY_LIBRARIES    "${COMPILE_DEPENDENCY_TARGETS_FOR_STATIC}"
 		OUTPUT_NAME             "${COMPILE_NAME}"
 		LIBRARY_ALIASES         "${COMPILE_STATIC_ALIAS_NAME}"
+		INSTALL_PATH            "${COMPILE_STATIC_INSTALL_PATH}"
 		${COMPILE_DEBUG}
 	)
 
@@ -455,6 +456,7 @@ macro(internal_compile_shared_library)
 		#LINK_FLAGS              "${}"
 		OUTPUT_NAME             "${COMPILE_NAME}"
 		LIBRARY_ALIASES         "${COMPILE_SHARED_ALIAS_NAME}"
+		INSTALL_PATH            "${COMPILE_SHARED_INSTALL_PATH}"
 		${COMPILE_EXPORT_ALL}
 
 		${COMPILE_DEBUG}
