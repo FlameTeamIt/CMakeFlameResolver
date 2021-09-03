@@ -36,10 +36,10 @@ include(Platform)
 # Values:
 #   PROJECT_ROOT_PATH    -
 #   LOCAL_INSTALL_PREFIX -
-function(flame_settings)
+function(flame_resolver_settings)
 	enable_internal_use()
 	internal_settings(${ARGN})
-endfunction(flame_settings)
+endfunction(flame_resolver_settings)
 
 # Options:
 #   DEBUG -
