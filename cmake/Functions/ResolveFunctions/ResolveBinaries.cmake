@@ -58,7 +58,6 @@ function(internal_resolve_binaries)
 
 		get_target_property(INSTALL_PATH ${target.property} FLAME_INSTALL_PATH)
 		if(INSTALL_PATH)
-			print_oneline("INSTALL_PATH = \"${INSTALL_PATH}\" -")
 			install(TARGETS ${REAL_TARGET} DESTINATION ${INSTALL_PATH})
 		endif()
 
