@@ -95,8 +95,7 @@ macro(internal_compile_binary_print_parse_result)
 endmacro(internal_compile_binary_print_parse_result)
 
 macro(internal_compile_binary_process_parameters)
-	internal_print_warning_not_support("${BINARY_LINK_FLAGS}"    LINK_FLAGS)
-#	internal_print_warning_not_support("${BINARY_INSTALL_PATH}"  INSTALL_PATH)
+	internal_print_warning_not_support("${BINARY_LINK_FLAGS}" LINK_FLAGS)
 
 	# BINARY_NAME
 

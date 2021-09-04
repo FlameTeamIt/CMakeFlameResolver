@@ -88,7 +88,6 @@ macro(internal_header_library_process_parameters)
 	endif()
 
 	internal_print_warning_not_support("${HEADER_HELP}" HELP)
-#	internal_print_warning_not_support("${HEADER_INSTALL_PATH}" INSTALL_PATH)
 endmacro(internal_header_library_process_parameters)
 
 macro(internal_header_library_add)

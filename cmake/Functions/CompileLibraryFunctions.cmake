@@ -263,10 +263,6 @@ macro(internal_compile_library_process_parameters)
 		NOT_MAKE_INPOSITION_DEPENDENT_OBJECTS)
 	internal_print_warning_not_support("${COMPILE_LINK_FLAGS}"
 		LINK_FLAGS)
-#	internal_print_warning_not_support("${COMPILE_STATIC_INSTALL_PATH}"
-#		STATIC_INSTALL_PATH)
-#	internal_print_warning_not_support("${COMPILE_SHARED_INSTALL_PATH}"
-#		SHARED_INSTALL_PATH)
 endmacro(internal_compile_library_process_parameters)
 
 macro(internal_compile_independent_object_library)
