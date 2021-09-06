@@ -21,7 +21,7 @@ include(Platform)
 #     CLEAN_AFTER_RESOLVE            -
 #     THREADING                      -
 #     TESTING                        -
-#     ENABLE_INSTALL                 -
+#     INSTALL                        -
 #     LOCAL_INSTALL                  -
 #   Code generation options:
 #     ONLY_POSITION_INDEPENDENT_OBJECTS -
@@ -48,7 +48,7 @@ endfunction(flame_resolver_settings)
 #   NAME               -
 #   LIBRARY_ALIAS_NAME -
 #   INSTALL_PATH       -
-#   INSTALL_DIR        - # имя папки, которая будет после префикса
+#   INSTALL_SUBDIR     - directory name adding to prefix path
 # Lists:
 #   DEPENDENCY_TARGET_LIST -
 #   HEADER_LIST            -
@@ -75,8 +75,8 @@ endfunction(flame_header_library)
 #   SHARED_ALIAS_NAME             -
 #   STATIC_INSTALL_PATH           -
 #   SHARED_INSTALL_PATH           -
-#   STATIC_INSTALL_DIR            - # имя папки, которая будет после префикса
-#   SHARED_INSTALL_DIR            - # имя папки, которая будет после префикса
+#   STATIC_INSTALL_SUBDIR         - directory name adding to prefix path for static libraries
+#   SHARED_INSTALL_SUBDIR         - directory name adding to prefix path for shared libraries
 # Lists:
 #   INCLUDE_PATHS                 -
 #   DEFINES                       -
@@ -99,10 +99,10 @@ endfunction(flame_compile_library)
 #   HELP                 -
 #   USE_RESOLVER_DEFINES -
 # Values:
-#   NAME         -
-#   ALIAS_NAME   -
-#   INSTALL_PATH -
-#   INSTALL_DIR  - # имя папки, которая будет после префикса
+#   NAME            -
+#   ALIAS_NAME      -
+#   INSTALL_PATH    -
+#   INSTALL_SUBDIR  - directory name adding to prefix path
 # Lists:
 #   INCLUDE_PATHS                 -
 #   SOURCE_LIST                   -

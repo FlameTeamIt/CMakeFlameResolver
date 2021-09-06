@@ -6,7 +6,7 @@ function(internal_compile_binary)
 
 	set(OPTIONS "DEBUG" "TEST" "RTTI" "NO_RTTI" "EXCEPTIONS" "NO_EXCEPTIONS"
 		"USE_RESOLVER_DEFINES")
-	set(VALUES "NAME" "ALIAS_NAME" "INSTALL_PATH" "INSTALL_DIR")
+	set(VALUES "NAME" "ALIAS_NAME" "INSTALL_PATH" "INSTALL_SUBDIR")
 	set(LISTS "DEFINES" "INCLUDE_PATHS" "SOURCE_LIST" "COMPILE_FLAGS" "LINK_FLAGS"
 		"DEPENDENCY_TARGET_LIST" "TEST_ARGUMENTS")
 	cmake_parse_arguments("BINARY" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
@@ -61,8 +61,8 @@ macro(internal_compile_binary_print_parse_result)
 		print_debug_function_oneline("BINARY_INSTALL_PATH           = ")
 		print_debug_value_newline(${BINARY_INSTALL_PATH})
 
-		print_debug_function_oneline("BINARY_INSTALL_DIR            = ")
-		print_debug_value_newline(${BINARY_INSTALL_DIR})
+		print_debug_function_oneline("BINARY_INSTALL_SUBDIR            = ")
+		print_debug_value_newline(${BINARY_INSTALL_SUBDIR})
 
 		print_debug_function_oneline("BINARY_USE_RESOLVER_DEFINES   = ")
 		print_debug_value_newline(${BINARY_USE_RESOLVER_DEFINES})
@@ -184,15 +184,15 @@ macro(internal_compile_binary_process_parameters)
 		unset(PLATFORM_DEFINES)
 	endif()
 
-	if(FLAME_ENABLE_INSTALL)
+	if(FLAME_INSTALL)
 		if(FLAME_LOCAL_INSTALL)
 			set(BINARY_INSTALL_PREFIX
 				${FLAME_LOCAL_INSTALL_PREFIX}/${FLAME_PLATFORM_INSTALL_BINARY_DIR})
-			set(BINARY_INSTALL_PATH ${BINARY_INSTALL_PREFIX}/${BINARY_INSTALL_DIR})
+			set(BINARY_INSTALL_PATH ${BINARY_INSTALL_PREFIX}/${BINARY_INSTALL_SUBDIR})
 		elseif(NOT BINARY_INSTALL_PATH)
 			set(BINARY_INSTALL_PREFIX
 				${CMAKE_INSTALL_PREFIX}/${FLAME_PLATFORM_INSTALL_BINARY_DIR})
-			set(BINARY_INSTALL_PATH ${BINARY_INSTALL_PREFIX}/${BINARY_INSTALL_DIR})
+			set(BINARY_INSTALL_PATH ${BINARY_INSTALL_PREFIX}/${BINARY_INSTALL_SUBDIR})
 		endif()
 	endif()
 endmacro(internal_compile_binary_process_parameters)

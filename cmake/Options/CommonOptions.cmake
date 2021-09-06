@@ -40,7 +40,7 @@ option(FLAME_TESTING
 	ON
 )
 
-option(FLAME_ENABLE_INSTALL
+option(FLAME_INSTALL
 	"Enable adding install target"
 	OFF
 )

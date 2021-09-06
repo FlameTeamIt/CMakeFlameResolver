@@ -63,7 +63,7 @@ macro(internal_settings)
 		"CLEAN_AFTER_RESOLVE"
 		"THREADING"
 		"TESTING"
-		"ENABLE_INSTALL"
+		"INSTALL"
 		"LOCAL_INSTALL"
 
 		# Code generation options

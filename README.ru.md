@@ -46,7 +46,7 @@ include(CmakeFlameResolver)
         CLEAN_AFTER_RESOLVE
         THREADING
         TESTING
-        ENABLE_INSTALL
+        INSTALL
         LOCAL_INSTALL
 
         ONLY_POSITION_INDEPENDENT_OBJECTS
@@ -75,7 +75,7 @@ include(CmakeFlameResolver)
     | `CLEAN_AFTER_RESOLVE`               |  Опция   | Очищать после добавления целей и разрешения зависимостей |
     | `THREADING`                         |  Опция   | Включение поддержки многопоточности |
     | `TESTING`                           |  Опция   | Включение добавления тестов в **CTest** |
-    | `ENABLE_INSTALL`                    |  Опция   | Включение сценария установки |
+    | `INSTALL`                           |  Опция   | Включение сценария установки |
     | `LOCAL_INSTALL`                     |  Опция   | Включить сценарий локальной установки, обходя переменные `CMAKE_INSTALL_*` |
     | `ONLY_POSITION_INDEPENDENT_OBJECTS` |  Опция   | Указать глобально, чтобы собирались только позиционно-независимые объектные файлы (в GCC опция `-fPIC`) |
     | `MAKE_STATIC`                       |  Опция   | Собирать статические библиотеки |
@@ -99,7 +99,7 @@ include(CmakeFlameResolver)
         NAME
         LIBRARY_ALIAS_NAME
         INSTALL_PATH
-        INSTALL_DIR
+        INSTALL_SUBDIR
 
         # Списки
         DEPENDENCY_TARGET_LIST
@@ -114,7 +114,7 @@ include(CmakeFlameResolver)
     | `NAME`                   | Параметр | Имя библиотеки |
     | `LIBRARY_ALIAS_NAME`     | Параметр | Алиас библиотеки |
     | `INSTALL_PATH`           | Параметр | Путь установки |
-    | `INSTALL_DIR`            | Параметр | Добавочная директория к префиксу, куда будут ставиться заголовчные файлы |
+    | `INSTALL_SUBDIR`         | Параметр | Добавочная директория к префиксу, куда будут ставиться заголовчные файлы |
     | `DEPENDENCY_TARGET_LIST` |  Список  | Список зависимых заголовков |
     | `HEADER_LIST`            |  Список  | Список файлов |
     | `INCLUDE_PATHS`          |  Список  | Пути поиска заголовков |
@@ -144,8 +144,8 @@ include(CmakeFlameResolver)
         SHARED_ALIAS_NAME
         STATIC_INSTALL_PATH
         SHARED_INSTALL_PATH
-        STATIC_INSTALL_DIR
-        SHARED_INSTALL_DIR
+        STATIC_INSTALL_SUBDIR
+        SHARED_INSTALL_SUBDIR
 
         # Списки
         DEFINES
@@ -181,8 +181,8 @@ include(CmakeFlameResolver)
     | `SHARED_ALIAS_NAME`                     | Параметр | Имя псевдонима динамической библиотеки |
     | `STATIC_INSTALL_PATH`                   | Параметр | Путь установки статической библиотеки |
     | `SHARED_INSTALL_PATH`                   | Параметр | Путь установки динамической библиотеки |
-    | `STATIC_INSTALL_DIR`                    | Параметр | Добавочная директория к префиксу, куда будет ставиться статическая библиотека |
-    | `SHARED_INSTALL_DIR`                    | Параметр | Добавочная директория к префиксу, куда будет ставиться динамическая библиотека |
+    | `STATIC_INSTALL_SUBDIR`                 | Параметр | Добавочная директория к префиксу, куда будет ставиться статическая библиотека |
+    | `SHARED_INSTALL_SUBDIR`                 | Параметр | Добавочная директория к префиксу, куда будет ставиться динамическая библиотека |
     | `DEFINES`                               |  Список  | Макроопределения |
     | `INCLUDE_PATHS`                         |  Список  | Пути поиска заголовочных файлов |
     | `SOURCE_LIST`                           |  Список  | Список файлов |
@@ -211,7 +211,7 @@ include(CmakeFlameResolver)
         NAME
         ALIAS_NAME
         INSTALL_PATH
-        INSTALL_DIR
+        INSTALL_SUBDIR
     
         # Списки
         DEFINES
@@ -236,7 +236,7 @@ include(CmakeFlameResolver)
 | `NAME`                   | Параметр  | Имя бинарного файла |
 | `ALIAS_NAME`             | Параметр  | Псевдоним цели |
 | `INSTALL_PATH`           | Параметр  | Путь установки |
-| `INSTALL_DIR`            | Параметр  | Добавочная директория к префиксу, куда будет ставиться запускающийся файл |
+| `INSTALL_SUBDIR`         | Параметр  | Добавочная директория к префиксу, куда будет ставиться запускающийся файл |
 | `DEFINES`                |  Списoк   | Макроопределения |
 | `INCLUDE_PATHS`          |  Списoк   | Пути поиска заголовочных файлов |
 | `SOURCE_LIST`            |  Списoк   | Список файлов |
@@ -281,5 +281,4 @@ include(CmakeFlameResolver)
 ### Некэшируемые переменные
 
 * `FLAME_PROJECT_ROOT_PATH` -- Путь до корня проекта. По умолчанию `${CMAKE_CURRENT_SOURCE_DIR}`
-* `FLAME_LOCAL_INSTALL_PREFIX` -- Путь локальной уставноки. По умолчанию `${CMAKE_CURRENT_SOURCE_DIR}/install`
-
+* `FLAME_LOCAL_INSTALL_PREFIX` -- Путь локальной установки. По умолчанию `${CMAKE_CURRENT_SOURCE_DIR}/install`
