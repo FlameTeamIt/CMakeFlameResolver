@@ -58,7 +58,9 @@ function(internal_resolve_binaries)
 
 		get_target_property(INSTALL_PATH ${target.property} FLAME_INSTALL_PATH)
 		if(INSTALL_PATH)
-			install(TARGETS ${REAL_TARGET} DESTINATION ${INSTALL_PATH})
+			install(TARGETS ${REAL_TARGET}
+				${FLAME_PLATFORM_BINARY_INSTALL_TYPE}
+				DESTINATION ${INSTALL_PATH})
 		endif()
 
 		get_target_property(BINARY_ALIASES ${target.property} FLAME_BINARY_ALIASES)

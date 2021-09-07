@@ -36,6 +36,10 @@ include(Platform)
 # Values:
 #   PROJECT_ROOT_PATH    -
 #   LOCAL_INSTALL_PREFIX -
+#   INSTALL_HEADER_DIR   -
+#   INSTALL_STATIC_DIR   -
+#   INSTALL_SHARED_DIR   -
+#   INSTALL_BINARY_DIR   -
 function(flame_resolver_settings)
 	enable_internal_use()
 	internal_settings(${ARGN})

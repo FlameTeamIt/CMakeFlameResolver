@@ -45,7 +45,9 @@ function(internal_resolve_static_libraries)
 
 		get_target_property(INSTALL_PATH ${target.property} FLAME_INSTALL_PATH)
 		if(INSTALL_PATH)
-			install(TARGETS ${REAL_TARGET} DESTINATION ${INSTALL_PATH})
+			install(TARGETS ${REAL_TARGET}
+				${FLAME_PLATFORM_STATIC_INSTALL_TYPE}
+				DESTINATION ${INSTALL_PATH})
 		endif()
 
 		print_newline("done")
