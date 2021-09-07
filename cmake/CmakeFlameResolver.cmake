@@ -21,6 +21,7 @@ include(Platform)
 #     CLEAN_AFTER_RESOLVE            -
 #     THREADING                      -
 #     TESTING                        -
+#     INSTALL                        -
 #     LOCAL_INSTALL                  -
 #     WARNINGS                       -
 #     WARNINGS_AS_ERRORS             -
@@ -35,11 +36,16 @@ include(Platform)
 #     CXX_NO_EXCEPTIONS -
 #     PLATFORM_DEFINES  -
 # Values:
-#   PROJECT_ROOT_PATH -
-function(flame_settings)
+#   PROJECT_ROOT_PATH    -
+#   LOCAL_INSTALL_PREFIX -
+#   INSTALL_HEADER_DIR   -
+#   INSTALL_STATIC_DIR   -
+#   INSTALL_SHARED_DIR   -
+#   INSTALL_BINARY_DIR   -
+function(flame_resolver_settings)
 	enable_internal_use()
 	internal_settings(${ARGN})
-endfunction(flame_settings)
+endfunction(flame_resolver_settings)
 
 # Options:
 #   DEBUG -
@@ -48,6 +54,7 @@ endfunction(flame_settings)
 #   NAME               -
 #   LIBRARY_ALIAS_NAME -
 #   INSTALL_PATH       -
+#   INSTALL_SUBDIR     - directory name adding to prefix path
 # Lists:
 #   DEPENDENCY_TARGET_LIST -
 #   HEADER_LIST            -
@@ -74,6 +81,8 @@ endfunction(flame_header_library)
 #   SHARED_ALIAS_NAME             -
 #   STATIC_INSTALL_PATH           -
 #   SHARED_INSTALL_PATH           -
+#   STATIC_INSTALL_SUBDIR         - directory name adding to prefix path for static libraries
+#   SHARED_INSTALL_SUBDIR         - directory name adding to prefix path for shared libraries
 # Lists:
 #   INCLUDE_PATHS                 -
 #   DEFINES                       -
@@ -96,9 +105,10 @@ endfunction(flame_compile_library)
 #   HELP                 -
 #   USE_RESOLVER_DEFINES -
 # Values:
-#   NAME         -
-#   ALIAS_NAME   -
-#   INSTALL_PATH -
+#   NAME            -
+#   ALIAS_NAME      -
+#   INSTALL_PATH    -
+#   INSTALL_SUBDIR  - directory name adding to prefix path
 # Lists:
 #   INCLUDE_PATHS                 -
 #   SOURCE_LIST                   -

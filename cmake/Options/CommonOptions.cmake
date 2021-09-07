@@ -40,6 +40,11 @@ option(FLAME_TESTING
 	ON
 )
 
+option(FLAME_INSTALL
+	"Enable adding install target"
+	OFF
+)
+
 option(FLAME_LOCAL_INSTALL
 	"Installing to local directory (<binary directory>/install). Not support"
 	OFF

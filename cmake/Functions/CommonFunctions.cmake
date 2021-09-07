@@ -63,6 +63,7 @@ macro(internal_settings)
 		"CLEAN_AFTER_RESOLVE"
 		"THREADING"
 		"TESTING"
+		"INSTALL"
 		"LOCAL_INSTALL"
 
 		# Code generation options
@@ -77,8 +78,9 @@ macro(internal_settings)
 		"CXX_NO_EXCEPTIONS"
 		"PLATFORM_DEFINES"
 	)
-	set(VALUES
-		"PROJECT_ROOT_PATH")
+	set(VALUES "PROJECT_ROOT_PATH" "LOCAL_INSTALL_PREFIX"
+		"INSTALL_HEADER_DIR" "INSTALL_STATIC_DIR" "INSTALL_SHARED_DIR"
+		"INSTALL_BINARY_DIR")
 	set(LISTS)
 
 	cmake_parse_arguments("FLAME" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")

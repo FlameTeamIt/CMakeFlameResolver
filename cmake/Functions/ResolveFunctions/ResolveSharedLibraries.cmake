@@ -46,6 +46,13 @@ function(internal_resolve_shared_libraries)
 				OUTPUT_NAME "${OUTPUT_NAME}")
 		endif()
 
+		get_target_property(INSTALL_PATH ${target.property} FLAME_INSTALL_PATH)
+		if(INSTALL_PATH)
+			install(TARGETS ${REAL_TARGET}
+				${FLAME_PLATFORM_SHARED_INSTALL_TYPE}
+				DESTINATION ${INSTALL_PATH})
+		endif()
+
 		get_target_property(EXPORT_ALL_SYMBOLS ${target.property}
 			FLAME_EXPORT_ALL)
 		if(EXPORT_ALL_SYMBOLS)
@@ -53,8 +60,12 @@ function(internal_resolve_shared_libraries)
 		endif()
 
 		if(FLAME_IMPLIB_LIBRARY_SUFFIX)
+			get_target_property(IMPLIB_INSTALL_PATH ${target.property} FLAME_IMPLIB_INSTALL_PATH)
 			set_target_properties(${REAL_TARGET} PROPERTIES
 				IMPORT_SUFFIX "${FLAME_IMPLIB_LIBRARY_SUFFIX}")
+			install(TARGETS ${REAL_TARGET}
+				${FLAME_PLATFORM_STATIC_INSTALL_TYPE}
+				DESTINATION ${IMPLIB_INSTALL_PATH})
 		endif()
 
 		print_newline("done")
