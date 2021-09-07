@@ -62,6 +62,10 @@ include(CmakeFlameResolver)
         # Параметры
         PROJECT_ROOT_PATH
         LOCAL_INSTALL_PREFIX
+        INSTALL_HEADER_DIR
+        INSTALL_STATIC_DIR
+        INSTALL_SHARED_DIR
+        INSTALL_BINARY_DIR
     )
     ```
 
@@ -87,6 +91,10 @@ include(CmakeFlameResolver)
     | `PLATFORM_DEFINES`                  |  Опция   | Использовать макроопредения ресолвера |
     | `PROJECT_ROOT_PATH`                 | Параметр | Путь до корня проекта |
     | `LOCAL_INSTALL_PREFIX`              | Параметр | Путь локальной уставноки |
+    | `INSTALL_HEADER_DIR`                | Параметр | Добавочная директория установки для заголовков |
+    | `INSTALL_STATIC_DIR`                | Параметр | Добавочная директория установки для статических библиотек |
+    | `INSTALL_SHARED_DIR`                | Параметр | Добавочная директория установки для динамических библиотек |
+    | `INSTALL_BINARY_DIR`                | Параметр | Добавочная директория установки для запускающийся файлов |
 
 * Добавление header-only билиотек либо заголовоков к экспортируемым библиотекам
 
