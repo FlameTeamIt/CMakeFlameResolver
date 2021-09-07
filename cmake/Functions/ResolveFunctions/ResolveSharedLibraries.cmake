@@ -60,11 +60,12 @@ function(internal_resolve_shared_libraries)
 		endif()
 
 		if(FLAME_IMPLIB_LIBRARY_SUFFIX)
+			get_target_property(IMPLIB_INSTALL_PATH ${target.property} FLAME_IMPLIB_INSTALL_PATH)
 			set_target_properties(${REAL_TARGET} PROPERTIES
 				IMPORT_SUFFIX "${FLAME_IMPLIB_LIBRARY_SUFFIX}")
 			install(TARGETS ${REAL_TARGET}
 				${FLAME_PLATFORM_STATIC_INSTALL_TYPE}
-				DESTINATION ${INSTALL_PATH})
+				DESTINATION ${IMPLIB_INSTALL_PATH})
 		endif()
 
 		print_newline("done")
