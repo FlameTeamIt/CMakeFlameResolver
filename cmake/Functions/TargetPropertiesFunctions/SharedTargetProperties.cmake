@@ -18,7 +18,8 @@ function(internal_add_shared_target_properties)
 	check_internal_use()
 
 	set(OPTIONS "DEBUG" "NO_DEBUG" "EXPORT_ALL" "NO_EXPORT_ALL")
-	set(VALUES "PROPERTY_CONTAINER_NAME" "REAL_TARGET" "OUTPUT_NAME" "INSTALL_PATH")
+	set(VALUES "PROPERTY_CONTAINER_NAME" "REAL_TARGET" "OUTPUT_NAME" "INSTALL_PATH"
+		"IMPLIB_INSTALL_PATH")
 	set(LISTS "ADDING_SOURCES" "ADDING_OBJECTS" "DEPENDENCY_HEADERS"
 		"DEPENDENCY_LIBRARIES" "COMPILE_FLAGS" "LINK_FLAGS" "LIBRARY_ALIASES")
 
@@ -65,6 +66,9 @@ function(internal_add_shared_target_properties)
 		print_debug_function_oneline("FLAME_INSTALL_PATH            = ")
 		print_debug_value_newline(${FLAME_INSTALL_PATH})
 
+		print_debug_function_oneline("FLAME_IMPLIB_INSTALL_PATH     = ")
+		print_debug_value_newline(${FLAME_IMPLIB_INSTALL_PATH})
+
 		print_debug_function_newline("-------- PARSE RESULT --------")
 	endif()
 
@@ -89,6 +93,7 @@ function(internal_add_shared_target_properties)
 			FLAME_OUTPUT_NAME          "${FLAME_OUTPUT_NAME}"
 			FLAME_LIBRARY_ALIASES      "${FLAME_LIBRARY_ALIASES}"
 			FLAME_INSTALL_PATH         "${FLAME_INSTALL_PATH}"
+			FLAME_IMPLIB_INSTALL_PATH  "${FLAME_IMPLIB_INSTALL_PATH}"
 	)
 
 	end_debug_function()

@@ -6,7 +6,7 @@ function(internal_compile_binary)
 
 	set(OPTIONS "DEBUG" "TEST" "RTTI" "NO_RTTI" "EXCEPTIONS" "NO_EXCEPTIONS"
 		"USE_RESOLVER_DEFINES")
-	set(VALUES "NAME" "ALIAS_NAME" "INSTALL_PATH")
+	set(VALUES "NAME" "ALIAS_NAME" "INSTALL_PATH" "INSTALL_SUBDIR")
 	set(LISTS "DEFINES" "INCLUDE_PATHS" "SOURCE_LIST" "COMPILE_FLAGS" "LINK_FLAGS"
 		"DEPENDENCY_TARGET_LIST" "TEST_ARGUMENTS")
 	cmake_parse_arguments("BINARY" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
@@ -61,6 +61,9 @@ macro(internal_compile_binary_print_parse_result)
 		print_debug_function_oneline("BINARY_INSTALL_PATH           = ")
 		print_debug_value_newline(${BINARY_INSTALL_PATH})
 
+		print_debug_function_oneline("BINARY_INSTALL_SUBDIR            = ")
+		print_debug_value_newline(${BINARY_INSTALL_SUBDIR})
+
 		print_debug_function_oneline("BINARY_USE_RESOLVER_DEFINES   = ")
 		print_debug_value_newline(${BINARY_USE_RESOLVER_DEFINES})
 
@@ -92,8 +95,7 @@ macro(internal_compile_binary_print_parse_result)
 endmacro(internal_compile_binary_print_parse_result)
 
 macro(internal_compile_binary_process_parameters)
-	internal_print_warning_not_support("${BINARY_LINK_FLAGS}"    LINK_FLAGS)
-	internal_print_warning_not_support("${BINARY_INSTALL_PATH}"  INSTALL_PATH)
+	internal_print_warning_not_support("${BINARY_LINK_FLAGS}" LINK_FLAGS)
 
 	# BINARY_NAME
 
@@ -184,6 +186,18 @@ macro(internal_compile_binary_process_parameters)
 
 		unset(PLATFORM_DEFINES)
 	endif()
+
+	if(FLAME_INSTALL)
+		if(FLAME_LOCAL_INSTALL)
+			set(BINARY_INSTALL_PREFIX
+				${FLAME_LOCAL_INSTALL_PREFIX}/${FLAME_INSTALL_BINARY_DIR})
+			set(BINARY_INSTALL_PATH ${BINARY_INSTALL_PREFIX}/${BINARY_INSTALL_SUBDIR})
+		elseif(NOT BINARY_INSTALL_PATH)
+			set(BINARY_INSTALL_PREFIX
+				${CMAKE_INSTALL_PREFIX}/${FLAME_INSTALL_BINARY_DIR})
+			set(BINARY_INSTALL_PATH ${BINARY_INSTALL_PREFIX}/${BINARY_INSTALL_SUBDIR})
+		endif()
+	endif()
 endmacro(internal_compile_binary_process_parameters)
 
 macro(internal_compile_binary_add)
@@ -210,7 +224,7 @@ macro(internal_compile_binary_add)
 		PROPERTY_CONTAINER_NAME "${TARGET_CUSTOM_PROPERTIES}"
 		REAL_TARGET             "${TARGET_NAME}"
 		OUTPUT_NAME             "${BINARY_NAME}"
-		#INSTALL_PATH            "${BINARY_INSTALL_PATH}"
+		INSTALL_PATH            "${BINARY_INSTALL_PATH}"
 
 		ADDING_FILES            "${SOURCE_LIST}"
 		COMPILE_FLAGS           "${BINARY_COMPILE_FLAGS}"
