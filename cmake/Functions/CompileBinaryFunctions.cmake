@@ -166,6 +166,9 @@ macro(internal_compile_binary_process_parameters)
 		list(APPEND BINARY_COMPILE_FLAGS "${FLAME_CXX_FLAG_NO_EXCEPTIONS}")
 	endif()
 
+	flame_get_warning_flags(WARNING_FLAGS)
+	list(APPEND BINARY_COMPILE_FLAGS "${WARNING_FLAGS}")
+
 	if(BINARY_USE_RESOLVER_DEFINES OR FLAME_PLATFORM_DEFINES)
 		flame_get_platform_defines(PLATFORM_DEFINES)
 		list(APPEND BINARY_DEFINES ${PLATFORM_DEFINES})

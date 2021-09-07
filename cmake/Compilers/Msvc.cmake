@@ -20,6 +20,9 @@ if(("${CMAKE_C_COMPILER_ID}" STREQUAL "MSVC")
 		set(FLAME_CXX_FLAG_NO_EXCEPTIONS "/EHsc-")
 		set(FLAME_CXX_FLAG_EXCEPTIONS "/EHsc")
 	endif()
+
+	set(FLAME_WARNING_FLAG_LIST "/W4")
+	set(FLAME_WARNING_AS_ERROR_FLAG "/WX")
 endif()
 
 function(flame_shared_set_export_symbols_msvc TARGET_NAME)
