@@ -21,6 +21,9 @@ if(("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 		set(FLAME_CXX_FLAG_NO_EXCEPTIONS "-fno-cxx-exceptions")
 		set(FLAME_CXX_FLAG_EXCEPTIONS "-fcxx-exceptions")
 	endif()
+
+	set(FLAME_WARNING_FLAG_LIST "-Wall" "-Wextra" "-Wstrict-aliasing")
+	set(FLAME_WARNING_AS_ERROR_FLAG "-Werror")
 endif()
 
 function(flame_shared_set_export_symbols_clang TARGET_NAME)

@@ -71,3 +71,13 @@ function(flame_get_exception_defines EXCEPTIONS_ON OUT_LIST)
 
 	set(${OUT_LIST} ${DEFINE_EXCEPTIONS} PARENT_SCOPE)
 endfunction()
+
+function(flame_get_warning_flags OUT_LIST)
+	if(FLAME_WARNINGS)
+		set(FLAG_LIST ${FLAME_WARNING_FLAG_LIST})
+		if(FLAME_WARNINGS_AS_ERROR)
+			list(APPEND FLAG_LIST ${FLAME_WARNING_AS_ERROR_FLAG})
+		endif()
+	endif()
+	set(${OUT_LIST} ${FLAG_LIST} PARENT_SCOPE)
+endif()
