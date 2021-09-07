@@ -21,6 +21,9 @@ if(("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
 		set(FLAME_CXX_FLAG_NO_EXCEPTIONS "-fno-exceptions")
 		set(FLAME_CXX_FLAG_EXCEPTIONS "-fexceptions")
 	endif()
+
+	set(FLAME_WARNING_FLAG_LIST "-Wall" "-Wextra" "-Wstrict-aliasing")
+	set(FLAME_WARNING_AS_ERROR_FLAG "-Werror")
 endif()
 
 function(flame_shared_set_export_symbols_gcc TARGET_NAME)

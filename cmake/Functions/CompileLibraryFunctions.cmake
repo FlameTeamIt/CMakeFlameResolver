@@ -207,6 +207,9 @@ macro(internal_compile_library_process_parameters)
 		list(APPEND COMPILE_COMPILE_FLAGS "${FLAME_CXX_FLAG_NO_EXCEPTIONS}")
 	endif()
 
+	flame_get_warning_flags(WARNING_FLAGS)
+	list(APPEND COMPILE_COMPILE_FLAGS "${WARNING_FLAGS}")
+
 	if(COMPILE_USE_RESOLVER_DEFINES OR FLAME_PLATFORM_DEFINES)
 		flame_get_platform_defines(PLATFORM_DEFINES)
 		list(APPEND COMPILE_DEFINES ${PLATFORM_DEFINES})
