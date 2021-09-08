@@ -308,6 +308,7 @@ endfunction(internal_add_shared_target_properties)
 
 # Options:
 #   DEBUG -
+#   TEST  -
 # Values:
 #   PROPERTY_CONTAINER_NAME -
 #   REAL_TARGET             -
@@ -320,13 +321,14 @@ endfunction(internal_add_shared_target_properties)
 #   DEPENDENCY_LIBRARIES -
 #   COMPILE_FLAGS        -
 #   LINK_FLAGS           -
+#   TEST_ARGUMENTS       -
 function(internal_add_binary_target_properties)
 	enable_internal_use()
 
-	set(OPTIONS "DEBUG")
+	set(OPTIONS "DEBUG" "TEST")
 	set(VALUES "PROPERTY_CONTAINER_NAME" "REAL_TARGET" "OUTPUT_NAME" "INSTALL_PATH")
 	set(LISTS "ADDING_FILES" "INCLUDE_PATHS" "DEPENDENCY_HEADERS"
-		"DEPENDENCY_LIBRARIES" "COMPILE_FLAGS" "LINK_FLAGS")
+		"DEPENDENCY_LIBRARIES" "COMPILE_FLAGS" "LINK_FLAGS" "TEST_ARGUMENTS")
 
 	cmake_parse_arguments("FLAME" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
 
@@ -362,6 +364,12 @@ function(internal_add_binary_target_properties)
 		print_debug_function_oneline("FLAME_INSTALL_PATH            = ")
 		print_debug_value_newline(${FLAME_INSTALL_PATH})
 
+		print_debug_function_oneline("FLAME_TEST                    = ")
+		print_debug_value_newline(${FLAME_TEST})
+
+		print_debug_function_oneline("FLAME_TEST_ARGUMENTS          = ")
+		print_debug_value_newline(${FLAME_TEST_ARGUMENTS})
+
 		print_debug_function_newline("-------- PARSE RESULT --------")
 	endif()
 
@@ -369,6 +377,11 @@ function(internal_add_binary_target_properties)
 	set_property(GLOBAL APPEND PROPERTY FLAME_BINARY_TARGETS
 		${FLAME_PROPERTY_CONTAINER_NAME}
 	)
+	if(FLAME_TEST)
+		set(TEST TRUE)
+	else()
+		set(TEST FALSE)
+	endif()
 	set_target_properties(${FLAME_PROPERTY_CONTAINER_NAME}
 		PROPERTIES
 			FLAME_REAL_TARGET          "${FLAME_REAL_TARGET}"
@@ -380,6 +393,8 @@ function(internal_add_binary_target_properties)
 			FLAME_LINK_FLAGS           "${FLAME_LINK_FLAGS}"
 			FLAME_OUTPUT_NAME          "${FLAME_OUTPUT_NAME}"
 			FLAME_INSTALL_PATH         "${FLAME_INSTALL_PATH}"
+			FLAME_TEST                 "${TEST}"
+			FLAME_TEST_ARGUMENTS       "${FLAME_TEST_ARGUMENTS}"
 	)
 
 	end_debug_function()
