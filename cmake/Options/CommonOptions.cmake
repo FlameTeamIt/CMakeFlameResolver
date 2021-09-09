@@ -36,7 +36,7 @@ option(FLAME_THREADING
 )
 
 option(FLAME_TESTING
-	"Enable testing. Not support"
+	"Enable testing"
 	ON
 )
 
@@ -46,6 +46,11 @@ option(FLAME_INSTALL
 )
 
 option(FLAME_LOCAL_INSTALL
-	"Installing to local directory (<binary directory>/install). Not support"
+	"Install to local directory (<binary directory>/install)"
 	OFF
+)
+
+option(FLAME_CMAKE_PACKAGING
+	"Enable helpers for creating CMake packages"
+	ON
 )

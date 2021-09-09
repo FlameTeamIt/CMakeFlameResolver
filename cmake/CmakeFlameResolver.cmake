@@ -8,6 +8,7 @@ include(Variables)
 include(Functions)
 include(Compilers)
 include(Platform)
+include(Packaging)
 
 # Public API:
 
@@ -23,8 +24,7 @@ include(Platform)
 #     TESTING                        -
 #     INSTALL                        -
 #     LOCAL_INSTALL                  -
-#     WARNINGS                       -
-#     WARNINGS_AS_ERRORS             -
+#     CMAKE_PACKAGING                -
 #   Code generation options:
 #     ONLY_POSITION_INDEPENDENT_OBJECTS -
 #     MAKE_STATIC                       -
