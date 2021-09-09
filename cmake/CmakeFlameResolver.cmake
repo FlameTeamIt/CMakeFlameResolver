@@ -32,9 +32,11 @@ include(Platform)
 #     MAKE_STANDALONE                   -
 #     EXPORT_ALL_SYMBOLS                -
 #   Flag options:
-#     CXX_NO_RTTI       -
-#     CXX_NO_EXCEPTIONS -
-#     PLATFORM_DEFINES  -
+#     CXX_NO_RTTI        -
+#     CXX_NO_EXCEPTIONS  -
+#     PLATFORM_DEFINES   -
+#     WARNINGS           -
+#     WARNINGS_AS_ERRORS -
 # Values:
 #   PROJECT_ROOT_PATH    -
 #   LOCAL_INSTALL_PREFIX -
