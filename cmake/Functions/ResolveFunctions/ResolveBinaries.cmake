@@ -63,6 +63,10 @@ function(internal_resolve_binaries)
 				DESTINATION ${INSTALL_PATH})
 		endif()
 
+		if(FLAME_CMAKE_PACKAGING)
+			flame_create_cmake_package(TARGET_NAME ${REAL_TARGET})
+		endif()
+
 		get_target_property(BINARY_ALIASES ${target.property} FLAME_BINARY_ALIASES)
 		if(BINARY_ALIASES)
 			foreach(alias ${BINARY_ALIASES})

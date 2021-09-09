@@ -50,6 +50,10 @@ function(internal_resolve_static_libraries)
 				DESTINATION ${INSTALL_PATH})
 		endif()
 
+		if(FLAME_CMAKE_PACKAGING)
+			flame_create_cmake_package(TARGET_NAME ${REAL_TARGET})
+		endif()
+
 		print_newline("done")
 	endforeach()
 

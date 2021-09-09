@@ -53,6 +53,10 @@ function(internal_resolve_shared_libraries)
 				DESTINATION ${INSTALL_PATH})
 		endif()
 
+		if(FLAME_CMAKE_PACKAGING)
+			flame_create_cmake_package(TARGET_NAME ${REAL_TARGET})
+		endif()
+
 		get_target_property(EXPORT_ALL_SYMBOLS ${target.property}
 			FLAME_EXPORT_ALL)
 		if(EXPORT_ALL_SYMBOLS)

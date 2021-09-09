@@ -33,6 +33,10 @@ function(internal_resolve_headers)
 			install(FILES ${HEADER_LIST} DESTINATION ${INSTALL_PATH})
 		endif()
 
+		if(FLAME_CMAKE_PACKAGING)
+			flame_create_cmake_package(TARGET_NAME ${REAL_TARGET})
+		endif()
+
 		print_newline("done")
 	endforeach()
 
