@@ -6,6 +6,7 @@
 #   REAL_TARGET             -
 #   OUTPUT_NAME             -
 #   INSTALL_PATH            -
+#   IMPLIB_INSTALL_PATH     -
 # Lists:
 #   ADDING_SOURCES       -
 #   ADDING_OBJECTS       -

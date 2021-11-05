@@ -114,10 +114,10 @@ macro(internal_compile_library_print_parse_result)
 		print_debug_function_oneline("COMPILE_SHARED_INSTALL_PATH                   = ")
 		print_debug_value_newline(${COMPILE_SHARED_INSTALL_PATH})
 
-		print_debug_function_oneline("COMPILE_STATIC_INSTALL_SUBDIR                    = ")
+		print_debug_function_oneline("COMPILE_STATIC_INSTALL_SUBDIR                 = ")
 		print_debug_value_newline(${COMPILE_STATIC_INSTALL_SUBDIR})
 
-		print_debug_function_oneline("COMPILE_SHARED_INSTALL_SUBDIR                    = ")
+		print_debug_function_oneline("COMPILE_SHARED_INSTALL_SUBDIR                 = ")
 		print_debug_value_newline(${COMPILE_SHARED_INSTALL_SUBDIR})
 
 		# lists
