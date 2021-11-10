@@ -1,13 +1,6 @@
 include(GNUInstallDirs)
 
-if(FLAME_THREADING)
-	find_package(Threads REQUIRED)
-	if(NOT (TARGET Threads::Threads))
-		message(FATAL_ERROR "Target 'Threads::Threads' not found")
-	endif()
-endif()
-
-if(UNIX)
+if(UNIX AND NOT APPLE)
 	include(Platform/Unix)
 elseif(WIN32)
 	include(Platform/Windows)

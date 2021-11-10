@@ -6,8 +6,8 @@ include(Options)
 include(Properties)
 include(Variables)
 include(Functions)
-include(Compilers)
 include(Platform)
+include(Compilers)
 
 # Public API:
 
