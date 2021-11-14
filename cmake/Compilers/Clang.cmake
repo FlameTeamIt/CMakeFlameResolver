@@ -26,16 +26,7 @@ if(("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 	set(FLAME_WARNING_AS_ERROR_FLAG "-Werror")
 
 	if(FLAME_THREADING AND ("${FLAME_PLATFORM}" STREQUAL "Posix"))
-		add_library(flame_static_linking_pthread INTERFACE)
-		add_library(flame_dynamic_linking_pthread INTERFACE)
-
-		target_link_options(flame_static_linking_pthread INTERFACE
-			"-pthread")
-		target_link_options(flame_dynamic_linking_pthread INTERFACE
-			"-pthread")
-
-		list(APPEND FLAME_DEPENDENCY_SHARED_LIBRARIES flame_shared_linking_pthread)
-		list(APPEND FLAME_DEPENDENCY_STATIC_LIBRARIES flame_dynamic_linking_pthread)
+		flame_internal_enable_pthread_linking()
 	endif()
 endif()
 
