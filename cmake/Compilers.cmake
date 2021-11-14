@@ -2,6 +2,7 @@ if((NOT CMAKE_CXX_COMPILER) AND (NOT CMAKE_C_COMPILER))
 	message(FATAL_ERROR "Only for C and/or C++")
 endif()
 
+include(Compilers/Common)
 include(Compilers/Gcc)
 include(Compilers/Clang)
 include(Compilers/Msvc)
