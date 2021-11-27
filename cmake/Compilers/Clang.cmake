@@ -5,7 +5,7 @@ set(FLAME_DEFINE_COMPILER_CLANG
 
 if(("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 		OR ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang"))
-	message(STATUS "Detect clang")
+	message(STATUS "Detect Clang")
 
 	set(FLAME_DEFINE_EXPORT "CMAKE_RESOLVER_EXPORT=__attribute__((visibility(default)))")
 
@@ -24,6 +24,10 @@ if(("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 
 	set(FLAME_WARNING_FLAG_LIST "-Wall" "-Wextra" "-Wstrict-aliasing")
 	set(FLAME_WARNING_AS_ERROR_FLAG "-Werror")
+
+	if(FLAME_THREADING AND ("${FLAME_PLATFORM}" STREQUAL "Posix"))
+		flame_internal_enable_pthread_linking()
+	endif()
 endif()
 
 function(flame_shared_set_export_symbols_clang TARGET_NAME)
