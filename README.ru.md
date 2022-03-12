@@ -23,7 +23,7 @@
 
 ```cmake
 list(APPEND CMAKE_MODULE_PATH "${RESOLVER_PATH}/cmake" PARENT_SCOPE)
-include(CmakeFlameResolver)
+include(CMakeFlameResolver)
 ```
 где переменная `RESOLVER_PATH` -- путь до CMakeFlameResolver
 
