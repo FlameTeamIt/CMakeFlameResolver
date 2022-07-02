@@ -7,13 +7,11 @@ function(flame_conan_find CONAN_EXE)
 	find_program(CONAN
 		NAMES conan
 		PATHS ${PATH}
-		NO_DEFAULT_PATH
 	)
 	if ("${CONAN}" STREQUAL "CONAN-NOTFOUND")
 		find_program(CONAN
 			NAMES conan
 			PATHS ${FLAME_LOCAL_INSTALL_CONAN_PATH}/bin
-			NO_DEFAULT_PATH
 		)
 		if ("${CONAN}" STREQUAL "CONAN-NOTFOUND")
 			return()
@@ -32,10 +30,9 @@ function(flame_pip_find PIP_EXE)
 	find_program(PIP
 		NAMES pip pip3
 		PATHS ${PATH}
-		NO_DEFAULT_PATH
 	)
 	if ("${PIP}" STREQUAL "PIP-NOTFOUND")
-		message_fatal("pip not found")
+		message_fatal("${PATH}; pip not found")
 	endif()
 	set(${PIP_EXE} ${PIP} PARENT_SCOPE)
 endfunction()
