@@ -49,3 +49,8 @@ option(FLAME_LOCAL_INSTALL
 	"Installing to local directory (<binary directory>/install). Not support"
 	OFF
 )
+
+option(FLAME_CONAN_SUPPORT
+	"Enabling conan support"
+	ON
+)
