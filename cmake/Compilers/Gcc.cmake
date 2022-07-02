@@ -24,6 +24,10 @@ if(("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
 
 	set(FLAME_WARNING_FLAG_LIST "-Wall" "-Wextra" "-Wstrict-aliasing")
 	set(FLAME_WARNING_AS_ERROR_FLAG "-Werror")
+
+	if(FLAME_THREADING AND ("${FLAME_PLATFORM}" STREQUAL "Posix"))
+		flame_internal_enable_pthread_linking()
+	endif()
 endif()
 
 function(flame_shared_set_export_symbols_gcc TARGET_NAME)
