@@ -23,9 +23,28 @@
 
 ```cmake
 list(APPEND CMAKE_MODULE_PATH "${RESOLVER_PATH}/cmake" PARENT_SCOPE)
-include(CmakeFlameResolver)
+include(CMakeFlameResolver)
 ```
 где переменная `RESOLVER_PATH` -- путь до CMakeFlameResolver
+
+Также можно использовать родной способ CMake - пакеты [find\_package()](https://cmake.org/cmake/help/latest/command/find_package.html).
+Для этого для начала установите CMakeFlameResolver в нужный каталог (по умолчанию ставится в каталог пакетов/програм вашей ОС,
+для примера поставим ее в каталог `~/proj/myproj/thirdparty-libs-install`, исходники лежат в `~/proj/opensource/CMakeFlameResolver`):
+```sh
+cmake -S . -B ../CMakeFlameResolver-build
+cmake --install ../CMakeFlameResolver-build --prefix ~/myproj/thirdparty-libs-install
+```
+Внимание! Команда cmake --install ждет в качестве префикса абсолютный путь! В зависимости от вашей оболочки, которая может раскрывать тильду заранее,
+а может и не раскрыть, рекомендуется передавать абсолютный путь!
+
+В вашем проекте добавьте такую строчку:
+```cmake
+find_package(CMakeFlameResolver REQUIRED)
+include(CMakeFlameResolver)
+```
+
+Не забудьте добавить путь до вашей установленной библиотеки в переменную [`CMAKE_PREFIX_PATH`](https://cmake.org/cmake/help/latest/variable/CMAKE_PREFIX_PATH.html).
+Эта переменная говорит CMake'у, где именно искать пакеты CMake команде `find_package()`.
 
 ## API
 
