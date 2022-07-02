@@ -1,0 +1,3 @@
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/")
+include(${CMAKE_CURRENT_LIST_DIR}/cmake/CmakeFlameResolver.cmake)
+list(POP_BACK CMAKE_MODULE_PATH)
