@@ -124,4 +124,5 @@ function(flame_conan_init)
 endfunction()
 
 flame_conan_init()
+set(CONAN_COMMAND ${FLAME_CONAN_EXECUTABLE})
 include(${FLAME_CONAN_INTEGRATION_MODULE})
