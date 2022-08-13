@@ -8,6 +8,7 @@ include(Variables)
 include(Functions)
 include(Platform)
 include(Compilers)
+include(Packaging)
 
 # Public API:
 
