@@ -2,6 +2,8 @@ if (NOT FLAME_CONAN_SUPPORT)
 	return()
 endif()
 
+set(FLAME_CONAN_VERSION "1.59")
+
 function(flame_conan_find CONAN_EXE)
 	set(PATH $ENV{PATH})
 	find_program(CONAN
@@ -39,7 +41,7 @@ endfunction()
 function(flame_conan_install PIP_EXE)
 	message_status("Installing conan")
 	execute_process(
-		COMMAND ${PIP_EXE} install -t ${FLAME_LOCAL_INSTALL_CONAN_DIR} conan
+		COMMAND ${PIP_EXE} install -t ${FLAME_LOCAL_INSTALL_CONAN_DIR} conan==${FLAME_CONAN_VERSION}
 		RESULT_VARIABLE CONAN_INSTALL_RESULT
 		OUTPUT_VARIABLE CONAN_INSTALL_OUTPUT
 		ERROR_VARIABLE CONAN_INSTALL_ERROR
