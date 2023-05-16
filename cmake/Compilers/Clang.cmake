@@ -7,7 +7,7 @@ if(("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 		OR ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang"))
 	message(STATUS "Detect Clang")
 
-	set(FLAME_DEFINE_EXPORT "CMAKE_RESOLVER_EXPORT=__attribute__((visibility(default)))")
+	set(FLAME_DEFINE_EXPORT "CMAKE_RESOLVER_EXPORT=__declspec(dllexport)")
 
 	set(CMAKE_RESOLVER_COMPILER_CURRENT_ID ${CMAKE_RESOLVER_COMPILER_CLANG_ID})
 
