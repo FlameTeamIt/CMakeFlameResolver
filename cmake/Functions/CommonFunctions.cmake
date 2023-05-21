@@ -65,6 +65,7 @@ macro(internal_settings)
 		"TESTING"
 		"INSTALL"
 		"LOCAL_INSTALL"
+		"INPLACE_OBJECTS"
 
 		# Code generation options
 		"ONLY_POSITION_INDEPENDENT_OBJECTS"
