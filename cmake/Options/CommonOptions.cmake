@@ -54,3 +54,8 @@ option(FLAME_CONAN_SUPPORT
 	"Enabling conan support"
 	ON
 )
+
+option(FLAME_INPLACE_OBJECTS
+	"Enabling to create object targets on SOURCE_DIR"
+	OFF
+)
