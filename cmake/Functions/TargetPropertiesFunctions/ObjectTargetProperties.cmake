@@ -71,6 +71,9 @@ function(internal_add_object_target_properties)
 			FLAME_POSITION_INDEPENDENT "${FLAME_POSITION_INDEPENDENT}"
 			FLAME_OBJECT_ALIASES       "${FLAME_OBJECT_ALIASES}"
 	)
+	if(FLAME_INPLACE_OBJECTS)
+		add_library(${FLAME_REAL_TARGET} OBJECT ${FLAME_ADDING_FILES})
+	endif()
 
 	end_debug_function()
 endfunction(internal_add_object_target_properties)

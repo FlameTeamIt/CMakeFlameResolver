@@ -67,6 +67,7 @@ include(CMakeFlameResolver)
         TESTING
         INSTALL
         LOCAL_INSTALL
+        INPLACE_OBJECTS
 
         ONLY_POSITION_INDEPENDENT_OBJECTS
         MAKE_STATIC
@@ -102,6 +103,7 @@ include(CMakeFlameResolver)
     | `TESTING`                           |  Опция   | Включение добавления тестов в **CTest** |
     | `INSTALL`                           |  Опция   | Включение сценария установки |
     | `LOCAL_INSTALL`                     |  Опция   | Включить сценарий локальной установки, обходя переменные `CMAKE_INSTALL_*` |
+    | `INPLACE_OBJECTS`                   |  Опция   | Создание объектной библиотеки в момент добавления библиотеки или исполняемого файла (не во время разрешения зависимостей) |
     | `ONLY_POSITION_INDEPENDENT_OBJECTS` |  Опция   | Указать глобально, чтобы собирались только позиционно-независимые объектные файлы (в GCC опция `-fPIC`) |
     | `MAKE_STATIC`                       |  Опция   | Собирать статические библиотеки |
     | `MAKE_SHARED`                       |  Опция   | Собирать динамические библиотеки |
