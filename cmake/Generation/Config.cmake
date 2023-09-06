@@ -1,0 +1,48 @@
+cmake_minimum_required(VERSION 3.14)
+
+function(flame_generate_config)
+	set(OPTIONS)
+	set(VALUES "FILE" "OUTPUT")
+	set(LISTS "PARAMETERS")
+	cmake_parse_arguments("CONFIG" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
+
+	if(NOT CONFIG_FILE OR NOT (EXISTS ${CONFIG_FILE}))
+		message_fatal("Paramter 'FILE' is required or file does not exist")
+	endif()
+	if(NOT CONFIG_OUTPUT)
+		message_fatal("Paramter 'OUTPUT' is required or file does not exist")
+	endif()
+	if (NOT CONFIG_PARAMETERS)
+		message_warning("No parameters")
+		return()
+	endif()
+
+	list(LENGTH CONFIG_PARAMETERS CONFIG_PARAMETERS_LENGTH)
+	math(EXPR IS_PAIRED "${CONFIG_PARAMETERS_LENGTH} % 2" OUTPUT_FORMAT DECIMAL)
+	if(NOT (${IS_PAIRED} EQUAL 0))
+		message_fatal("Paramters is not paired")
+	endif()
+
+	foreach(parameter ${CONFIG_PARAMETERS})
+		if(NOT name)
+			set(name ${parameter})
+			continue()
+		endif()
+
+		if(NOT value)
+			set(value ${parameter})
+		endif()
+
+		set(${name} ${value})
+		unset(name)
+		unset(value)
+	endforeach()
+
+	get_filename_component(OUTPUT_PATH ${CONFIG_OUTPUT} DIRECTORY)
+	message("OUTPUT_PATH = ${OUTPUT_PATH}")
+	if(OUTPUT_PATH AND NOT (EXISTS ${OUTPUT_PATH}))
+		file(MAKE_DIRECTORY ${OUTPUT_PATH})
+	endif()
+
+	configure_file(${CONFIG_FILE} ${CONFIG_OUTPUT} @ONLY)
+endfunction(flame_generate_config)
