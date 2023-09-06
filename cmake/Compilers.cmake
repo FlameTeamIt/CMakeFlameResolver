@@ -46,6 +46,20 @@ function(flame_get_platform_defines OUT_LIST)
 	set(${OUT_LIST} ${FLAME_PLATFORM_FLAGS} PARENT_SCOPE)
 endfunction()
 
+function(flame_generate_platform_config)
+	set(FILE "${CMAKE_CURRENT_LIST_DIR}/Compilers/CompilersConfig.h.in")
+	set(OUTPUT "${FLAME_CONFIG_PATH}/CompilersConfig.h")
+	flame_generate_config(
+		FILE ${FILE}
+		OUTPUT ${OUTPUT}
+		PARAMETERS
+			"CMAKE_RESOLVER_COMPILER_GCC_ID" "${CMAKE_RESOLVER_COMPILER_GCC_ID}"
+			"CMAKE_RESOLVER_COMPILER_CLANG_ID" "${CMAKE_RESOLVER_COMPILER_CLANG_ID}"
+			"CMAKE_RESOLVER_COMPILER_MSVC_ID" "${CMAKE_RESOLVER_COMPILER_MSVC_ID}"
+			"CMAKE_RESOLVER_COMPILER_CURRENT_ID" "${CMAKE_RESOLVER_COMPILER_CURRENT_ID}"
+	)
+endfunction()
+
 function(flame_get_rtti_defines RTTI_ON OUT_LIST)
 	if(RTTI_ON)
 		set(DEFINE_RTTI
