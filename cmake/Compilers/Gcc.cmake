@@ -7,7 +7,8 @@ if(("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
 		OR ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU"))
 	message(STATUS "Detect GCC")
 
-	set(FLAME_DEFINE_EXPORT "CMAKE_RESOLVER_EXPORT=__attribute__((visibility(\"default\")))")
+	set(FLAME_DEFINE_EXPORT
+		"CMAKE_RESOLVER_EXPORT=__attribute__((visibility(\"default\")))")
 
 	set(CMAKE_RESOLVER_COMPILER_CURRENT_ID ${CMAKE_RESOLVER_COMPILER_GCC_ID})
 
@@ -22,7 +23,16 @@ if(("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
 		set(FLAME_CXX_FLAG_EXCEPTIONS "-fexceptions")
 	endif()
 
-	set(FLAME_WARNING_FLAG_LIST "-Wall" "-Wextra" "-Wstrict-aliasing")
+	set(FLAME_PEDANTIC_FLAG "-pedantic")
+#	set(FLAME_NO_EXTENDEND_IDENTIFIERS "-fno-extended-identifiers")
+
+	set(FLAME_WARNING_FLAG_LIST
+		"-Wall"
+		"-Wextra"
+		"-Wstrict-aliasing"
+		"${FLAME_PEDANTIC_FLAG}"
+		"${FLAME_NO_EXTENDEND_IDENTIFIERS}"
+	)
 	set(FLAME_WARNING_AS_ERROR_FLAG "-Werror")
 
 	if(FLAME_THREADING AND ("${FLAME_PLATFORM}" STREQUAL "Posix"))
