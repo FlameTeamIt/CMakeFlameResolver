@@ -111,6 +111,9 @@ macro(internal_header_library_add)
 		INSTALL_PATH            "${HEADER_INSTALL_PATH}"
 		${HEADER_DEBUG}
 	)
+	if(FLAME_SHOW_HEADERS)
+		add_custom_target("${HEADER_NAME}" SOURCES ${HEADER_LIST})
+	endif()
 
 	unset(TARGET_CUSTOM_PROPERTIES)
 	unset(TARGET_NAME)
