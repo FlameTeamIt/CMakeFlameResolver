@@ -27,6 +27,7 @@ include(Packaging)
 #     LOCAL_INSTALL                  -
 #     WARNINGS                       -
 #     WARNINGS_AS_ERRORS             -
+#     SHOW_HEADERS                   -
 #   Code generation options:
 #     ONLY_POSITION_INDEPENDENT_OBJECTS -
 #     MAKE_STATIC                       -

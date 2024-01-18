@@ -59,3 +59,8 @@ option(FLAME_INPLACE_OBJECTS
 	"Enabling to create object targets on SOURCE_DIR"
 	OFF
 )
+
+option(FLAME_SHOW_HEADERS
+	"Show header files"
+	ON
+)
