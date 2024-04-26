@@ -2,7 +2,7 @@ if (NOT FLAME_CONAN_SUPPORT)
 	return()
 endif()
 
-set(FLAME_CONAN_VERSION "1.59")
+set(FLAME_CONAN_VERSION "1.*")
 
 function(flame_conan_find CONAN_EXE)
 	set(PATH $ENV{PATH})
@@ -18,10 +18,10 @@ function(flame_conan_find CONAN_EXE)
 		if ("${CONAN}" STREQUAL "CONAN-NOTFOUND")
 			return()
 		endif()
-
-		set(ENV{PYTHONPATH} ${FLAME_LOCAL_INSTALL_CONAN_DIR})
-		set(ENV{CONAN_USER_HOME} ${FLAME_LOCAL_INSTALL_CONAN_DIR}/home)
 	endif()
+	# Needs for localy installed or installing conan
+	set(ENV{PYTHONPATH} ${FLAME_LOCAL_INSTALL_CONAN_DIR})
+	set(ENV{CONAN_USER_HOME} ${FLAME_LOCAL_INSTALL_CONAN_DIR}/home)
 
 	set(${CONAN_EXE} ${CONAN} PARENT_SCOPE)
 endfunction()
@@ -67,6 +67,18 @@ function(flame_conan_install PIP_EXE)
 	)
 	execute_process(
 		COMMAND ${CMAKE} -E make_directory ${CONAN_DATA}
+	)
+	execute_process(
+		COMMAND ${CONAN_EXE} config set general.use_always_short_paths=False
+		RESULT_VARIABLE CONAN_CONFIGURE_RESULT
+	)
+	execute_process(
+		COMMAND ${CONAN_EXE} config set general.user_home_short=${CONAN_HOME}
+		RESULT_VARIABLE CONAN_CONFIGURE_RESULT
+	)
+	execute_process(
+		COMMAND ${CONAN_EXE} config set general.cmake_generator=${CMAKE_GENERATOR}
+		RESULT_VARIABLE CONAN_CONFIGURE_RESULT
 	)
 	execute_process(
 		COMMAND ${CONAN_EXE} config set storage.download_cache=${CONAN_CACHE}
