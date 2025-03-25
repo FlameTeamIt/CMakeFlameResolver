@@ -45,6 +45,13 @@ endmacro(enable_internal_use)
 #
 #
 #
+macro(disable_internal_use)
+	set(INTERNAL_USE FALSE)
+endmacro(enable_internal_use)
+
+#
+#
+#
 macro(check_internal_use)
 	if(NOT INTERNAL_USE)
 		message_fatal("${FLAME_SIMPLE_PREFIX} It's internal function. You can not use it")

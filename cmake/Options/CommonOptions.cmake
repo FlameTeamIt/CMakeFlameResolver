@@ -64,3 +64,8 @@ option(FLAME_SHOW_HEADERS
 	"Show header files"
 	ON
 )
+
+option(FLAME_FOLDER
+	"Use CMAKE_FOLDER"
+	OFF
+)

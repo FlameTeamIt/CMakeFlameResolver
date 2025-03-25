@@ -77,6 +77,9 @@ function(internal_resolve_binaries)
 				NAME "${REAL_TARGET}"
 				COMMAND ${OUTPUT_NAME} ${TEST_ARGUMENTS}
 			)
+			set_target_properties(${REAL_TARGET} PROPERTIES FOLDER "Tests")
+		else()
+			set_target_properties(${REAL_TARGET} PROPERTIES FOLDER "Binaries")
 		endif()
 
 		print_newline("done")

@@ -28,6 +28,7 @@ include(Packaging)
 #     WARNINGS                       -
 #     WARNINGS_AS_ERRORS             -
 #     SHOW_HEADERS                   -
+#     FOLDER                         -
 #   Code generation options:
 #     ONLY_POSITION_INDEPENDENT_OBJECTS -
 #     MAKE_STATIC                       -
@@ -51,6 +52,17 @@ function(flame_resolver_settings)
 	enable_internal_use()
 	internal_settings(${ARGN})
 endfunction(flame_resolver_settings)
+
+macro(flame_enable_cmake_folder)
+	if(FLAME_FOLDER)
+		get_property(USE_FOLDERS GLOBAL PROPERTY USE_FOLDERS)
+		if(NOT USE_FOLDERS)
+			set_property(GLOBAL PROPERTY USE_FOLDERS False)
+		endif()
+	else()
+		return()
+	endif()
+endmacro()
 
 # Options:
 #   DEBUG -
