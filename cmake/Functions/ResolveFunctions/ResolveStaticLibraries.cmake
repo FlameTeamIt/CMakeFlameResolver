@@ -50,6 +50,8 @@ function(internal_resolve_static_libraries)
 				DESTINATION ${INSTALL_PATH})
 		endif()
 
+		set_target_properties(${REAL_TARGET} PROPERTIES FOLDER "Static")
+
 		print_newline("done")
 	endforeach()
 

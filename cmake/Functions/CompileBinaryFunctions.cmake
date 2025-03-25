@@ -6,7 +6,7 @@ function(internal_compile_binary)
 
 	set(OPTIONS "DEBUG" "TEST" "RTTI" "NO_RTTI" "EXCEPTIONS" "NO_EXCEPTIONS"
 		"USE_RESOLVER_DEFINES")
-	set(VALUES "NAME" "ALIAS_NAME" "INSTALL_PATH" "INSTALL_SUBDIR")
+	set(VALUES "NAME" "ALIAS_NAME" "INSTALL_PATH" "INSTALL_SUBDIR" "FOLDER")
 	set(LISTS "DEFINES" "INCLUDE_PATHS" "SOURCE_LIST" "COMPILE_FLAGS" "LINK_FLAGS"
 		"DEPENDENCY_TARGET_LIST" "TEST_ARGUMENTS")
 	cmake_parse_arguments("BINARY" "${OPTIONS}" "${VALUES}" "${LISTS}" "${ARGN}")
@@ -84,6 +84,9 @@ macro(internal_compile_binary_print_parse_result)
 
 		print_debug_function_oneline("BINARY_DEPENDENCY_TARGET_LIST = ")
 		print_debug_value_newline(${BINARY_DEPENDENCY_TARGET_LIST})
+
+		print_debug_function_oneline("BINARY_FOLDER                 = ")
+		print_debug_value_newline(${BINARY_FOLDER})
 
 		print_debug_function_newline("-------- PARSE RESULT -------")
 	endif()
@@ -220,6 +223,9 @@ macro(internal_compile_binary_add)
 			set(BINARY_TEST_ARGUMENTS ${BINARY_TEST})
 		endif()
 	endif()
+	if (FLAME_FOLDER)
+		set(BINARY_FOLDER FOLDER ${BINARY_FOLDER})
+	endif()
 	internal_add_binary_target_properties(
 		PROPERTY_CONTAINER_NAME "${TARGET_CUSTOM_PROPERTIES}"
 		REAL_TARGET             "${TARGET_NAME}"
@@ -232,6 +238,8 @@ macro(internal_compile_binary_add)
 		#LINK_FLAGS              "${BINARY_LINK_FLAGS}"
 		INCLUDE_PATHS           "${BINARY_INCLUDE_PATHS}"
 		DEFINES                 "${BINARY_DEFINES}"
+
+		${BINARY_FOLDER}
 
 		${BINARY_TEST_ARGUMENTS}
 		${BINARY_DEBUG}

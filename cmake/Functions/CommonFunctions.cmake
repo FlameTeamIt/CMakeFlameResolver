@@ -67,6 +67,7 @@ macro(internal_settings)
 		"LOCAL_INSTALL"
 		"INPLACE_OBJECTS"
 		"SHOW_HEADERS"
+		"FOLDER"
 
 		# Code generation options
 		"ONLY_POSITION_INDEPENDENT_OBJECTS"

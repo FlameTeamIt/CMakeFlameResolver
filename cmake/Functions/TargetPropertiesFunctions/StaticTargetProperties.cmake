@@ -60,6 +60,7 @@ function(internal_add_static_target_properties)
 		print_debug_function_newline("-------- PARSE RESULT --------")
 	endif()
 
+	set(CMAKE_FOLDER "Property containers")
 	add_custom_target(${FLAME_PROPERTY_CONTAINER_NAME})
 	set_property(GLOBAL APPEND PROPERTY FLAME_STATIC_TARGETS
 		${FLAME_PROPERTY_CONTAINER_NAME}

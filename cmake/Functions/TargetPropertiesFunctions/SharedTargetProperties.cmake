@@ -72,6 +72,7 @@ function(internal_add_shared_target_properties)
 		print_debug_function_newline("-------- PARSE RESULT --------")
 	endif()
 
+	set(CMAKE_FOLDER "Property containers")
 	add_custom_target(${FLAME_PROPERTY_CONTAINER_NAME})
 	set_property(GLOBAL APPEND PROPERTY FLAME_SHARED_TARGETS
 		${FLAME_PROPERTY_CONTAINER_NAME}

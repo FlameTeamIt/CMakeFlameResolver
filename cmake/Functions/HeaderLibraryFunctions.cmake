@@ -51,7 +51,7 @@ macro(internal_header_library_print_parse_result)
 		print_debug_function_oneline("HEADER_INSTALL_PATH           = ")
 		print_debug_value_newline(${HEADER_INSTALL_PATH})
 
-		print_debug_function_oneline("HEADER_INSTALL_SUBDIR            = ")
+		print_debug_function_oneline("HEADER_INSTALL_SUBDIR         = ")
 		print_debug_value_newline(${HEADER_INSTALL_SUBDIR})
 
 		print_debug_function_newline("-------- PARSE RESULT --------")
@@ -112,6 +112,7 @@ macro(internal_header_library_add)
 		${HEADER_DEBUG}
 	)
 	if(FLAME_SHOW_HEADERS)
+		set(CMAKE_FOLDER "Headers")
 		add_custom_target("${HEADER_NAME}" SOURCES ${HEADER_LIST})
 	endif()
 

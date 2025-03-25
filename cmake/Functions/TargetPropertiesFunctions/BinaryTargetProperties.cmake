@@ -19,7 +19,8 @@ function(internal_add_binary_target_properties)
 	enable_internal_use()
 
 	set(OPTIONS "DEBUG" "NO_DEBUG" "TEST")
-	set(VALUES "PROPERTY_CONTAINER_NAME" "REAL_TARGET" "OUTPUT_NAME" "INSTALL_PATH")
+	set(VALUES "PROPERTY_CONTAINER_NAME" "REAL_TARGET" "OUTPUT_NAME" "INSTALL_PATH"
+		"FOLDER")
 	set(LISTS "ADDING_FILES" "DEFINES" "INCLUDE_PATHS" "DEPENDENCY_HEADERS"
 		"DEPENDENCY_LIBRARIES" "COMPILE_FLAGS" "LINK_FLAGS" "TEST_ARGUMENTS")
 
@@ -63,6 +64,9 @@ function(internal_add_binary_target_properties)
 		print_debug_function_oneline("FLAME_INSTALL_PATH            = ")
 		print_debug_value_newline(${FLAME_INSTALL_PATH})
 
+		print_debug_function_oneline("FLAME_FOLDER                  = ")
+		print_debug_value_newline(${FLAME_FOLDER})
+
 		print_debug_function_oneline("FLAME_TEST                    = ")
 		print_debug_value_newline(${FLAME_TEST})
 
@@ -72,6 +76,7 @@ function(internal_add_binary_target_properties)
 		print_debug_function_newline("-------- PARSE RESULT --------")
 	endif()
 
+	set(CMAKE_FOLDER "Property containers")
 	add_custom_target(${FLAME_PROPERTY_CONTAINER_NAME})
 	set_property(GLOBAL APPEND PROPERTY FLAME_BINARY_TARGETS
 		${FLAME_PROPERTY_CONTAINER_NAME}
@@ -92,7 +97,9 @@ function(internal_add_binary_target_properties)
 			FLAME_COMPILE_FLAGS        "${FLAME_COMPILE_FLAGS}"
 			FLAME_LINK_FLAGS           "${FLAME_LINK_FLAGS}"
 			FLAME_OUTPUT_NAME          "${FLAME_OUTPUT_NAME}"
+			FLAME_FOLDER               "${FLAME_FOLDER}"
 			FLAME_INSTALL_PATH         "${FLAME_INSTALL_PATH}"
+
 			FLAME_TEST                 "${TEST}"
 			FLAME_TEST_ARGUMENTS       "${FLAME_TEST_ARGUMENTS}"
 	)

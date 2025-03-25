@@ -68,6 +68,8 @@ function(internal_resolve_shared_libraries)
 				DESTINATION ${IMPLIB_INSTALL_PATH})
 		endif()
 
+		set_target_properties(${REAL_TARGET} PROPERTIES FOLDER "Shared")
+
 		print_newline("done")
 	endforeach()
 

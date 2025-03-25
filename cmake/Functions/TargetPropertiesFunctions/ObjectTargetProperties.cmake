@@ -56,6 +56,7 @@ function(internal_add_object_target_properties)
 		print_debug_function_newline("-------- PARSE RESULT --------")
 	endif()
 
+	set(CMAKE_FOLDER "Property containers")
 	add_custom_target(${FLAME_PROPERTY_CONTAINER_NAME})
 	set_property(GLOBAL APPEND PROPERTY FLAME_OBJECT_TARGETS
 		${FLAME_PROPERTY_CONTAINER_NAME}
@@ -72,6 +73,7 @@ function(internal_add_object_target_properties)
 			FLAME_OBJECT_ALIASES       "${FLAME_OBJECT_ALIASES}"
 	)
 	if(FLAME_INPLACE_OBJECTS)
+		set(CMAKE_FOLDER "Objects")
 		add_library(${FLAME_REAL_TARGET} OBJECT ${FLAME_ADDING_FILES})
 	endif()
 

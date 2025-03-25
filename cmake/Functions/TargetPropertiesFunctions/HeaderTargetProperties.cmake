@@ -51,6 +51,7 @@ function(internal_add_header_target_properties)
 		print_debug_function_newline("-------- PARSE RESULT --------")
 	endif()
 
+	set(CMAKE_FOLDER "Property containers")
 	add_custom_target(${FLAME_PROPERTY_CONTAINER_NAME})
 	set_property(GLOBAL APPEND PROPERTY FLAME_HEADER_TARGETS
 		${FLAME_PROPERTY_CONTAINER_NAME}
